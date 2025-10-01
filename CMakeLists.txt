@@ -11,7 +11,7 @@ add_library(SparseMatrixLib STATIC    # 生成名为SparseMatrixLib的静态库
 )
 
 # 设置库的头文件搜索路径
-target_include_directories(SparseMatrixLib PUBLIC include) 
+target_include_directories(SparseMatrixLib PUBLIC sparse_matrix_lib/include) 
 # PUBLIC表示：
 #   - 库自身编译时需要include目录
 #   - 链接此库的**其他目标**（如测试程序）也需要include目录
