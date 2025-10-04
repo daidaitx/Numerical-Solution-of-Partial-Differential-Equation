@@ -254,7 +254,7 @@ public:
 	 * @param col_indices 列索引数组
 	 * @param values 元素值数组
 	 */
-	void setValues(const std::vector<size_t>& row_indices,
+	void setValue(const std::vector<size_t>& row_indices,
 		const std::vector<size_t>& col_indices,
 		const std::vector<double>& values);
 
@@ -354,12 +354,6 @@ public:
 	 * @return 是否为对角矩阵
 	 */
 	bool isDiagonal() const noexcept;
-
-	/**
-	 * @brief 判断矩阵是否为空矩阵
-	 * @return 是否为空矩阵
-	 */
-	bool isEmpty() const noexcept;
 
 	/**
 	 * @brief 矩阵保存到文件
