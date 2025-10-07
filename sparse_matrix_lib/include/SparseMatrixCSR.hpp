@@ -40,6 +40,11 @@ public:
 	// ============================================================= //
 
 	/**
+	 * @brief 构造函数：默认构造函数
+	 */
+	SparseMatrixCSR() = default;
+
+	/**
 	 * @brief 构造函数：构造一个 n x n 全零矩阵
 	 * @param n 矩阵边长
 	 */
@@ -70,6 +75,19 @@ public:
 		const std::vector<size_t>& row_indices,
 		const std::vector<size_t>& col_indices,
 		const std::vector<double>& values);
+
+	/**
+	 * @brief 构造函数：直接从CSR格式构造CSR格式矩阵
+	 * @param rows 矩阵行数
+	 * @param cols 矩阵列数
+	 * @param values 非零元素值
+	 * @param col_indices 非零元素列索引
+	 * @param row_ptrs 非零元素所在行的起始位置
+	 */
+	explicit SparseMatrixCSR(const size_t rows, const size_t cols,
+		const std::vector<double>& values,
+		const std::vector<size_t>& col_indices,
+		const std::vector<size_t>& row_ptrs);
 
 	/**
 	 * @brief 构造函数：从文件构造矩阵
@@ -147,7 +165,7 @@ public:
 	 * @param other 乘数矩阵（稠密矩阵）
 	 * @return 矩阵相乘结果
 	 */
-	SparseMatrixCSR operator*(const std::vector<std::vector<double>>& other) const;
+	std::vector<std::vector<double>> operator*(const std::vector<std::vector<double>>& other) const;
 
 	/**
 	 * @brief 运算符重载：矩阵乘向量
@@ -164,6 +182,13 @@ public:
 	SparseMatrixCSR operator*(const double scalar) const;
 
 	/**
+	 * @brief 运算符重载：矩阵数乘（左侧）
+	 * @param scalar 数值
+	 * @return 矩阵数乘结果
+	 */
+	friend SparseMatrixCSR operator*(const double scalar, const SparseMatrixCSR& mat) { return mat * scalar; };
+
+	/**
 	 * @brief 运算符重载：矩阵数除
 	 * @param scalar 数值
 	 * @return 矩阵数除结果
@@ -177,20 +202,12 @@ public:
 	SparseMatrixCSR operator-() const;
 
 	/**
-	 * @brief 运算符重载：访问矩阵元素（只读）
+	 * @brief 运算符重载：只读访问矩阵元素
 	 * @param row 行索引
 	 * @param col 列索引
 	 * @return 矩阵元素值
 	 */
 	double operator()(const size_t row, const size_t col) const;
-
-	/**
-	 * @brief 运算符重载：访问矩阵元素（可写）
-	 * @param row 行索引
-	 * @param col 列索引
-	 * @return 矩阵元素值
-	 */
-	double& operator()(const size_t row, const size_t col);
 
 	/**
 	 * @brief 运算符重载：流输出（左移）
@@ -249,6 +266,12 @@ public:
 	void setValue(const size_t row, const size_t col, const double value);
 
 	/**
+	 * @brief 更新/插入/置零元素
+	 * @param elements 元素三元组数组（行索引、列索引、值）
+	 */
+	void setValue(const std::tuple<size_t, size_t, double> element);
+
+	/**
 	 * @brief 批量更新/插入/置零元素
 	 * @param row_indices 行索引数组
 	 * @param col_indices 列索引数组
@@ -257,6 +280,12 @@ public:
 	void setValue(const std::vector<size_t>& row_indices,
 		const std::vector<size_t>& col_indices,
 		const std::vector<double>& values);
+
+	/**
+	 * @brief 批量更新/插入/置零元素
+	 * @param elements 元素三元组数组（行索引、列索引、值）
+	 */
+	void setValue(std::vector<std::tuple<size_t, size_t, double>> elements);
 
 	/**
 	 * @brief 判断近似相等
@@ -287,43 +316,43 @@ public:
 	 * @brief 矩阵转置
 	 * @return 转置后的矩阵
 	 */
-	SparseMatrixCSR transpose() const;
+	SparseMatrixCSR transpose() const noexcept;
 
 	/**
 	 * @brief 矩阵转置（简写）
 	 * @return 转置后的矩阵
 	 */
-	SparseMatrixCSR t() const { return this->transpose(); };
+	SparseMatrixCSR t() const noexcept { return this->transpose(); };
 
 	/**
 	 * @brief 转为稠密矩阵
 	 * @return 稠密矩阵
 	 */
-	std::vector<std::vector<double>> toDense() const;
+	std::vector<std::vector<double>> toDense() const noexcept;
 
 	/**
 	 * @brief 获取对角线元素（以向量形式返回）
 	 * @return 对角线元素构成的向量
 	 */
-	std::vector<double> getDiagonalVector() const;
+	std::vector<double> getDiagonalVector() const noexcept;
 
 	/**
 	 * @brief 获取对角线元素（以CSR格式的对角矩阵形式返回）
 	 * @return 对角线元素构成的CSR格式的对角矩阵
 	 */
-	SparseMatrixCSR getDiagonalMatrix() const;
+	SparseMatrixCSR getDiagonalMatrix() const noexcept;
 
 	/**
 	 * @brief 获取上三角矩阵（包含对角线）
 	 * @return 上三角矩阵
 	 */
-	SparseMatrixCSR getUpperTriangularMatrix() const;
+	SparseMatrixCSR getUpperTriangularMatrix() const noexcept;
 
 	/**
 	 * @brief 获取下三角矩阵（包含对角线）
 	 * @return 下三角矩阵
 	 */
-	SparseMatrixCSR getLowerTriangularMatrix() const;
+	SparseMatrixCSR getLowerTriangularMatrix() const noexcept;
 
 	/**
 	 * @brief 判断矩阵是否为方阵
@@ -364,7 +393,13 @@ public:
 	/**
 	 * @brief 矩阵打印
 	 */
-	void print() const { std::cout << *this <<std::endl; };
+	void print() const noexcept { std::cout << *this <<std::endl; };
+
+	/**
+	 * @brief 矩阵稠密打印
+	 * @param precision 精度，默认4位
+	 */
+	void printDense(const int precision = 4) const noexcept;
 };
 
 #endif // SPARSE_MATRIX_CSR_HPP
