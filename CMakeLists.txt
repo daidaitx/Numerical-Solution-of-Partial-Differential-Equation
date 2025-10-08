@@ -8,6 +8,8 @@ add_library(SparseMatrixLib STATIC    # 生成名为SparseMatrixLib的静态库
   sparse_matrix_lib/src/SparseMatrixCSR.cpp           # 库源文件1：稀疏矩阵CSR格式实现
   sparse_matrix_lib/src/SpecificMatrixGenerators.cpp  # 库源文件2：特殊矩阵生成器实现
   sparse_matrix_lib/src/FileIO.cpp                    # 库源文件3：文件输入输出实现
+  sparse_matrix_lib/src/IterativeSolvers.cpp          # 库源文件4：迭代求解器实现
+  sparse_matrix_lib/src/VectorOperations.cpp          # 库源文件5：向量运算实现
 )
 
 # 设置库的头文件搜索路径

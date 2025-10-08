@@ -2,8 +2,11 @@
 #include <vector>
 #include <fstream>
 #include "SparseMatrixCSR.hpp"
+#include "SparseMatrixSolvers.hpp"
+#include "VectorOperations.hpp"
 
 using namespace std;
+using namespace VectorOps;
 
 int main() {
 	cout << "当前运行的是 TestSpMV 测试程序。" << endl;
@@ -161,6 +164,30 @@ int main() {
 	try { csrMatrix_4 * wrong1_denseMatrix_4; } catch (const exception& e) { cout << e.what() << endl; }
 	cout << "矩阵4 * 错误2稠密矩阵4：" << endl;
 	try { csrMatrix_4 * wrong2_denseMatrix_4; } catch (const exception& e) { cout << e.what() << endl; }
+
+	cout << "-----------------------------------------" << endl;
+	cout << "测试5 - CSR格式稀疏矩阵GMRES法求解线性方程组" << endl;
+	vector<vector<double>> matrix_5 = {{1, 0, 3}, {0, 5, 0}, {0, 8, 9}};
+	vector<double> vector_5 = {1, 2, 3};
+	vector<double> wrong_vector_5 = {1, 2, 3, 4};
+	SparseMatrixCSR csrMatrix_5(matrix_5);
+	cout << "矩阵5：" << endl;
+	csrMatrix_5.printDense(0);
+	cout << "向量5：" << endl;
+	for (double val : vector_5) {
+		cout << val << endl;
+	}
+	vector<double> x = csrMatrix_5.solve(vector_5);
+	cout << "解向量：" << endl;
+	for (double val : x) {
+		cout << val << endl;
+	}
+	// 验证残差
+	vector<double> b = csrMatrix_5 * x;
+	vector<double> r = vector_5 - b;
+	cout << "残差：" << norm(r) << endl;
+	cout << "不匹配的大小：" << endl;
+	try { csrMatrix_5.solve(wrong_vector_5); } catch (const exception& e) { cout << e.what() << endl; }
 
 	cout << "=========================================" << endl;
 	cout << "TestSpMV 测试结束。" << endl;

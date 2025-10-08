@@ -1,6 +1,4 @@
-#ifndef SPARSE_MATRIX_CSR_HPP
-#define SPARSE_MATRIX_CSR_HPP
-
+#pragma once
 #include <vector>
 #include <cstddef>
 #include <iostream>
@@ -410,6 +408,11 @@ public:
 	 * @param precision 精度，默认4位
 	 */
 	void printDense(const int precision = 4) const noexcept;
-};
 
-#endif // SPARSE_MATRIX_CSR_HPP
+	/**
+	 * @brief 求解线性方程组 Ax = b（GMRES求解器）
+	 * @param b 右端项向量
+	 * @return 解向量
+	 */
+	std::vector<double> solve(const std::vector<double>& b) const;
+};

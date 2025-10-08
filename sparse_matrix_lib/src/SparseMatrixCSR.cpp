@@ -1,4 +1,5 @@
 #include "SparseMatrixCSR.hpp"
+#include "SparseMatrixSolvers.hpp"
 #include <iostream>
 #include <vector>
 #include <tuple>
@@ -10,7 +11,6 @@
 #include <iomanip>
 #include <string>
 #include <cmath>
-#include <unordered_map>
 
 using namespace std;
 
@@ -1024,4 +1024,9 @@ vector<vector<double>> SparseMatrixCSR::operator*(const vector<vector<double>>& 
 	}
 	
 	return result;
+}
+
+// 求解Ax=b，A为稀疏矩阵，x为解向量，b为右端常数，使用GMRES求解器
+vector<double> SparseMatrixCSR::solve(const vector<double>& b) const {
+	return SparseMatrixSolvers::solveGMRES(*this, b);
 }
