@@ -10,6 +10,7 @@
 #include <iomanip>
 #include <string>
 #include <cmath>
+#include <unordered_map>
 
 using namespace std;
 
@@ -581,8 +582,183 @@ double SparseMatrixCSR::norm(const string& norm_type) const {
 			sum_sq += val * val; // 已经是非负，不需要 fabs
 		}
 		return sqrt(sum_sq);
+	} else if (norm_type == "max" || norm_type == "maximum" || norm_type == "MAX" || norm_type == "MAXIMUM") {
+		// 按元素最大范数：max( |A_ij| )
+		double max_val = 0.0;
+		for (double val : values) {
+			max_val = max(max_val, fabs(val));
+		}
+		return max_val;
 	} else {
 		throw invalid_argument("不支持的范数类型：" + norm_type);
 	}
 }
 
+// 判断矩阵是否为方阵
+bool SparseMatrixCSR::isSquare() const noexcept {
+	return this->rows == this->cols;
+}
+
+// 获取矩阵的对角元素，输出为向量
+vector<double> SparseMatrixCSR::getDiagonalVector() const noexcept {
+	const size_t n = min(this->rows, this->cols);
+	vector<double> diagonal(n, 0.0);
+	
+	for (size_t i = 0; i < n; ++i) {
+		// 在当前行中查找对角线元素 (i, i)
+		for (size_t k = this->row_ptrs[i]; k < this->row_ptrs[i + 1]; ++k) {
+			if (this->col_indices[k] == i) {
+				diagonal[i] = this->values[k];
+				break;
+			}
+		}
+	}
+	
+	return diagonal;
+}
+
+// 获取矩阵的对角元素，输出为CSR格式稀疏对角矩阵
+SparseMatrixCSR SparseMatrixCSR::getDiagonalMatrix() const noexcept {
+	const size_t n = min(this->rows, this->cols);
+	vector<double> diag_values;
+	vector<size_t> diag_col_indices;
+	vector<size_t> diag_row_ptrs(n + 1, 0);
+	
+	// 收集对角线元素
+	for (size_t i = 0; i < n; ++i) {
+		for (size_t k = this->row_ptrs[i]; k < this->row_ptrs[i + 1]; ++k) {
+			if (this->col_indices[k] == i) {
+				diag_values.push_back(this->values[k]);
+				diag_col_indices.push_back(i);
+				break;
+			}
+		}
+		diag_row_ptrs[i + 1] = diag_values.size();
+	}
+	
+	return SparseMatrixCSR(n, n, diag_values, diag_col_indices, diag_row_ptrs);
+}
+
+// 获取矩阵的上三角部分
+SparseMatrixCSR SparseMatrixCSR::getUpperTriangularMatrix() const {
+	if (!this->isSquare()) {
+		throw invalid_argument("要获取矩阵的上三角部分，需要矩阵是一个方阵");
+	}
+	
+	vector<double> upper_values;
+	vector<size_t> upper_col_indices;
+	vector<size_t> upper_row_ptrs(this->rows + 1, 0);
+	
+	for (size_t i = 0; i < this->rows; ++i) {
+		for (size_t k = this->row_ptrs[i]; k < this->row_ptrs[i + 1]; ++k) {
+			size_t j = this->col_indices[k];
+			// 只保留对角线及上三角元素 (j >= i)
+			if (j >= i) {
+				upper_values.push_back(this->values[k]);
+				upper_col_indices.push_back(j);
+			}
+		}
+		upper_row_ptrs[i + 1] = upper_values.size();
+	}
+	
+	return SparseMatrixCSR(this->rows, this->cols, upper_values, upper_col_indices, upper_row_ptrs);
+}
+
+// 获取矩阵的下三角部分
+SparseMatrixCSR SparseMatrixCSR::getLowerTriangularMatrix() const {
+	if (!this->isSquare()) {
+		throw invalid_argument("要获取矩阵的下三角部分，需要矩阵是一个方阵");
+	}
+	
+	vector<double> lower_values;
+	vector<size_t> lower_col_indices;
+	vector<size_t> lower_row_ptrs(this->rows + 1, 0);
+	
+	for (size_t i = 0; i < this->rows; ++i) {
+		for (size_t k = this->row_ptrs[i]; k < this->row_ptrs[i + 1]; ++k) {
+			size_t j = this->col_indices[k];
+			// 只保留对角线及下三角元素 (j <= i)
+			if (j <= i) {
+				lower_values.push_back(this->values[k]);
+				lower_col_indices.push_back(j);
+			}
+		}
+		lower_row_ptrs[i + 1] = lower_values.size();
+	}
+	
+	return SparseMatrixCSR(this->rows, this->cols, lower_values, lower_col_indices, lower_row_ptrs);
+}
+
+// 判断矩阵是否对称
+bool SparseMatrixCSR::isSymmetric(const double tolerance) const {
+	if (!this->isSquare()) {
+		return false;
+	}
+	// 构建转置矩阵进行比较
+	SparseMatrixCSR transposed = this->transpose();
+	// 调用 isApproxEqualto 进行比较
+	return isApproxEqualto(transposed, tolerance);
+}
+
+// 判断矩阵是否是上三角矩阵
+bool SparseMatrixCSR::isUpperTriangular() const noexcept {
+	if (!this->isSquare()) {
+		return false;
+	}
+	
+	for (size_t i = 0; i < this->rows; ++i) {
+		for (size_t k = this->row_ptrs[i]; k < this->row_ptrs[i + 1]; ++k) {
+			size_t j = this->col_indices[k];
+			// 如果发现下三角区域（j < i）有非零元素，则不是上三角矩阵
+			if (j < i) {
+				return false;
+			}
+		}
+	}
+	
+	return true;
+}
+
+// 判断矩阵是否是下三角矩阵
+bool SparseMatrixCSR::isLowerTriangular() const noexcept {
+	if (!this->isSquare()) {
+		return false;
+	}
+	
+	for (size_t i = 0; i < this->rows; ++i) {
+		for (size_t k = this->row_ptrs[i]; k < this->row_ptrs[i + 1]; ++k) {
+			size_t j = this->col_indices[k];
+			// 如果发现上三角区域（j > i）有非零元素，则不是下三角矩阵
+			if (j > i) {
+				return false;
+			}
+		}
+	}
+	
+	return true;
+}
+
+// 判断矩阵是否是对角矩阵
+bool SparseMatrixCSR::isDiagonal() const noexcept {
+	if (!this->isSquare()) {
+		return false;
+	}
+	
+	for (size_t i = 0; i < this->rows; ++i) {
+		for (size_t k = this->row_ptrs[i]; k < this->row_ptrs[i + 1]; ++k) {
+			size_t j = this->col_indices[k];
+			// 如果发现非对角线元素（j != i），则不是对角矩阵
+			if (j != i) {
+				return false;
+			}
+		}
+	}
+	
+	return true;
+}
+
+// 判断两个矩阵是否近似相等
+bool SparseMatrixCSR::isApproxEqualto(const SparseMatrixCSR& other, const double tolerance) const {
+	SparseMatrixCSR DiffMat = *this/* - other*/;
+	return DiffMat.norm("max") <= tolerance * (other.norm("max") + this->norm("max") + 1e-10);
+}

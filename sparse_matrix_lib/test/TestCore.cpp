@@ -521,39 +521,6 @@ int main() {
 	catch(const exception& e) {
 		cerr << e.what() << '\n';
 	}
-	// cout << "矩阵A + 矩阵B：" << endl;
-	// csrMatrix_8temp = csrMatrix_8A + csrMatrix_8B;
-	// csrMatrix_8temp.print();
-	// cout << "矩阵A - 矩阵B：" << endl;
-	// csrMatrix_8temp = csrMatrix_8A - csrMatrix_8B;
-	// csrMatrix_8temp.print();
-	// cout << "-矩阵A：" << endl;
-	// csrMatrix_8temp = -csrMatrix_8A;
-	// csrMatrix_8temp.print();
-	// cout << "矩阵A * 标量：" << endl;
-	// csrMatrix_8temp = csrMatrix_8A * 2.5;
-	// csrMatrix_8temp.print();
-	// cout << "标量 * 矩阵A：" << endl;
-	// csrMatrix_8temp = 2.5 * csrMatrix_8A;
-	// csrMatrix_8temp.print();
-	// cout << "矩阵A / 标量：" << endl;
-	// csrMatrix_8temp = csrMatrix_8A / 2.5;
-	// csrMatrix_8temp.print();
-	// cout << "矩阵A * 向量：" << endl;
-	// vector<double> vec_8 = { 1, 2, 3, 4 };
-	// vec_8temp = csrMatrix_8A * vec_8;
-	// for (double v : vec_8temp) {
-	// 	cout << v << " ";
-	// }
-	// cout << endl;
-	// cout << "矩阵A * 稠密矩阵B：" << endl;
-	// denseMatrix_8temp = csrMatrix_8A * values_8B;
-	// for (vector<double> row : denseMatrix_8temp) {
-	// 	for (double v : row) {
-	// 		cout << v << " ";
-	// 	}
-	// 	cout << endl;
-	// }
 
 	cout << "-----------------------------------------" << endl;
 	cout << "测试9 - CSR稀疏矩阵转稠密矩阵以及稠密打印" << endl;
@@ -604,6 +571,9 @@ int main() {
 	cout << "CSR稀疏矩阵的frobenius范数：" << endl;
 	double norm_fro_11 = csrMatrix_11.norm("fro");
 	cout << norm_fro_11 << endl;
+	cout << "CSR稀疏矩阵的按元素max范数：" << endl;
+	double norm_max_11 = csrMatrix_11.norm("max");
+	cout << norm_max_11 << endl;
 	cout << "CSR稀疏矩阵的范数（填写错误）：" << endl;
 	try
 	{
@@ -614,6 +584,82 @@ int main() {
 		cerr << e.what() << '\n';
 	}
 	
+	cout << "-----------------------------------------" << endl;
+	cout << "测试12 - 矩阵判断" << endl;
+	SparseMatrixCSR csrMatrix_12a(3, 3);
+	csrMatrix_12a.printDense(0);
+	cout << "全零方阵：isSquare() = " << csrMatrix_12a.isSquare() << ", isSymmetric() = " << csrMatrix_12a.isSymmetric() << ", isUpperTriangular() = " << csrMatrix_12a.isUpperTriangular() << ", isLowerTriangular() = " << csrMatrix_12a.isLowerTriangular() << ", isDiagonal() = " << csrMatrix_12a.isDiagonal() << endl;
+	SparseMatrixCSR csrMatrix_12b(4, 3);
+	csrMatrix_12b.printDense(0);
+	cout << "全零非方阵：isSquare() = " << csrMatrix_12b.isSquare() << ", isSymmetric() = " << csrMatrix_12b.isSymmetric() << ", isUpperTriangular() = " << csrMatrix_12b.isUpperTriangular() << ", isLowerTriangular() = " << csrMatrix_12b.isLowerTriangular() << ", isDiagonal() = " << csrMatrix_12b.isDiagonal() << endl;
+	vector<vector<double>> values_12c = { {1, 2, 3, 4}, {5, 6, 7, 8}, {0, 0, 0, 0}, {0, 0, 0, 0} };
+	SparseMatrixCSR csrMatrix_12c(values_12c);
+	csrMatrix_12c.printDense(0);
+	cout << "一般非对称方阵：isSquare() = " << csrMatrix_12c.isSquare() << ", isSymmetric() = " << csrMatrix_12c.isSymmetric() << ", isUpperTriangular() = " << csrMatrix_12c.isUpperTriangular() << ", isLowerTriangular() = " << csrMatrix_12c.isLowerTriangular() << ", isDiagonal() = " << csrMatrix_12c.isDiagonal() << endl;
+	vector<vector<double>> values_12d = { {1, 2, 3, 4}, {2, 1, 0, 0}, {3, 0, 1, 0}, {4, 0, 0, 1}, {-9, -9, -8, -7}};
+	SparseMatrixCSR csrMatrix_12d(values_12d);
+	csrMatrix_12d.printDense(0);
+	cout << "一般非方阵：isSquare() = " << csrMatrix_12d.isSquare() << ", isSymmetric() = " << csrMatrix_12d.isSymmetric() << ", isUpperTriangular() = " << csrMatrix_12d.isUpperTriangular() << ", isLowerTriangular() = " << csrMatrix_12d.isLowerTriangular() << ", isDiagonal() = " << csrMatrix_12d.isDiagonal() << endl;
+	vector<vector<double>> values_12e = { {1, 2, 3, 4}, {2, 1, 0, 0}, {3, 0, 1, 0}, {4, 0, 0, 1} };
+	SparseMatrixCSR csrMatrix_12e(values_12e);
+	csrMatrix_12e.printDense(0);
+	cout << "对称方阵：isSquare() = " << csrMatrix_12e.isSquare() << ", isSymmetric() = " << csrMatrix_12e.isSymmetric() << ", isUpperTriangular() = " << csrMatrix_12e.isUpperTriangular() << ", isLowerTriangular() = " << csrMatrix_12e.isLowerTriangular() << ", isDiagonal() = " << csrMatrix_12e.isDiagonal() << endl;
+	vector<vector<double>> values_12f = { {1, 2, 3, 4}, {0, 2, 3, 4}, {0, 0, 3, 4}, {0, 0, 0, 4} };
+	SparseMatrixCSR csrMatrix_12f(values_12f);
+	csrMatrix_12f.printDense(0);
+	cout << "一般上三角矩阵：isSquare() = " << csrMatrix_12f.isSquare() << ", isSymmetric() = " << csrMatrix_12f.isSymmetric() << ", isUpperTriangular() = " << csrMatrix_12f.isUpperTriangular() << ", isLowerTriangular() = " << csrMatrix_12f.isLowerTriangular() << ", isDiagonal() = " << csrMatrix_12f.isDiagonal() << endl;
+	vector<vector<double>> values_12g = { {1, 0, 0, 0}, {2, 1, 0, 0}, {3, 2, 1, 0}, {4, 3, 2, 1} };
+	SparseMatrixCSR csrMatrix_12g(values_12g);
+	csrMatrix_12g.printDense(0);
+	cout << "一般下三角矩阵：isSquare() = " << csrMatrix_12g.isSquare() << ", isSymmetric() = " << csrMatrix_12g.isSymmetric() << ", isUpperTriangular() = " << csrMatrix_12g.isUpperTriangular() << ", isLowerTriangular() = " << csrMatrix_12g.isLowerTriangular() << ", isDiagonal() = " << csrMatrix_12g.isDiagonal() << endl;
+	vector<vector<double>> values_12h = { {1, 0, 0, 0}, {0, 2, 0, 0}, {0, 0, 3, 0}, {0, 0, 0, 4} };
+	SparseMatrixCSR csrMatrix_12h(values_12h);
+	csrMatrix_12h.printDense(0);
+	cout << "对角矩阵：isSquare() = " << csrMatrix_12h.isSquare() << ", isSymmetric() = " << csrMatrix_12h.isSymmetric() << ", isUpperTriangular() = " << csrMatrix_12h.isUpperTriangular() << ", isLowerTriangular() = " << csrMatrix_12h.isLowerTriangular() << ", isDiagonal() = " << csrMatrix_12h.isDiagonal() << endl;
+	vector<vector<double>> values_12i = { {1, 2, 3, 4+1e-15}, {2, 2, 0, 0}, {3, 0, 3, 0}, {4, 0, 0, 4}};
+	SparseMatrixCSR csrMatrix_12i(values_12i);
+	csrMatrix_12i.printDense(0);
+	cout << "近似对称矩阵：isSquare() = " << csrMatrix_12i.isSquare() << ", isSymmetric() = " << csrMatrix_12i.isSymmetric() << ", isSymmetric(1e-5) = " << csrMatrix_12i.isSymmetric(1e-5) << endl;
+
+	cout << "-----------------------------------------" << endl;
+	cout << "测试13 - 矩阵获取" << endl;
+	vector<vector<double>> values_13a = { {3.1, -4, 1.5, -9.2, 0.3}, {-6.5, -3.5, 89.7, 9.32, 0}, {-38.4, 62.6, -433.8, 3.279, 0}, {5, 0, -2.88, 419716, -9} };
+	SparseMatrixCSR csrMatrix_13a(values_13a);
+	cout << "CSR稀疏矩阵：" << endl;
+	csrMatrix_13a.printDense();
+	cout << "获取矩阵的对角元，生成为向量：" << endl;
+	vector<double> DiagVec_13a = csrMatrix_13a.getDiagonalVector();
+	for (double v : DiagVec_13a) {
+		cout << v << " ";
+	}
+	cout << endl;
+	cout << "获取矩阵的对角元，生成为矩阵：" << endl;
+	SparseMatrixCSR DiagMat_13a = csrMatrix_13a.getDiagonalMatrix();
+	DiagMat_13a.print();
+	vector<vector<double>> values_13A = { {3.1, -4, 1.5, -9.2}, {-6.5, -3.5, 89.7, 9.32}, {-38.4, 62.6, -433.8, 3.279}, {5, 0, -2.88, 419716} };
+	SparseMatrixCSR csrMatrix_13A(values_13A);
+	cout << "获取矩阵的上三角部分：" << endl;
+	SparseMatrixCSR UpperMat_13A = csrMatrix_13A.getUpperTriangularMatrix();
+	UpperMat_13A.printDense();
+	cout << "获取矩阵的上三角部分（非方阵）" << endl;
+	try {
+		SparseMatrixCSR UpperMat_13a = csrMatrix_13a.getUpperTriangularMatrix();
+	}
+	catch(const exception& e) {
+		cerr << e.what() << '\n';
+	}
+	cout << "获取矩阵的下三角部分：" << endl;
+	SparseMatrixCSR LowerMat_13A = csrMatrix_13A.getLowerTriangularMatrix();
+	LowerMat_13A.printDense();
+	cout << "获取矩阵的下三角部分（非方阵）" << endl;
+	try {
+		SparseMatrixCSR LowerMat_13a = csrMatrix_13a.getLowerTriangularMatrix();
+	}
+	catch(const exception& e) {
+		cerr << e.what() << '\n';
+	}
+
+
 
 
 	cout << "=========================================" << endl;

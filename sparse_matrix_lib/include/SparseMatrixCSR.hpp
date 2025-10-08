@@ -293,7 +293,7 @@ public:
 	 * @param epsilon 容许误差
 	 * @return 是否近似相等
 	 */
-	bool isApproxEqualto(const SparseMatrixCSR& other, const double epsilon) const;
+	bool isApproxEqualto(const SparseMatrixCSR& other, const double tolerance) const;
 
 	/**
 	 * @brief 判断近似不等
@@ -301,8 +301,8 @@ public:
 	 * @param epsilon 容许误差
 	 * @return 是否近似不等
 	 */
-	bool isNotApproxEqualto(const SparseMatrixCSR& other, const double epsilon) const {
-		return !this->isApproxEqualto(other, epsilon);
+	bool isNotApproxEqualto(const SparseMatrixCSR& other, const double tolerance) const {
+		return !this->isApproxEqualto(other, tolerance);
 	};
 
 	/**
@@ -346,13 +346,13 @@ public:
 	 * @brief 获取上三角矩阵（包含对角线）
 	 * @return 上三角矩阵
 	 */
-	SparseMatrixCSR getUpperTriangularMatrix() const noexcept;
+	SparseMatrixCSR getUpperTriangularMatrix() const;
 
 	/**
 	 * @brief 获取下三角矩阵（包含对角线）
 	 * @return 下三角矩阵
 	 */
-	SparseMatrixCSR getLowerTriangularMatrix() const noexcept;
+	SparseMatrixCSR getLowerTriangularMatrix() const;
 
 	/**
 	 * @brief 判断矩阵是否为方阵
@@ -364,7 +364,7 @@ public:
 	 * @brief 判断矩阵是否为对称矩阵
 	 * @return 是否为对称矩阵
 	 */
-	bool isSymmetric() const noexcept;
+	bool isSymmetric(const double tolerance = 0) const;
 
 	/**
 	 * @brief 判断矩阵是否为上三角矩阵
