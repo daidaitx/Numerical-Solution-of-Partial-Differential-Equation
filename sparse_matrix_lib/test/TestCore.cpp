@@ -607,7 +607,7 @@ int main() {
 	cout << "CSR稀疏矩阵的范数（填写错误）：" << endl;
 	try
 	{
-		double norm_none_11 = csrMatrix_11.norm("114514");
+		double norm_none_11 = csrMatrix_11.norm("这是一个不支持的范数类型");
 	}
 	catch(const exception& e)
 	{

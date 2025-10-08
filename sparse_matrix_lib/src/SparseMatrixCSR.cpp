@@ -331,7 +331,7 @@ void SparseMatrixCSR::saveToFile(const string& filename) const {
 			double val = values[pos];        // 值
 
 			// 写入：行 列 值
-			file << r << " " << col << " " << val << "\r\n";
+			file << r << " " << col << " " << val << "\n";
 		}
 	}
 	cout << "矩阵已保存到文件: " << filename << endl;
@@ -491,10 +491,10 @@ void SparseMatrixCSR::printDense(const int precision) const noexcept {
 					break;
 				}
 			}
-            ostringstream oss;
-            oss << fixed << setprecision(precision);
-            oss << val;
-            cout << setw(max_width) << oss.str() << " ";
+			ostringstream oss;
+			oss << fixed << setprecision(precision);
+			oss << val;
+			cout << setw(max_width) << oss.str() << " ";
 		}
 		cout << endl;
 	}
@@ -504,18 +504,23 @@ void SparseMatrixCSR::printDense(const int precision) const noexcept {
 SparseMatrixCSR SparseMatrixCSR::transpose() const noexcept {
 	const size_t num_rows = this->cols;  // 转置后行数 = 原列数
 	const size_t num_cols = this->rows;  // 转置后列数 = 原行数
+	
+	// 如果矩阵为空，直接返回空矩阵
+	if (this->values.empty()) {
+		return SparseMatrixCSR(num_rows, num_cols);
+	}
 
 	// Step 1: 统计原矩阵中每一列（即转置后每一行）有多少非零元素
-	vector<size_t> col_counts(num_cols, 0);
+	vector<size_t> col_counts(num_rows, 0);  // 大小为转置后行数 = 原列数
 	for (size_t k = 0; k < this->values.size(); ++k) {
 		size_t col = this->col_indices[k];
 		col_counts[col]++;
 	}
 
 	// Step 2: 计算转置后的 row_ptrs（即列的前缀和）
-	vector<size_t> transposed_row_ptrs(num_cols + 1, 0);
-	for (size_t col = 0; col < num_cols; ++col) {
-		transposed_row_ptrs[col + 1] = transposed_row_ptrs[col] + col_counts[col];
+	vector<size_t> transposed_row_ptrs(num_rows + 1, 0);
+	for (size_t i = 0; i < num_rows; ++i) {
+		transposed_row_ptrs[i + 1] = transposed_row_ptrs[i] + col_counts[i];
 	}
 
 	// Step 3: 填充转置后的 values, col_indices
@@ -523,60 +528,59 @@ SparseMatrixCSR SparseMatrixCSR::transpose() const noexcept {
 	vector<size_t> transposed_col_indices(this->col_indices.size());
 
 	// 辅助数组：记录每一列（转置行）当前写入位置
-	vector<size_t> current_pos(this->cols, 0);
+	vector<size_t> current_pos(num_rows, 0);
 
 	for (size_t i = 0; i < this->rows; ++i) {
 		for (size_t k = this->row_ptrs[i]; k < this->row_ptrs[i + 1]; ++k) {
 			size_t col = this->col_indices[k];       // 原列号 → 转置后行号
 			size_t pos = transposed_row_ptrs[col] + current_pos[col];
-
 			transposed_values[pos] = this->values[k];
 			transposed_col_indices[pos] = i;  // 原行号 → 转置后列号
-
 			current_pos[col]++;
 		}
 	}
 
-	// 为行指针添加最后一个元素，即非零元素数量
-	transposed_row_ptrs.push_back(getNNZ());
 	// Step 4: 构造并返回新的 CSR（转置后矩阵）
-	return SparseMatrixCSR(num_rows, num_cols, transposed_values, transposed_col_indices, transposed_row_ptrs);
+	return SparseMatrixCSR(num_rows, num_cols, 
+						transposed_values, 
+						transposed_col_indices, 
+						transposed_row_ptrs);
 }
 
 // 矩阵范数
 double SparseMatrixCSR::norm(const string& norm_type) const {
 	if (norm_type == "row" || norm_type == "inf" || norm_type == "infinity" || norm_type == "INF" || norm_type == "INFINITY") {
 		// 行和范数（每行绝对值之和的最大值）→ ∞-范数
-        double max_row_sum = 0.0;
-        for (size_t i = 0; i < rows; ++i) {
-            double row_sum = 0.0;
-            for (size_t k = row_ptrs[i]; k < row_ptrs[i + 1]; ++k) {
-                row_sum += fabs(values[k]); // 累加绝对值
-            }
-            max_row_sum = max(max_row_sum, row_sum);
-        }
-        return max_row_sum;
+		double max_row_sum = 0.0;
+		for (size_t i = 0; i < rows; ++i) {
+			double row_sum = 0.0;
+			for (size_t k = row_ptrs[i]; k < row_ptrs[i + 1]; ++k) {
+				row_sum += fabs(values[k]); // 累加绝对值
+			}
+			max_row_sum = max(max_row_sum, row_sum);
+		}
+		return max_row_sum;
 	} else if (norm_type == "col" || norm_type == "column" || norm_type == "1" || norm_type == "one" || norm_type == "ONE") {
 		// 列和范数（每列绝对值之和的最大值）→ 1-范数
-        vector<double> col_sums(cols, 0.0); // 每列的绝对值之和
-        for (size_t i = 0; i < rows; ++i) {
-            for (size_t k = row_ptrs[i]; k < row_ptrs[i + 1]; ++k) {
-                size_t col = col_indices[k];
-                col_sums[col] += fabs(values[k]);
-            }
-        }
-        double max_col_sum = 0.0;
-        for (double sum : col_sums) {
-            max_col_sum = max(max_col_sum, sum);
-        }
-        return max_col_sum;
+		vector<double> col_sums(cols, 0.0); // 每列的绝对值之和
+		for (size_t i = 0; i < rows; ++i) {
+			for (size_t k = row_ptrs[i]; k < row_ptrs[i + 1]; ++k) {
+				size_t col = col_indices[k];
+				col_sums[col] += fabs(values[k]);
+			}
+		}
+		double max_col_sum = 0.0;
+		for (double sum : col_sums) {
+			max_col_sum = max(max_col_sum, sum);
+		}
+		return max_col_sum;
 	} else if (norm_type == "fro" || norm_type == "Fro" || norm_type == "FRO" || norm_type == "frobenius" || norm_type == "Frobenius" || norm_type == "FROBENIUS") {
 		// Frobenius 范数：sqrt( sum(|A_ij|^2) )
-        double sum_sq = 0.0;
-        for (double val : values) {
-            sum_sq += val * val; // 已经是非负，不需要 fabs
-        }
-        return sqrt(sum_sq);
+		double sum_sq = 0.0;
+		for (double val : values) {
+			sum_sq += val * val; // 已经是非负，不需要 fabs
+		}
+		return sqrt(sum_sq);
 	} else {
 		throw invalid_argument("不支持的范数类型：" + norm_type);
 	}
