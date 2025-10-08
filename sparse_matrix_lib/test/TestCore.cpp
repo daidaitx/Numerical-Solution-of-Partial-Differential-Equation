@@ -616,9 +616,9 @@ int main() {
 	SparseMatrixCSR csrMatrix_12h(values_12h);
 	csrMatrix_12h.printDense(0);
 	cout << "对角矩阵：isSquare() = " << csrMatrix_12h.isSquare() << ", isSymmetric() = " << csrMatrix_12h.isSymmetric() << ", isUpperTriangular() = " << csrMatrix_12h.isUpperTriangular() << ", isLowerTriangular() = " << csrMatrix_12h.isLowerTriangular() << ", isDiagonal() = " << csrMatrix_12h.isDiagonal() << endl;
-	vector<vector<double>> values_12i = { {1, 2, 3, 4+1e-15}, {2, 2, 0, 0}, {3, 0, 3, 0}, {4, 0, 0, 4}};
+	vector<vector<double>> values_12i = { {1, 2, 3, 4+1e-5}, {2, 2, 0, 0}, {3, 0, 3, 0}, {4, 0, 0, 4}};
 	SparseMatrixCSR csrMatrix_12i(values_12i);
-	csrMatrix_12i.printDense(0);
+	csrMatrix_12i.printDense(5);
 	cout << "近似对称矩阵：isSquare() = " << csrMatrix_12i.isSquare() << ", isSymmetric() = " << csrMatrix_12i.isSymmetric() << ", isSymmetric(1e-5) = " << csrMatrix_12i.isSymmetric(1e-5) << endl;
 
 	cout << "-----------------------------------------" << endl;
@@ -659,10 +659,7 @@ int main() {
 		cerr << e.what() << '\n';
 	}
 
-
-
-
 	cout << "=========================================" << endl;
-	cout << "核心功能测试结束。" << endl;
+	cout << "TestCore 测试结束。" << endl;
 	return 0;
 }

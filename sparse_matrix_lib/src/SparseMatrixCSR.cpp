@@ -759,6 +759,269 @@ bool SparseMatrixCSR::isDiagonal() const noexcept {
 
 // 判断两个矩阵是否近似相等
 bool SparseMatrixCSR::isApproxEqualto(const SparseMatrixCSR& other, const double tolerance) const {
-	SparseMatrixCSR DiffMat = *this/* - other*/;
+	SparseMatrixCSR DiffMat = *this - other;
 	return DiffMat.norm("max") <= tolerance * (other.norm("max") + this->norm("max") + 1e-10);
+}
+
+// 矩阵加法(+=)
+SparseMatrixCSR& SparseMatrixCSR::operator+=(const SparseMatrixCSR& other) {
+	// 检查维度是否匹配
+	if (this->rows != other.rows || this->cols != other.cols) {
+		throw invalid_argument("矩阵相加要求两矩阵大小相同");
+	}
+	
+	// 临时存储结果
+	vector<double> result_values;
+	vector<size_t> result_col_indices;
+	vector<size_t> result_row_ptrs(this->rows + 1, 0);
+	
+	// 逐行合并
+	for (size_t i = 0; i < this->rows; ++i) {
+		size_t pos1 = this->row_ptrs[i];  // 当前矩阵当前行的起始位置
+		size_t pos2 = other.row_ptrs[i];  // 另一个矩阵当前行的起始位置
+		size_t end1 = this->row_ptrs[i + 1];  // 当前矩阵当前行的结束位置
+		size_t end2 = other.row_ptrs[i + 1];  // 另一个矩阵当前行的结束位置
+		
+		// 归并两个有序列表（按列索引）
+		while (pos1 < end1 && pos2 < end2) {
+			size_t col1 = this->col_indices[pos1];
+			size_t col2 = other.col_indices[pos2];
+			
+			if (col1 < col2) {
+				// 只存在于当前矩阵
+				result_values.push_back(this->values[pos1]);
+				result_col_indices.push_back(col1);
+				pos1++;
+			} else if (col1 > col2) {
+				// 只存在于另一个矩阵
+				result_values.push_back(other.values[pos2]);
+				result_col_indices.push_back(col2);
+				pos2++;
+			} else {
+				// 两个矩阵都有，相加
+				double sum = this->values[pos1] + other.values[pos2];
+				if (abs(sum) > 1e-12) {
+					result_values.push_back(sum);
+					result_col_indices.push_back(col1);
+				}
+				pos1++;
+				pos2++;
+			}
+		}
+		
+		// 处理剩余元素（当前矩阵）
+		while (pos1 < end1) {
+			result_values.push_back(this->values[pos1]);
+			result_col_indices.push_back(this->col_indices[pos1]);
+			pos1++;
+		}
+		
+		// 处理剩余元素（另一个矩阵）
+		while (pos2 < end2) {
+			result_values.push_back(other.values[pos2]);
+			result_col_indices.push_back(other.col_indices[pos2]);
+			pos2++;
+		}
+		
+		result_row_ptrs[i + 1] = result_values.size();
+	}
+	
+	// 更新当前矩阵
+	this->values = move(result_values);
+	this->col_indices = move(result_col_indices);
+	this->row_ptrs = move(result_row_ptrs);
+	
+	return *this;
+}
+
+// 矩阵加法(+)
+SparseMatrixCSR SparseMatrixCSR::operator+(const SparseMatrixCSR& other) const {
+	SparseMatrixCSR result = *this;  // 拷贝当前矩阵
+	result += other;                 // 使用 += 实现加法
+	return result;
+}
+
+// 矩阵减法(-=)
+SparseMatrixCSR& SparseMatrixCSR::operator-=(const SparseMatrixCSR& other) {
+	// 检查维度是否匹配
+	if (this->rows != other.rows || this->cols != other.cols) {
+		throw invalid_argument("矩阵相减要求两矩阵大小相同");
+	}
+	
+	// 临时存储结果
+	vector<double> result_values;
+	vector<size_t> result_col_indices;
+	vector<size_t> result_row_ptrs(this->rows + 1, 0);
+	
+	// 逐行合并
+	for (size_t i = 0; i < this->rows; ++i) {
+		size_t pos1 = this->row_ptrs[i];  // 当前矩阵当前行的起始位置
+		size_t pos2 = other.row_ptrs[i];  // 另一个矩阵当前行的起始位置
+		size_t end1 = this->row_ptrs[i + 1];  // 当前矩阵当前行的结束位置
+		size_t end2 = other.row_ptrs[i + 1];  // 另一个矩阵当前行的结束位置
+		
+		// 归并两个有序列表（按列索引）
+		while (pos1 < end1 && pos2 < end2) {
+			size_t col1 = this->col_indices[pos1];
+			size_t col2 = other.col_indices[pos2];
+			
+			if (col1 < col2) {
+				// 只存在于当前矩阵
+				result_values.push_back(this->values[pos1]);
+				result_col_indices.push_back(col1);
+				pos1++;
+			} else if (col1 > col2) {
+				// 只存在于另一个矩阵，取负
+				result_values.push_back(-other.values[pos2]);
+				result_col_indices.push_back(col2);
+				pos2++;
+			} else {
+				// 两个矩阵都有，相减
+				double diff = this->values[pos1] - other.values[pos2];
+				if (abs(diff) > 1e-12) {
+					result_values.push_back(diff);
+					result_col_indices.push_back(col1);
+				}
+				pos1++;
+				pos2++;
+			}
+		}
+		
+		// 处理剩余元素（当前矩阵）
+		while (pos1 < end1) {
+			result_values.push_back(this->values[pos1]);
+			result_col_indices.push_back(this->col_indices[pos1]);
+			pos1++;
+		}
+		
+		// 处理剩余元素（另一个矩阵），取负
+		while (pos2 < end2) {
+			result_values.push_back(-other.values[pos2]);
+			result_col_indices.push_back(other.col_indices[pos2]);
+			pos2++;
+		}
+		
+		result_row_ptrs[i + 1] = result_values.size();
+	}
+	
+	// 更新当前矩阵
+	this->values = move(result_values);
+	this->col_indices = move(result_col_indices);
+	this->row_ptrs = move(result_row_ptrs);
+	
+	return *this;
+}
+
+// 矩阵减法(-)
+SparseMatrixCSR SparseMatrixCSR::operator-(const SparseMatrixCSR& other) const {
+	SparseMatrixCSR result = *this;  // 拷贝当前矩阵
+	result -= other;                 // 使用 -= 实现减法
+	return result;
+}
+
+// 矩阵取负(单目-)
+SparseMatrixCSR SparseMatrixCSR::operator-() const {
+	SparseMatrixCSR result = *this;
+	for (double& value : result.values) {
+		value = -value;
+	}
+	return result;
+}
+
+// 矩阵数乘(*)
+SparseMatrixCSR SparseMatrixCSR::operator*(const double scalar) const noexcept {
+	// 如果标量为0，返回空矩阵
+	if (abs(scalar) == 0.0) {
+		return SparseMatrixCSR(this->rows, this->cols);
+	}
+	
+	// 创建当前矩阵的副本
+	SparseMatrixCSR result = *this;
+	
+	// 将所有非零元素乘以标量
+	for (double& value : result.values) {
+		value *= scalar;
+	}
+	
+	return result;
+}
+
+// 矩阵数除(/)
+SparseMatrixCSR SparseMatrixCSR::operator/(const double scalar) const {
+	// 检查除数是否为0
+	if (abs(scalar) == 0.0) {
+		throw invalid_argument("不能除以0");
+	}
+	
+	// 创建当前矩阵的副本
+	SparseMatrixCSR result = *this;
+	
+	// 将所有非零元素除以标量
+	for (double& value : result.values) {
+		value /= scalar;
+	}
+	
+	return result;
+}
+
+// CSR稀疏矩阵-向量乘法(A * vec)
+vector<double> SparseMatrixCSR::operator*(const vector<double>& other) const {
+	// 检查维度匹配：矩阵列数必须等于向量长度
+	if (this->cols != other.size()) {
+		throw invalid_argument("CSR矩阵列数必须等于向量长度");
+	}
+	
+	vector<double> result(this->rows, 0.0);
+	
+	// 对于每一行，计算与向量的点积
+	for (size_t i = 0; i < this->rows; ++i) {
+		double sum = 0.0;
+		// 遍历该行的所有非零元素
+		for (size_t k = this->row_ptrs[i]; k < this->row_ptrs[i + 1]; ++k) {
+			size_t j = this->col_indices[k];
+			sum += this->values[k] * other[j];
+		}
+		result[i] = sum;
+	}
+	
+	return result;
+}
+
+// CSR稀疏矩阵-稠密矩阵乘法(A * dense_mat)
+vector<vector<double>> SparseMatrixCSR::operator*(const vector<vector<double>>& other) const {
+	// 检查维度匹配
+	if (this->cols != other.size()) {
+		throw invalid_argument("CSR矩阵列数必须等于稠密矩阵行数");
+	}
+	
+	if (other.empty()) {
+		return {};
+	}
+	
+	// 检查稠密矩阵的列一致性
+	const size_t other_cols = other[0].size();
+	for (size_t i = 1; i < other.size(); ++i) {
+		if (other[i].size() != other_cols) {
+			throw invalid_argument("稠密矩阵的列数必须一致");
+		}
+	}
+	
+	// 结果矩阵：this->rows × other_cols
+	vector<vector<double>> result(this->rows, vector<double>(other_cols, 0.0));
+	
+	// 高性能实现：单次遍历稀疏矩阵
+	for (size_t i = 0; i < this->rows; ++i) {
+		// 对于当前行的每个非零元素
+		for (size_t k = this->row_ptrs[i]; k < this->row_ptrs[i + 1]; ++k) {
+			size_t j = this->col_indices[k];
+			double value = this->values[k];
+			
+			// 更新结果矩阵的当前行
+			for (size_t col = 0; col < other_cols; ++col) {
+				result[i][col] += value * other[j][col];
+			}
+		}
+	}
+	
+	return result;
 }

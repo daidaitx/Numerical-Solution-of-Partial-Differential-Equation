@@ -179,14 +179,14 @@ public:
 	 * @param scalar 数值
 	 * @return 矩阵数乘结果
 	 */
-	SparseMatrixCSR operator*(const double scalar) const;
+	SparseMatrixCSR operator*(const double scalar) const noexcept;
 
 	/**
 	 * @brief 运算符重载：矩阵数乘（左侧）
 	 * @param scalar 数值
 	 * @return 矩阵数乘结果
 	 */
-	friend SparseMatrixCSR operator*(const double scalar, const SparseMatrixCSR& mat) { return mat * scalar; };
+	friend SparseMatrixCSR operator*(const double scalar, const SparseMatrixCSR& mat) noexcept { return mat * scalar; };
 
 	/**
 	 * @brief 运算符重载：矩阵数除
@@ -303,6 +303,16 @@ public:
 	 */
 	bool isNotApproxEqualto(const SparseMatrixCSR& other, const double tolerance) const {
 		return !this->isApproxEqualto(other, tolerance);
+	};
+
+	/**
+	 * @brief 判断非常不等
+	 * @param other 待比较的矩阵
+	 * @param epsilon 容许误差
+	 * @return 是否近似不等
+	 */
+	bool isFarAwayFrom(const SparseMatrixCSR& other, const double tolerance) const {
+		return this->isNotApproxEqualto(other, tolerance);
 	};
 
 	/**
