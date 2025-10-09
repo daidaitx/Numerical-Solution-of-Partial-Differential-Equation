@@ -159,6 +159,17 @@ int main() {
 	cout << "不匹配的大小：" << endl;
 	try { csrMatrix_5.solve(wrong_vector_5); } catch (const exception& e) { cout << e.what() << endl; }
 
+	cout << "-----------------------------------------" << endl;
+	cout << "测试6 - CSR格式稀疏矩阵GMRES法求解10w维线性方程组（从文件读取）" << endl;
+	SparseMatrixCSR A_6("./sparse_matrix_lib/test/data/A_for_GMRES_test.coo");
+	vector<double> b_6 = readVec("./sparse_matrix_lib/test/data/b_for_GMRES_test.vec");
+	cout << "矩阵A_6的大小：(" << A_6.getRows() << " x " << A_6.getCols() << "), 非零元素数：" << A_6.getNNZ() << endl;
+	cout << "向量b_6的大小：" << b_6.size() << endl;
+	vector<double> x_6 = A_6.solve(b_6);
+	cout << "解向量x_6的大小：" << x_6.size() << endl;
+	cout << "解的绝对残差：" << norm(A_6 * x_6 - b_6) << endl;
+	cout << "解的相对残差：" << norm(A_6 * x_6 - b_6) / norm(b_6) << endl;
+
 	cout << "=========================================" << endl;
 	cout << "TestSpMV 测试结束。" << endl;
 	return 0;

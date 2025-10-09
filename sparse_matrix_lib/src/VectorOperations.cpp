@@ -3,6 +3,7 @@
 #include <random>
 #include <iomanip>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -147,7 +148,22 @@ vector<double>& operator/=(vector<double>& v, double scalar) {
 	return v;
 }
 
-// ======================= 输出和工具函数实现 ======================= //
+// ======================= 输入输出和工具函数实现 ======================= //
+
+vector<double> readVec(const string& filename) {
+	// 一行一个数据
+	ifstream fin(filename);
+	if (!fin) {
+		throw invalid_argument("无法打开文件: " + filename);
+	}
+	vector<double> result;
+	double value;
+	while (fin >> value) {
+		result.push_back(value);
+	}
+	fin.close();
+	return result;
+}
 
 ostream& operator<<(ostream& os, const vector<double>& v) {
 	if (v.empty()) {

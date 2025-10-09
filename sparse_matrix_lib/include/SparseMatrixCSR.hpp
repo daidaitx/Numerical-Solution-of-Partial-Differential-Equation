@@ -62,7 +62,7 @@ public:
 	explicit SparseMatrixCSR(const std::vector<std::vector<double>>& dense);
 
 	/**
-	 * @brief 构造函数：从COO格式矩阵构造CSR格式矩阵
+	 * @brief 构造函数：从COO格式(1-based)矩阵构造CSR格式矩阵
 	 * @param rows 矩阵行数
 	 * @param cols 矩阵列数
 	 * @param row_indices 非零元素行索引
@@ -75,7 +75,7 @@ public:
 		const std::vector<double>& values);
 
 	/**
-	 * @brief 构造函数：直接从CSR格式构造CSR格式矩阵
+	 * @brief 构造函数：直接从CSR格式(0-based)构造CSR格式矩阵
 	 * @param rows 矩阵行数
 	 * @param cols 矩阵列数
 	 * @param values 非零元素值
@@ -88,7 +88,7 @@ public:
 		const std::vector<size_t>& row_ptrs);
 
 	/**
-	 * @brief 构造函数：从文件构造矩阵
+	 * @brief 构造函数：从文件(1-based)构造矩阵
 	 * @param filename 文件名
 	 */
 	explicit SparseMatrixCSR(const std::string& filename);
@@ -200,7 +200,7 @@ public:
 	SparseMatrixCSR operator-() const;
 
 	/**
-	 * @brief 运算符重载：只读访问矩阵元素
+	 * @brief 运算符重载：只读访问矩阵元素(1-based)
 	 * @param row 行索引
 	 * @param col 列索引
 	 * @return 矩阵元素值
@@ -208,7 +208,7 @@ public:
 	double operator()(const size_t row, const size_t col) const;
 
 	/**
-	 * @brief 运算符重载：流输出（左移）
+	 * @brief 运算符重载：流输出（左移）(1-based)
 	 * @param os 输出流
 	 * @param mat 矩阵
 	 * @return 输出流
@@ -256,7 +256,7 @@ public:
 	size_t getNNZ() const noexcept;
 
 	/**
-	 * @brief 更新/插入/置零元素
+	 * @brief 更新/插入/置零元素(1-based)
 	 * @param row 行索引
 	 * @param col 列索引
 	 * @param value 元素值
@@ -264,13 +264,13 @@ public:
 	void setValue(const size_t row, const size_t col, const double value);
 
 	/**
-	 * @brief 更新/插入/置零元素
+	 * @brief 更新/插入/置零元素(1-based)
 	 * @param elements 元素三元组数组（行索引、列索引、值）
 	 */
 	void setValue(const std::tuple<size_t, size_t, double> element);
 
 	/**
-	 * @brief 批量更新/插入/置零元素
+	 * @brief 批量更新/插入/置零元素(1-based)
 	 * @param row_indices 行索引数组
 	 * @param col_indices 列索引数组
 	 * @param values 元素值数组
@@ -280,7 +280,7 @@ public:
 		const std::vector<double>& values);
 
 	/**
-	 * @brief 批量更新/插入/置零元素
+	 * @brief 批量更新/插入/置零元素(1-based)
 	 * @param elements 元素三元组数组（行索引、列索引、值）
 	 */
 	void setValue(std::vector<std::tuple<size_t, size_t, double>> elements);
@@ -393,18 +393,18 @@ public:
 	bool isDiagonal() const noexcept;
 
 	/**
-	 * @brief 矩阵保存到文件
+	 * @brief 矩阵保存到文件(1-based)
 	 * @param filename 文件名
 	 */
 	void saveToFile(const std::string& filename) const;
 
 	/**
-	 * @brief 矩阵打印
+	 * @brief 矩阵打印(1-based)
 	 */
 	void print() const noexcept { std::cout << *this <<std::endl; };
 
 	/**
-	 * @brief 矩阵稠密打印
+	 * @brief 矩阵稠密打印(1-based)
 	 * @param precision 精度，默认4位
 	 */
 	void printDense(const int precision = 4) const noexcept;

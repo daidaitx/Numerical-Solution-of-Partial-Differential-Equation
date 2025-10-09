@@ -63,7 +63,7 @@ SparseMatrixCSR::SparseMatrixCSR(const vector<vector<double>>& dense) {
 	}
 }
 
-// 构造函数：从 COO 格式的矩阵构造 CSR 稀疏矩阵
+// 构造函数：从 COO 格式(1-based)的矩阵构造 CSR 稀疏矩阵
 SparseMatrixCSR::SparseMatrixCSR(
 	const size_t rows, const size_t cols,
 	const vector<size_t>& coo_row_indices,
@@ -84,9 +84,20 @@ SparseMatrixCSR::SparseMatrixCSR(
 	}
 
 	for (size_t i = 0; i < nnz; ++i) {
-		if (coo_row_indices[i] >= rows || coo_col_indices[i] >= cols) {
+		if (coo_row_indices[i] > rows || coo_col_indices[i] > cols) {
 			throw out_of_range("错误：COO 格式错误，行或列索引超出矩阵维度。");
 		}
+		if (coo_row_indices[i] == 0 || coo_col_indices[i] == 0) {
+			throw out_of_range("错误：COO 格式错误，行和列索引须为 1-based 索引。");
+		}
+	}
+
+	// 拷贝一份 0-based 索引的
+	vector<size_t> coo_row_indices_0b = coo_row_indices;
+	vector<size_t> coo_col_indices_0b = coo_col_indices;
+	for (size_t i = 0; i < nnz; ++i) {
+		--coo_row_indices_0b[i];
+		--coo_col_indices_0b[i];
 	}
 
 	// ===========================
@@ -94,7 +105,7 @@ SparseMatrixCSR::SparseMatrixCSR(
 	// ===========================
 	vector<tuple<size_t, size_t, double>> triples(nnz);
 	for (size_t i = 0; i < nnz; ++i) {
-		triples[i] = make_tuple(coo_row_indices[i], coo_col_indices[i], coo_values[i]);
+		triples[i] = make_tuple(coo_row_indices_0b[i], coo_col_indices_0b[i], coo_values[i]);
 	}
 
 	// 按行优先，然后按列排序 => 保证每行内部 col 有序
@@ -145,7 +156,7 @@ SparseMatrixCSR::SparseMatrixCSR(
 	}
 }
 
-// 构造函数：CSR 格式数据构造 CSR 稀疏矩阵
+// 构造函数：CSR 格式(0-based)数据构造 CSR 稀疏矩阵
 SparseMatrixCSR::SparseMatrixCSR(const size_t rows, const size_t cols,
 		const vector<double>& values,
 		const vector<size_t>& col_indices,
@@ -205,7 +216,7 @@ SparseMatrixCSR::SparseMatrixCSR(const size_t rows, const size_t cols,
 	}
 }
 
-// 构造函数：从文件构造 CSR 稀疏矩阵
+// 构造函数：从文件(1-based)构造 CSR 稀疏矩阵
 SparseMatrixCSR::SparseMatrixCSR(const string& filename) {
 	// --- 1. 获取文件后缀名 ---
 	size_t dot_pos = filename.find_last_of('.');
@@ -231,9 +242,9 @@ SparseMatrixCSR::SparseMatrixCSR(const string& filename) {
 		vector<size_t> coo_cols;
 		vector<double> coo_vals;
 
-		size_t max_row = 0, max_col = 0;
-
 		string line;
+		size_t num_rows, num_cols, nnz;
+		bool got_first_line = false;
 		while (getline(file, line)) {
 			// 跳过空行和注释（以 # 或 % 开头）
 			if (line.empty() || line[0] == '#' || line[0] == '%') {
@@ -243,7 +254,17 @@ SparseMatrixCSR::SparseMatrixCSR(const string& filename) {
 			istringstream iss(line);
 			size_t row, col;
 			double val;
+			
+			// 解析矩阵规模信息行
+			if (!got_first_line) {
+				got_first_line = true;
+				if (!(iss >> num_rows >> num_cols >> nnz)) {
+					throw runtime_error("文件格式错误，无法解析矩阵规模信息行: " + line);
+				}
+				continue;
+			}
 
+			// 解析 COO 行
 			if (!(iss >> row >> col >> val)) {
 				throw runtime_error("文件格式错误，无法解析 COO 行: " + line);
 			}
@@ -251,17 +272,13 @@ SparseMatrixCSR::SparseMatrixCSR(const string& filename) {
 			coo_rows.push_back(row);
 			coo_cols.push_back(col);
 			coo_vals.push_back(val);
-
-			if (row > max_row) max_row = row;
-			if (col > max_col) max_col = col;
 		}
-
-		// 推断矩阵的行数和列数（假设行号、列号从 0 开始）
-		const size_t num_rows = max_row + 1;
-		const size_t num_cols = max_col + 1;
 
 		// 调用已有的 COO -> CSR 构造函数
 		*this = SparseMatrixCSR(num_rows, num_cols, coo_rows, coo_cols, coo_vals);
+		if(getNNZ() != nnz) {
+			throw runtime_error("警告：文件中声明的非零元数量与实际读取的不符。");
+		}
 
 	} else if (ext == ".mtx") {
 		// === Matrix Market 格式：未来支持 ===
@@ -290,7 +307,7 @@ size_t SparseMatrixCSR::getNNZ() const noexcept {
 	return values.size();
 }
 
-// 输出矩阵到流
+// 输出矩阵到流(1-based)
 ostream& operator<<(ostream& os, const SparseMatrixCSR& mat) {
 	size_t rows = mat.rows;
 	size_t cols = mat.cols;
@@ -299,7 +316,7 @@ ostream& operator<<(ostream& os, const SparseMatrixCSR& mat) {
 	const auto& row_ptrs = mat.row_ptrs;
 
 	os << "CSR稀疏矩阵 (" << rows << " x " << cols << "), NNZ = " << values.size() << "\n";
-	os << "格式: (row, col) -> value\n";
+	os << "格式: (row, col) -> value, 1-based indexing\n";
 
 	if (values.empty()) {
 		os << "（全零矩阵）\n";
@@ -315,12 +332,15 @@ ostream& operator<<(ostream& os, const SparseMatrixCSR& mat) {
 	return os << defaultfloat << setprecision(6);
 }
 
-// 输出矩阵到.coo文件
+// 输出矩阵到.coo文件(1-based)
 void SparseMatrixCSR::saveToFile(const string& filename) const {
 	ofstream file(filename);
 	if (!file.is_open()) {
 		throw runtime_error("无法打开文件用于写入: " + filename);
 	}
+
+	// 写入矩阵规模信息
+	file << rows << " " << cols << " " << values.size() << "\n";
 
 	// 遍历每一行
 	for (size_t r = 0; r < rows; ++r) {
@@ -333,14 +353,14 @@ void SparseMatrixCSR::saveToFile(const string& filename) const {
 			double val = values[pos];        // 值
 
 			// 写入：行 列 值
-			file << r << " " << col << " " << val << "\n";
+			file << r+1 << " " << col+1 << " " << val << "\n";
 		}
 	}
 	cout << "矩阵已保存到文件: " << filename << endl;
 	// 文件会在 file 析构时自动关闭
 }
 
-// 设置CSR稀疏矩阵元素
+// 设置CSR稀疏矩阵元素(1-based)
 void SparseMatrixCSR::setValue(vector<tuple<size_t, size_t, double>> elements) {
 	// 1. 根据行列索引对elements升序排列
 	sort(elements.begin(), elements.end(),
@@ -435,7 +455,7 @@ void SparseMatrixCSR::setValue(const size_t row, const size_t col, const double 
 	setValue(make_tuple(row, col, value));
 }
 
-// 运算符重载：括号运算
+// 运算符重载：括号运算(1-based)
 double SparseMatrixCSR::operator()(const size_t row, const size_t col) const {
 	if(row == 0) {
 		throw invalid_argument("坐标（行）请使用 1-based 记法，不应出现0。");
@@ -469,7 +489,7 @@ vector<vector<double>> SparseMatrixCSR::toDense() const noexcept {
 	return dense;
 }
 
-// 矩阵稠密打印
+// 矩阵稠密打印(1-based)
 void SparseMatrixCSR::printDense(const int precision) const noexcept {
 	
 	cout << "矩阵大小: ( " << rows << " x " << cols << " )" << endl;

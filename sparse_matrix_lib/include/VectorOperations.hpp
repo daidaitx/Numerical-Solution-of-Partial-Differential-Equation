@@ -110,7 +110,14 @@ std::vector<double>& operator*=(std::vector<double>& v, double scalar);
  */
 std::vector<double>& operator/=(std::vector<double>& v, double scalar);
 
-// ======================= 输出和工具函数 ======================= //
+// ======================= 输入输出和工具函数 ======================= //
+
+/**
+ * @brief 从vec文件读入向量数据
+ * @param filename 文件名
+ * @return 读入的向量
+ */
+std::vector<double> readVec(const std::string& filename);
 
 /**
  * @brief 向量输出到流

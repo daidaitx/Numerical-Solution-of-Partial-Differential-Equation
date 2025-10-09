@@ -66,39 +66,37 @@ int main() {
 	try { SparseMatrixCSR csrMatrix_3d(denseMatrix_3d); } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "-----------------------------------------" << endl;
-	cout << "测试4a - COO稀疏矩阵转CSR稀疏矩阵" << endl;
+	cout << "测试4a - COO稀疏矩阵转CSR稀疏矩阵(1-based)" << endl;
 	const size_t rows_4a = 4;
 	const size_t cols_4a = 4;
-	const vector<size_t> row_indices_4a = { 0, 0, 0, 1, 3, 3 };
-	const vector<size_t> col_indices_4a = { 0, 1, 3, 3, 0, 2 };
+	const vector<size_t> row_indices_4a = { 1, 1, 1, 2, 4, 4 };
+	const vector<size_t> col_indices_4a = { 1, 2, 4, 4, 1, 3 };
 	const vector<double> values_4a = { 1, 1, 4, 5, 1, 4 };
 	SparseMatrixCSR csrMatrix_4a(rows_4a, cols_4a, row_indices_4a, col_indices_4a, values_4a);
 	csrMatrix_4a.print();
 
-	csrMatrix_4a.saveToFile("./sparse_matrix_lib/test/data/matrix.coo");
-
 	cout << "........................................." << endl;
-	cout << "测试4b - COO稀疏矩阵转CSR稀疏矩阵(列优先顺序)" << endl;
+	cout << "测试4b - COO稀疏矩阵转CSR稀疏矩阵(1-based)(列优先顺序)" << endl;
 	const size_t rows_4b = 4;
 	const size_t cols_4b = 4;
-	const vector<size_t> row_indices_4b = { 0, 3, 0, 3, 0, 1 };
-	const vector<size_t> col_indices_4b = { 0, 0, 1, 2, 3, 3 };
+	const vector<size_t> row_indices_4b = { 1, 4, 1, 4, 1, 2 };
+	const vector<size_t> col_indices_4b = { 1, 1, 2, 3, 4, 4 };
 	const vector<double> values_4b = { 1, 1, 1, 4, 4, 5 };
 	SparseMatrixCSR csrMatrix_4b(rows_4b, cols_4b, row_indices_4b, col_indices_4b, values_4b);
 	csrMatrix_4b.print();
 
 	cout << "........................................." << endl;
-	cout << "测试4c - COO稀疏矩阵转CSR稀疏矩阵(打乱顺序)" << endl;
+	cout << "测试4c - COO稀疏矩阵转CSR稀疏矩阵(1-based)(打乱顺序)" << endl;
 	const size_t rows_4c = 4;
 	const size_t cols_4c = 4;
-	const vector<size_t> row_indices_4c = { 0, 0, 1, 0, 3, 3 };
-	const vector<size_t> col_indices_4c = { 3, 1, 3, 0, 2, 0 };
+	const vector<size_t> row_indices_4c = { 1, 1, 2, 1, 4, 4 };
+	const vector<size_t> col_indices_4c = { 4, 2, 4, 1, 3, 1 };
 	const vector<double> values_4c = { 4, 1, 5, 1, 4, 1 };
 	SparseMatrixCSR csrMatrix_4c(rows_4c, cols_4c, row_indices_4c, col_indices_4c, values_4c);
 	csrMatrix_4c.print();
 
 	cout << "........................................." << endl;
-	cout << "测试4d - COO稀疏矩阵转CSR稀疏矩阵(0行)" << endl;
+	cout << "测试4d - COO稀疏矩阵转CSR稀疏矩阵(1-based)(0行)" << endl;
 	const size_t rows_4d = 0;
 	const size_t cols_4d = 4;
 	const vector<size_t> row_indices_4d = {};
@@ -107,25 +105,25 @@ int main() {
 	try { SparseMatrixCSR csrMatrix_4d(rows_4d, cols_4d, row_indices_4d, col_indices_4d, values_4d); } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "........................................." << endl;
-	cout << "测试4e - COO稀疏矩阵转CSR稀疏矩阵(长度不一致)" << endl;
+	cout << "测试4e - COO稀疏矩阵转CSR稀疏矩阵(1-based)(长度不一致)" << endl;
 	const size_t rows_4e = 4;
 	const size_t cols_4e = 4;
-	const vector<size_t> row_indices_4e = { 0, 0, 0, 1, 3, 3};
-	const vector<size_t> col_indices_4e = { 0, 1, 3, 3, 0, 2};
+	const vector<size_t> row_indices_4e = { 1, 1, 1, 2, 4, 4};
+	const vector<size_t> col_indices_4e = { 1, 2, 4, 4, 1, 3};
 	const vector<double> values_4e = { 1, 1, 4, 5, 1 };
 	try { SparseMatrixCSR csrMatrix_4e(rows_4e, cols_4e, row_indices_4e, col_indices_4e, values_4e); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	
 	cout << "........................................." << endl;
-	cout << "测试4f - COO稀疏矩阵转CSR稀疏矩阵(索引越界)" << endl;
+	cout << "测试4f - COO稀疏矩阵转CSR稀疏矩阵(1-based)(索引越界)" << endl;
 	const size_t rows_4f = 4;
 	const size_t cols_4f = 4;
-	const vector<size_t> row_indices_4f = { 0, 0, 0, 1, 3, 3, 4 };
-	const vector<size_t> col_indices_4f = { 0, 1, 3, 3, 0, 2, 4 };
+	const vector<size_t> row_indices_4f = { 1, 1, 1, 2, 4, 4, 5 };
+	const vector<size_t> col_indices_4f = { 1, 2, 4, 4, 1, 3, 5 };
 	const vector<double> values_4f = { 1, 1, 4, 5, 1, 4, 12.456 };
 	try { SparseMatrixCSR csrMatrix_4f(rows_4f, cols_4f, row_indices_4f, col_indices_4f, values_4f); } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "-----------------------------------------" << endl;
-	cout << "测试4.5a - CSR格式数据生成CSR稀疏矩阵" << endl;
+	cout << "测试4.5a - CSR格式数据生成CSR稀疏矩阵(0-based)" << endl;
 	const size_t rows__4a = 4;
 	const size_t cols__4a = 4;
 	const vector<double> values__4a =      { 1, 1, 4, 5, 1, 4 };
@@ -136,7 +134,7 @@ int main() {
 	csrMatrix__4a.printDense();
 
 	cout << "........................................." << endl;
-	cout << "测试4.5b - CSR格式数据生成CSR稀疏矩阵（失败案例）" << endl;
+	cout << "测试4.5b - CSR格式数据生成CSR稀疏矩阵(0-based)（失败案例）" << endl;
 	cout << "行数为0：" << endl;
 	size_t rows__4b = 0;
 	size_t cols__4b = 4;
@@ -216,7 +214,7 @@ int main() {
 	try { SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b); } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "-----------------------------------------" << endl;
-	cout << "测试5a - 从.coo文件读入CSR稀疏矩阵" << endl;
+	cout << "测试5a - 从.coo文件读入CSR稀疏矩阵(1-based)" << endl;
 	SparseMatrixCSR csrMatrix_5a("./sparse_matrix_lib/test/data/matrix.coo");
 	csrMatrix_5a.print();
 
@@ -241,11 +239,11 @@ int main() {
 	try { SparseMatrixCSR csrMatrix_5f("./sparse_matrix_lib/test/data/NonExist.coo"); } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "-----------------------------------------" << endl;
-	cout << "测试6 - 保存到.coo文件" << endl;
+	cout << "测试6 - 保存到.coo文件(1-based)" << endl;
 	const size_t rows_6 = 4;
 	const size_t cols_6 = 4;
-	const vector<size_t> row_indices_6 = { 0, 0, 0, 1, 3, 3 };
-	const vector<size_t> col_indices_6 = { 0, 1, 3, 3, 0, 2 };
+	const vector<size_t> row_indices_6 = { 1, 1, 1, 2, 4, 4 };
+	const vector<size_t> col_indices_6 = { 1, 2, 4, 4, 1, 3 };
 	const vector<double> values_6 = { 1, 1, 4, 5, 1, 4 };
 	SparseMatrixCSR csrMatrix_6(rows_6, cols_6, row_indices_6, col_indices_6, values_6);
 	csrMatrix_6.saveToFile("./sparse_matrix_lib/test/data/matrix_OUTPUT.coo");
@@ -254,7 +252,7 @@ int main() {
 	if (!inputFile.is_open()) {
 		cerr << "无法打开文件用于读取: ./sparse_matrix_lib/test/data/matrix_OUTPUT.coo" << endl;
 	} else {
-		cout << "文件内容（COO 格式，每行：行 列 值）：" << endl;
+		cout << "文件内容（COO 格式，行 列 值，1-based 索引）：" << endl;
 		string line;
 		while (getline(inputFile, line)) {
 			cout << line << endl; // 直接输出每一行
@@ -264,7 +262,7 @@ int main() {
 	}
 	
 	cout << "-----------------------------------------" << endl;
-	cout << "测试7a - 插入单元素到CSR稀疏矩阵" << endl;
+	cout << "测试7a - 插入单元素到CSR稀疏矩阵(1-based)" << endl;
 	const size_t rows_7a = 4;
 	const size_t cols_7a = 4;
 	SparseMatrixCSR csrMatrix_7a(rows_7a, cols_7a);
@@ -285,7 +283,7 @@ int main() {
 	csrMatrix_7a.print();
 
 	cout << "........................................." << endl;
-	cout << "测试7b - 其他方法插入到CSR稀疏矩阵" << endl;
+	cout << "测试7b - 其他方法插入到CSR稀疏矩阵(1-based)" << endl;
 	const size_t rows_7b = 4;
 	const size_t cols_7b = 4;
 	SparseMatrixCSR csrMatrix_7b(rows_7b, cols_7b);
@@ -307,7 +305,7 @@ int main() {
 	csrMatrix_7b.print();
 
 	cout << "........................................." << endl;
-	cout << "测试7c - 错误插入到CSR稀疏矩阵" << endl;
+	cout << "测试7c - 错误插入到CSR稀疏矩阵(1-based)" << endl;
 	const size_t rows_7c = 4;
 	const size_t cols_7c = 4;
 	SparseMatrixCSR csrMatrix_7c(rows_7c, cols_7c);
@@ -349,7 +347,7 @@ int main() {
 	csrMatrix_8A.print();
 	cout << "矩阵B：" << endl;
 	csrMatrix_8B.print();
-	cout << "矩阵括号索引" << endl;
+	cout << "矩阵括号索引(1-based)" << endl;
 	cout << "矩阵A(1,1)：" << csrMatrix_8A(1, 1) << endl;
 	cout << "矩阵A(2,3)：" << csrMatrix_8A(2, 3) << endl;
 	cout << "矩阵A(3,2)：" << csrMatrix_8A(3, 2) << endl;
