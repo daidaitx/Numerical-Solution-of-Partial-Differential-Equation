@@ -1,6 +1,8 @@
 # Numerical-Solution-of-Partial-Differential-Equation
 完成了 $\text{CSR}$ 格式稀疏矩阵类及其相关的多种功能，附加了稠密矩阵、向量的相关功能，便于后续各种计算。
 
+**DoxyFile见[index.html](sparse_matrix_lib/docs/html/index.html).**
+
 以下是三个测试函数的输出文件内容，原文件保存在`sparse_matrix_lib\docs`下：
 
 - `TestCore.cpp`输出信息：
