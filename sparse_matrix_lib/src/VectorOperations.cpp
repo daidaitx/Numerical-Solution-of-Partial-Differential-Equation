@@ -165,6 +165,17 @@ vector<double> readVec(const string& filename) {
 	return result;
 }
 
+void writeVec(const std::vector<double>& v, const std::string& filename) {
+	ofstream fout(filename);
+	if (!fout) {
+		throw invalid_argument("无法打开文件: " + filename);
+	}
+	for (double val : v) {
+		fout << val << endl;
+	}
+	fout.close();
+}
+
 ostream& operator<<(ostream& os, const vector<double>& v) {
 	if (v.empty()) {
 		os << "[]";

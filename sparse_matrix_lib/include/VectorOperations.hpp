@@ -120,6 +120,13 @@ std::vector<double>& operator/=(std::vector<double>& v, double scalar);
 std::vector<double> readVec(const std::string& filename);
 
 /**
+ * @brief 向vec文件输出向量数据
+ * @param v 向量
+ * @param filename 文件名
+ */
+void writeVec(const std::vector<double>& v, const std::string& filename);
+
+/**
  * @brief 向量输出到流
  * @param os 输出流
  * @param v 向量

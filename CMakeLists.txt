@@ -6,9 +6,9 @@ set(CMAKE_CXX_STANDARD 17)            # 强制使用C++17标准编译
 # 核心库：创建静态库目标
 add_library(SparseMatrixLib STATIC    # 生成名为SparseMatrixLib的静态库
   sparse_matrix_lib/src/SparseMatrixCSR.cpp           # 库源文件1：稀疏矩阵CSR格式实现
-  sparse_matrix_lib/src/SpecificMatrixGenerators.cpp  # 库源文件2：特殊矩阵生成器实现
+  sparse_matrix_lib/src/VectorOperations.cpp          # 库源文件2：向量运算实现
   sparse_matrix_lib/src/IterativeSolvers.cpp          # 库源文件3：迭代求解器实现
-  sparse_matrix_lib/src/VectorOperations.cpp          # 库源文件4：向量运算实现
+  sparse_matrix_lib/src/SpecificMatrixGenerators.cpp  # 库源文件4：特殊矩阵生成器实现
 )
 
 # 设置库的头文件搜索路径
