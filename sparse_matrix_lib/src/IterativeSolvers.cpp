@@ -1,9 +1,9 @@
-#include "SparseMatrixSolvers.hpp"
 #include "SparseMatrixCSR.hpp"
+#include "SparseMatrixSolvers.hpp"
+#include "VectorOperations.hpp"
 #include <iostream>
 #include <cmath>
 #include <stdexcept>
-#include "VectorOperations.hpp"
 
 using namespace std;
 using namespace VectorOps;

@@ -1,7 +1,7 @@
+#include "SparseMatrixCSR.hpp"
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include "SparseMatrixCSR.hpp"
 
 using namespace std;
 

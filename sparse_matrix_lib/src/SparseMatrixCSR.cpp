@@ -311,7 +311,8 @@ ostream& operator<<(ostream& os, const SparseMatrixCSR& mat) {
 		}
 	}
 
-	return os;
+	// 恢复默认格式
+	return os << defaultfloat << setprecision(6);
 }
 
 // 输出矩阵到.coo文件
@@ -470,6 +471,9 @@ vector<vector<double>> SparseMatrixCSR::toDense() const noexcept {
 
 // 矩阵稠密打印
 void SparseMatrixCSR::printDense(const int precision) const noexcept {
+	
+	cout << "矩阵大小: ( " << rows << " x " << cols << " )" << endl;
+
 	size_t max_width = 0;
 
 	// 遍历非零元素 values[]，计算它们格式化后的最大显示宽度
@@ -499,6 +503,8 @@ void SparseMatrixCSR::printDense(const int precision) const noexcept {
 		}
 		cout << endl;
 	}
+	// 恢复默认格式
+	cout << defaultfloat << setprecision(6);
 }
 
 // 矩阵转置

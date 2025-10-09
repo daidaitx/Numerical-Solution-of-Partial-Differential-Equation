@@ -126,7 +126,14 @@ std::ostream& operator<<(std::ostream& os, const std::vector<double>& v);
  * @param asColumnVector 是否按列向量打印（默认true）
  * @param precision 小数精度（默认4位）
  */
-void print(const std::vector<double>& v, bool asColumnVector = true, int precision = 4);
+void print(const std::vector<double>& v, int precision = 4, bool asColumnVector = true);
+
+/**
+ * @brief 打印稠密矩阵
+ * @param matrix 要打印的矩阵（二维向量）
+ * @param precision 小数精度（默认4位）
+ */
+void print(const std::vector<std::vector<double>>& matrix, int precision = 4);
 
 /**
  * @brief 创建全零向量

@@ -2,6 +2,7 @@
 #include <string>
 #include <random>
 #include <iomanip>
+#include <iostream>
 
 using namespace std;
 
@@ -180,10 +181,11 @@ ostream& operator<<(ostream& os, const vector<double>& v) {
 	}
 	os << "]";
 	
-	return os;
+	// 恢复默认格式
+	return os << defaultfloat << setprecision(6);
 }
 
-void print(const vector<double>& v, bool asColumnVector, int precision) {
+void print(const vector<double>& v, int precision, bool asColumnVector) {
 	// 先告知向量长度
 	cout << "向量长度: " << v.size() << endl;
 	
@@ -192,27 +194,26 @@ void print(const vector<double>& v, bool asColumnVector, int precision) {
 		return;
 	}
 
+	// 计算最大显示宽度
+	size_t max_width = 0;
+	for (double val : v) {
+		ostringstream oss;
+		oss << fixed << setprecision(precision);
+		oss << val;
+		string s = oss.str();
+		if (s.length() > max_width) {
+			max_width = s.length();
+		}
+	}
+
 	if (asColumnVector) {
-		// 按列向量打印（每个元素一行）
+		// 按列向量打印（每个元素占一行）
 		for (size_t i = 0; i < v.size(); ++i) {
 			cout << fixed << setprecision(precision) 
-					<< setw(precision + 6) << v[i] << endl;
+					<< setw(max_width) << v[i] << endl;
 		}
 	} else {
 		// 按行向量打印（所有元素在一行）
-		
-		// 计算最大显示宽度
-		size_t max_width = 0;
-		for (double val : v) {
-			ostringstream oss;
-			oss << fixed << setprecision(precision);
-			oss << val;
-			string s = oss.str();
-			if (s.length() > max_width) {
-				max_width = s.length();
-			}
-		}
-		
 		cout << "[";
 		for (size_t i = 0; i < v.size(); ++i) {
 			ostringstream oss;
@@ -226,6 +227,67 @@ void print(const vector<double>& v, bool asColumnVector, int precision) {
 		}
 		cout << "]" << endl;
 	}
+
+	// 恢复默认格式
+	cout << defaultfloat << setprecision(6);
+}
+
+void print(const vector<vector<double>>& matrix, int precision) {
+	// 检查矩阵是否为空
+	if (matrix.empty()) {
+		cout << "矩阵大小: ( 0 x 0 )" << endl;
+		cout << "(空矩阵)" << endl;
+		return;
+	}
+	
+	size_t rows = matrix.size();
+	size_t cols = matrix[0].size();
+	
+	// 检查矩阵的合法性：所有行的列数是否相同
+	for (size_t i = 1; i < rows; ++i) {
+		if (matrix[i].size() != cols) {
+			cout << "错误：矩阵行大小不一致！" << endl;
+			return;
+		}
+	}
+	
+	// 处理0列的情况
+	if (cols == 0) {
+		cout << "矩阵大小: ( " << rows << " x 0 )" << endl;
+		cout << "(空矩阵)" << endl;
+		return;
+	}
+	
+	cout << "矩阵大小: ( " << rows << " x " << cols << " )" << endl;
+
+	size_t max_width = 0;
+
+	// 遍历所有元素，计算它们格式化后的最大显示宽度
+	for (const auto& row : matrix) {
+		for (double val : row) {
+			ostringstream oss;
+			oss << fixed << setprecision(precision);
+			oss << val;
+			string s = oss.str();
+			if (s.length() > max_width) {
+				max_width = s.length();
+			}
+		}
+	}
+
+	// 打印矩阵内容
+	for (const auto& row : matrix) {
+		for (double val : row) {
+			ostringstream os;
+			os << fixed << setprecision(precision);
+			os << val;
+			cout << setw(max_width) << os.str() << " ";
+		}
+		cout << endl;
+	}
+	
+	// 恢复默认格式
+	cout << defaultfloat << setprecision(6);
 }
 
 vector<double> zeros(size_t n) {

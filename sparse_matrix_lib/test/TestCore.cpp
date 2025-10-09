@@ -1,9 +1,11 @@
+#include "SparseMatrixCSR.hpp"
+#include "VectorOperations.hpp"
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include "SparseMatrixCSR.hpp"
 
 using namespace std;
+using namespace VectorOps;
 
 int main() {
 	cout << "当前运行的是 TestCore 测试程序。" << endl;
@@ -12,12 +14,7 @@ int main() {
 	cout << "测试1a - 创建全零 CSR 矩阵(0行)" << endl;
 	const size_t testRows_1a = 0;
 	const size_t testCols_1a = 4;
-	try {
-		SparseMatrixCSR matrix_1a(testRows_1a, testCols_1a);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR matrix_1a(testRows_1a, testCols_1a); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	
 	cout << "........................................." << endl;
 	cout << "测试1b - 创建全零 CSR 矩阵并流式输出" << endl;
@@ -51,22 +48,12 @@ int main() {
 	cout << "........................................." << endl;
 	cout << "测试3b - 稠密矩阵转CSR稀疏矩阵(0行)" << endl;
 	const vector<vector<double>> denseMatrix_3b = {};
-	try {
-		SparseMatrixCSR csrMatrix_3b(denseMatrix_3b);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix_3b(denseMatrix_3b); } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "........................................." << endl;
 	cout << "测试3c - 稠密矩阵转CSR稀疏矩阵(0列)" << endl;
 	const vector<vector<double>> denseMatrix_3c = { {}, {}, {} };
-	try {
-		SparseMatrixCSR csrMatrix_3c(denseMatrix_3c);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix_3c(denseMatrix_3c); } catch(const exception& e) { cerr << e.what() << '\n';	}
 
 	cout << "........................................." << endl;
 	cout << "测试3d - 稠密矩阵转CSR稀疏矩阵(非方阵)" << endl;
@@ -76,12 +63,7 @@ int main() {
 		{0, 0, 0, 0},
 		{1, 0, 4}
 	};
-	try {
-		SparseMatrixCSR csrMatrix_3d(denseMatrix_3d);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix_3d(denseMatrix_3d); } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "-----------------------------------------" << endl;
 	cout << "测试4a - COO稀疏矩阵转CSR稀疏矩阵" << endl;
@@ -122,12 +104,7 @@ int main() {
 	const vector<size_t> row_indices_4d = {};
 	const vector<size_t> col_indices_4d = {};
 	const vector<double> values_4d = {};
-	try {
-		SparseMatrixCSR csrMatrix_4d(rows_4d, cols_4d, row_indices_4d, col_indices_4d, values_4d);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix_4d(rows_4d, cols_4d, row_indices_4d, col_indices_4d, values_4d); } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "........................................." << endl;
 	cout << "测试4e - COO稀疏矩阵转CSR稀疏矩阵(长度不一致)" << endl;
@@ -136,12 +113,7 @@ int main() {
 	const vector<size_t> row_indices_4e = { 0, 0, 0, 1, 3, 3};
 	const vector<size_t> col_indices_4e = { 0, 1, 3, 3, 0, 2};
 	const vector<double> values_4e = { 1, 1, 4, 5, 1 };
-	try {
-		SparseMatrixCSR csrMatrix_4e(rows_4e, cols_4e, row_indices_4e, col_indices_4e, values_4e);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix_4e(rows_4e, cols_4e, row_indices_4e, col_indices_4e, values_4e); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	
 	cout << "........................................." << endl;
 	cout << "测试4f - COO稀疏矩阵转CSR稀疏矩阵(索引越界)" << endl;
@@ -150,12 +122,7 @@ int main() {
 	const vector<size_t> row_indices_4f = { 0, 0, 0, 1, 3, 3, 4 };
 	const vector<size_t> col_indices_4f = { 0, 1, 3, 3, 0, 2, 4 };
 	const vector<double> values_4f = { 1, 1, 4, 5, 1, 4, 12.456 };
-	try {
-		SparseMatrixCSR csrMatrix_4f(rows_4f, cols_4f, row_indices_4f, col_indices_4f, values_4f);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix_4f(rows_4f, cols_4f, row_indices_4f, col_indices_4f, values_4f); } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "-----------------------------------------" << endl;
 	cout << "测试4.5a - CSR格式数据生成CSR稀疏矩阵" << endl;
@@ -176,132 +143,77 @@ int main() {
 	vector<double> values__4b =      { 1, 1, 4, 5, 1, 4 };
 	vector<size_t> col_indices__4b = { 0, 1, 3, 3, 0, 2 };
 	vector<size_t> row_ptrs__4b =    { 0, 3, 4, 4, 6 };
-	try {
-		SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "列数为0：" << endl;
 	rows__4b = 4;
 	cols__4b = 0;
 	values__4b =      { 1, 1, 4, 5, 1, 4 };
 	col_indices__4b = { 0, 1, 3, 3, 0, 2 };
 	row_ptrs__4b =    { 0, 3, 4, 4, 6 };
-	try {
-		SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "列索引和值长度不一致：" << endl;
 	rows__4b = 4;
 	cols__4b = 4;
 	values__4b =      { 1, 1, 4, 5, 1, 4 };
 	col_indices__4b = { 0, 1, 3, 3, 0, 2, 4 };
 	row_ptrs__4b =    { 0, 3, 4, 4, 6 };
-	try {
-		SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "行指针数量不等于行数+1：" << endl;
 	rows__4b = 4;
 	cols__4b = 4;
 	values__4b =      { 1, 1, 4, 5, 1, 4 };
 	col_indices__4b = { 0, 1, 3, 3, 0, 2 };
 	row_ptrs__4b =    { 0, 3, 4, 4, 6, 6 };
-	try {
-		SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "列索引超过矩阵维度：" << endl;
 	rows__4b = 4;
 	cols__4b = 4;
 	values__4b =      { 1, 1, 4, 5, 1, 4 };
 	col_indices__4b = { 0, 1, 3, 3, 0, 4 };
 	row_ptrs__4b =    { 0, 3, 4, 4, 6 };
-	try {
-		SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "行指针非递增：" << endl;
 	rows__4b = 4;
 	cols__4b = 4;
 	values__4b =      { 1, 1, 4, 5, 1, 4 };
 	col_indices__4b = { 0, 1, 3, 3, 0, 2 };
 	row_ptrs__4b =    { 0, 3, 4, 3, 6 };
-	try {
-		SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "值显式包含零元素：" << endl;
 	rows__4b = 4;
 	cols__4b = 4;
 	values__4b =      { 1, 1, 4, 5, 0, 4 };
 	col_indices__4b = { 0, 1, 3, 3, 0, 2 };
 	row_ptrs__4b =    { 0, 3, 4, 4, 6 };
-	try {
-		SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "某行列索引非递增：" << endl;
 	rows__4b = 4;
 	cols__4b = 4;
 	values__4b =      { 1, 1, 4, 5, 1, 4 };
 	col_indices__4b = { 0, 3, 1, 3, 0, 2 };
 	row_ptrs__4b =    { 0, 3, 4, 4, 6 };
-	try {
-		SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "重复元素：" << endl;
 	rows__4b = 4;
 	cols__4b = 4;
 	values__4b =      { 1, 1, 4, 5, 1, 4 };
 	col_indices__4b = { 0, 0, 3, 3, 0, 2 };
 	row_ptrs__4b =    { 0, 3, 4, 4, 6 };
-	try {
-		SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "行指针的第一个元素不为0：" << endl;
 	rows__4b = 4;
 	cols__4b = 4;
 	values__4b =      { 1, 1, 4, 5, 1, 4 };
 	col_indices__4b = { 0, 1, 3, 3, 0, 2 };
 	row_ptrs__4b =    { 3, 3, 4, 4, 6 };
-	try {
-		SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "行指针的最后一个元素不等于非零元素个数：" << endl;
 	rows__4b = 4;
 	cols__4b = 4;
 	values__4b =      { 1, 1, 4, 5, 1, 4 };
 	col_indices__4b = { 0, 1, 3, 3, 0, 2 };
 	row_ptrs__4b =    { 0, 3, 4, 4, 7 };
-	try {
-		SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix__4b(rows__4b, cols__4b, values__4b, col_indices__4b, row_ptrs__4b); } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "-----------------------------------------" << endl;
 	cout << "测试5a - 从.coo文件读入CSR稀疏矩阵" << endl;
@@ -310,48 +222,23 @@ int main() {
 
 	cout << "........................................." << endl;
 	cout << "测试5b - 从.mtx文件读入CSR稀疏矩阵(未来实现)" << endl;
-	try {
-		SparseMatrixCSR csrMatrix_5b("./sparse_matrix_lib/test/data/matrix.mtx");
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix_5b("./sparse_matrix_lib/test/data/matrix.mtx"); } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "........................................." << endl;
 	cout << "测试5c - 从.wtf文件读入CSR稀疏矩阵(不支持)" << endl;
-	try {
-		SparseMatrixCSR csrMatrix_5c("./sparse_matrix_lib/test/data/matrix.wtf");
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix_5c("./sparse_matrix_lib/test/data/matrix.wtf"); } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "........................................." << endl;
 	cout << "测试5d - 从无后缀名的文件读入CSR稀疏矩阵(不支持)" << endl;
-	try {
-		SparseMatrixCSR csrMatrix_5d("./sparse_matrix_lib/test/data/matrix");
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix_5d("./sparse_matrix_lib/test/data/matrix"); } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "........................................." << endl;
 	cout << "测试5e - 从有错误的.coo文件读入CSR稀疏矩阵" << endl;
-	try {
-		SparseMatrixCSR csrMatrix_5e("./sparse_matrix_lib/test/data/matrix_err.coo");
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix_5e("./sparse_matrix_lib/test/data/matrix_err.coo"); } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "........................................." << endl;
 	cout << "测试5f - 从不存在的文件读入CSR稀疏矩阵" << endl;
-	try {
-		SparseMatrixCSR csrMatrix_5f("./sparse_matrix_lib/test/data/NonExist.coo");
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR csrMatrix_5f("./sparse_matrix_lib/test/data/NonExist.coo"); } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "-----------------------------------------" << endl;
 	cout << "测试6 - 保存到.coo文件" << endl;
@@ -427,53 +314,23 @@ int main() {
 	cout << "初始矩阵：" << endl;
 	csrMatrix_7c.print();
 	cout << "设置错误元素组({1,1,1}, {3,2,1}, {3,3})：" << endl;
-	try {
-		vector<size_t> row_indices_7c = { 1, 1, 1 };
-		vector<size_t> col_indices_7c = { 3, 2, 1 };
-		vector<double> values_7c = { 3, 3 };
-		csrMatrix_7c.setValue(row_indices_7c, col_indices_7c, values_7c);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	vector<size_t> row_indices_7c = { 1, 1, 1 };
+	vector<size_t> col_indices_7c = { 3, 2, 1 };
+	vector<double> values_7c = { 3, 3 };
+	try { csrMatrix_7c.setValue(row_indices_7c, col_indices_7c, values_7c); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "设置元素(5,1,1)：" << endl;
-	try {
-		csrMatrix_7c.setValue(5, 1, 1);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { csrMatrix_7c.setValue(5, 1, 1); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "设置元素(1,5,1)：" << endl;
-	try {
-		csrMatrix_7c.setValue(1, 5, 1);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { csrMatrix_7c.setValue(1, 5, 1); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "设置元素(0,1,3)：" << endl;
-	try {
-		csrMatrix_7c.setValue(0, 1, 3);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { csrMatrix_7c.setValue(0, 1, 3); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "设置元素(1,0,2)：" << endl;
-	try {
-		csrMatrix_7c.setValue(1, 0, 2);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { csrMatrix_7c.setValue(1, 0, 2); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "设置元素{(3,2,1), (3,2,-1)}：" << endl;
-	try {
-		tuple<size_t, size_t, double> t2(3, 2, 1);
-		tuple<size_t, size_t, double> t3(3, 2, -1);
-		vector<tuple<size_t, size_t, double>> tuples_7c = { t2, t3 };
-		csrMatrix_7c.setValue(tuples_7c);
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	tuple<size_t, size_t, double> t2(3, 2, 1);
+	tuple<size_t, size_t, double> t3(3, 2, -1);
+	vector<tuple<size_t, size_t, double>> tuples_7c = { t2, t3 };
+	try { csrMatrix_7c.setValue(tuples_7c); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "当前矩阵：" << endl;
 	csrMatrix_7c.print();
 
@@ -497,30 +354,10 @@ int main() {
 	cout << "矩阵A(2,3)：" << csrMatrix_8A(2, 3) << endl;
 	cout << "矩阵A(3,2)：" << csrMatrix_8A(3, 2) << endl;
 	cout << "矩阵A(4,4)：" << csrMatrix_8A(4, 4) << endl;
-	try {
-		cout << "矩阵A(5,1)：" << csrMatrix_8A(5, 1) << endl;
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
-	try {
-		cout << "矩阵A(1,5)：" << csrMatrix_8A(1, 5) << endl;
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
-	try {
-		cout << "矩阵A(0,1)：" << csrMatrix_8A(0, 1) << endl;
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
-	try {
-		cout << "矩阵A(1,0)：" << csrMatrix_8A(1, 0) << endl;
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { cout << "矩阵A(5,1)：" << csrMatrix_8A(5, 1) << endl; } catch(const exception& e) { cerr << e.what() << '\n'; }
+	try { cout << "矩阵A(1,5)：" << csrMatrix_8A(1, 5) << endl; } catch(const exception& e) { cerr << e.what() << '\n'; }
+	try { cout << "矩阵A(0,1)：" << csrMatrix_8A(0, 1) << endl; } catch(const exception& e) { cerr << e.what() << '\n'; }
+	try { cout << "矩阵A(1,0)：" << csrMatrix_8A(1, 0) << endl; } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "-----------------------------------------" << endl;
 	cout << "测试9 - CSR稀疏矩阵转稠密矩阵以及稠密打印" << endl;
@@ -530,12 +367,7 @@ int main() {
 	csrMatrix_9.print();
 	cout << "CSR稀疏矩阵转稠密矩阵并显式打印：" << endl;
 	vector<vector<double>> denseMatrix_9 = csrMatrix_9.toDense();
-	for (vector<double> row : denseMatrix_9) {
-		for (double v : row) {
-			cout << v << " ";
-		}
-		cout << endl;
-	}
+	print(denseMatrix_9);
 	cout << "CSR稀疏矩阵稠密打印：" << endl;
 	csrMatrix_9.printDense();
 	cout << "CSR稀疏矩阵稠密打印（presicion=2）：" << endl;
@@ -575,14 +407,7 @@ int main() {
 	double norm_max_11 = csrMatrix_11.norm("max");
 	cout << norm_max_11 << endl;
 	cout << "CSR稀疏矩阵的范数（填写错误）：" << endl;
-	try
-	{
-		double norm_none_11 = csrMatrix_11.norm("这是一个不支持的范数类型");
-	}
-	catch(const exception& e)
-	{
-		cerr << e.what() << '\n';
-	}
+	try { double norm_none_11 = csrMatrix_11.norm("这是一个不支持的范数类型"); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	
 	cout << "-----------------------------------------" << endl;
 	cout << "测试12 - 矩阵判断" << endl;
@@ -629,9 +454,7 @@ int main() {
 	csrMatrix_13a.printDense();
 	cout << "获取矩阵的对角元，生成为向量：" << endl;
 	vector<double> DiagVec_13a = csrMatrix_13a.getDiagonalVector();
-	for (double v : DiagVec_13a) {
-		cout << v << " ";
-	}
+	print(DiagVec_13a);
 	cout << endl;
 	cout << "获取矩阵的对角元，生成为矩阵：" << endl;
 	SparseMatrixCSR DiagMat_13a = csrMatrix_13a.getDiagonalMatrix();
@@ -642,22 +465,12 @@ int main() {
 	SparseMatrixCSR UpperMat_13A = csrMatrix_13A.getUpperTriangularMatrix();
 	UpperMat_13A.printDense();
 	cout << "获取矩阵的上三角部分（非方阵）" << endl;
-	try {
-		SparseMatrixCSR UpperMat_13a = csrMatrix_13a.getUpperTriangularMatrix();
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR UpperMat_13a = csrMatrix_13a.getUpperTriangularMatrix(); } catch(const exception& e) { cerr << e.what() << '\n'; }
 	cout << "获取矩阵的下三角部分：" << endl;
 	SparseMatrixCSR LowerMat_13A = csrMatrix_13A.getLowerTriangularMatrix();
 	LowerMat_13A.printDense();
 	cout << "获取矩阵的下三角部分（非方阵）" << endl;
-	try {
-		SparseMatrixCSR LowerMat_13a = csrMatrix_13a.getLowerTriangularMatrix();
-	}
-	catch(const exception& e) {
-		cerr << e.what() << '\n';
-	}
+	try { SparseMatrixCSR LowerMat_13a = csrMatrix_13a.getLowerTriangularMatrix(); } catch(const exception& e) { cerr << e.what() << '\n'; }
 
 	cout << "=========================================" << endl;
 	cout << "TestCore 测试结束。" << endl;

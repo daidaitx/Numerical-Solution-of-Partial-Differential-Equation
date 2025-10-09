@@ -1,9 +1,9 @@
-#include <iostream>
-#include <vector>
-#include <fstream>
 #include "SparseMatrixCSR.hpp"
 #include "SparseMatrixSolvers.hpp"
 #include "VectorOperations.hpp"
+#include <iostream>
+#include <vector>
+#include <fstream>
 
 using namespace std;
 using namespace VectorOps;
@@ -117,47 +117,21 @@ int main() {
 	cout << "矩阵4：" << endl;
 	csrMatrix_4.printDense(0);
 	cout << "向量4：" << endl;
-	for (double val : vector_4) {
-		cout << val << endl;
-	}
+	print(vector_4, 0);
 	cout << "错误向量4：" << endl;
-	for (double val : wrong_vector_4) {
-		cout << val << endl;
-	}
+	print(wrong_vector_4, 0);
 	cout << "稠密矩阵4：" << endl;
-	for (vector<double> row : denseMatrix_4) {
-		for (double val : row) {
-			cout << val << " ";
-		}
-		cout << endl;
-	}
+	print(denseMatrix_4, 0);
 	cout << "错误1稠密矩阵4：" << endl;
-	for (vector<double> row : wrong1_denseMatrix_4) {
-		for (double val : row) {
-			cout << val << " ";
-		}
-		cout << endl;
-	}
+	print(wrong1_denseMatrix_4, 0);
 	cout << "错误2稠密矩阵4：" << endl;
-	for (vector<double> row : wrong2_denseMatrix_4) {
-		for (double val : row) {
-			cout << val << " ";
-		}
-		cout << endl;
-	}
+	try { print(wrong2_denseMatrix_4, 0); } catch (const exception& e) { cout << e.what() << endl; }
 	cout << "矩阵4 * 向量4：" << endl;
 	vector<double> result_4_1 = csrMatrix_4 * vector_4;
-	for (double val : result_4_1) {
-		cout << val << endl;
-	}
+	print(result_4_1);
 	cout << "矩阵4 * 稠密矩阵4：" << endl;
 	vector<vector<double>> result_4_2 = csrMatrix_4 * denseMatrix_4;
-	for (vector<double> row : result_4_2) {
-		for (double val : row) {
-			cout << val << " ";
-		}
-		cout << endl;
-	}
+	print(result_4_2, 4);
 	cout << "矩阵4 * 错误向量4：" << endl;
 	try { csrMatrix_4 * wrong_vector_4; } catch (const exception& e) { cout << e.what() << endl; }
 	cout << "矩阵4 * 错误1稠密矩阵4：" << endl;
@@ -174,14 +148,10 @@ int main() {
 	cout << "矩阵5：" << endl;
 	csrMatrix_5.printDense(0);
 	cout << "向量5：" << endl;
-	for (double val : vector_5) {
-		cout << val << endl;
-	}
+	print(vector_5);
 	vector<double> x = csrMatrix_5.solve(vector_5);
 	cout << "解向量：" << endl;
-	for (double val : x) {
-		cout << val << endl;
-	}
+	print(x);
 	// 验证残差
 	vector<double> b = csrMatrix_5 * x;
 	vector<double> r = vector_5 - b;
