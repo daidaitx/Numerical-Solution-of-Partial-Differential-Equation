@@ -54,37 +54,39 @@ inline size_t index2Dto1D(size_t i, size_t j, size_t N) {
 // ======================= 矩阵生成函数实现 ======================= //
 
 SparseMatrixCSR generatePoissonMatrix2D(const PoissonConfig2D& config) {
-	size_t M = config.M;
-	size_t N = config.N;
-	size_t total_points = M * N;
+	size_t M = config.M - 1; // 网格数减1为实际内部点数
+	size_t N = config.N - 1;
+	size_t total_points = M * N; // 总未知格点数
 	
 	double hx = config.hx();
 	double hy = config.hy();
 	double hx2 = hx * hx;
 	double hy2 = hy * hy;
 	
-	// 五点差分格式的系数
-	double center_coeff = -2.0/hx2 - 2.0/hy2;
-	double x_coeff = 1.0/hx2;
-	double y_coeff = 1.0/hy2;
+	// 五点差分格式的系数(-Δ)
+	double center_coeff = 2.0/hx2 + 2.0/hy2;
+	double x_coeff = -1.0/hx2;
+	double y_coeff = -1.0/hy2;
 	
 	vector<double> values;
 	vector<size_t> col_indices;
 	vector<size_t> row_ptrs(total_points + 1, 0);
 	
-	// 预先计算每行的非零元素个数
-	for (size_t i = 0; i < M; ++i) {
-		for (size_t j = 0; j < N; ++j) {
+	// 按行拉直：预先计算每行的非零元素个数
+	for (size_t i = 0; i < M; ++i) { // i = 0:M-1
+		for (size_t j = 0; j < N; ++j) { // j = 0:N-1
 			size_t row_idx = index2Dto1D(i, j, N);
-			size_t nnz_in_row = 1; // 中心点
+			size_t nnz_in_row = 0;
 			
-			// 检查左邻居
-			if (j > 0) nnz_in_row++;
-			// 检查右邻居  
-			if (j < N - 1) nnz_in_row++;
-			// 检查下邻居
+			// 检查-x邻居
 			if (i > 0) nnz_in_row++;
-			// 检查上邻居
+			// 检查-y邻居
+			if (j > 0) nnz_in_row++;
+			// 中心点
+			nnz_in_row++;
+			// 检查+y邻居  
+			if (j < N - 1) nnz_in_row++;
+			// 检查+x邻居
 			if (i < M - 1) nnz_in_row++;
 			
 			row_ptrs[row_idx + 1] = row_ptrs[row_idx] + nnz_in_row;
@@ -97,41 +99,38 @@ SparseMatrixCSR generatePoissonMatrix2D(const PoissonConfig2D& config) {
 	col_indices.resize(total_nnz);
 	
 	// 填充矩阵元素
-	for (size_t i = 0; i < M; ++i) {
-		for (size_t j = 0; j < N; ++j) {
+	for (size_t i = 0; i < M; ++i) { // i = 0:M-1
+		for (size_t j = 0; j < N; ++j) { // j = 0:N-1
 			size_t row_idx = index2Dto1D(i, j, N);
 			size_t elem_ptr = row_ptrs[row_idx];
 			
-			// 中心元素
-			values[elem_ptr] = center_coeff;
-			col_indices[elem_ptr] = row_idx;
-			elem_ptr++;
-			
-			// 左邻居 (i, j-1)
-			if (j > 0) {
-				size_t left_idx = index2Dto1D(i, j-1, N);
-				values[elem_ptr] = x_coeff;
-				col_indices[elem_ptr] = left_idx;
-				elem_ptr++;
-			}
-			
-			// 右邻居 (i, j+1)
-			if (j < N - 1) {
-				size_t right_idx = index2Dto1D(i, j+1, N);
-				values[elem_ptr] = x_coeff;
-				col_indices[elem_ptr] = right_idx;
-				elem_ptr++;
-			}
-			
-			// 下邻居 (i-1, j)
+			/// 顺序是重要的！否则会导致CSR的同行元素未形成正确顺序
+			// -x邻居 (i-1, j)
 			if (i > 0) {
 				size_t bottom_idx = index2Dto1D(i-1, j, N);
 				values[elem_ptr] = y_coeff;
 				col_indices[elem_ptr] = bottom_idx;
 				elem_ptr++;
 			}
-			
-			// 上邻居 (i+1, j)
+			// -y邻居 (i, j-1)
+			if (j > 0) {
+				size_t left_idx = index2Dto1D(i, j-1, N);
+				values[elem_ptr] = x_coeff;
+				col_indices[elem_ptr] = left_idx;
+				elem_ptr++;
+			}
+			// 中心元素
+			values[elem_ptr] = center_coeff;
+			col_indices[elem_ptr] = row_idx;
+			elem_ptr++;
+			// +y邻居 (i, j+1)
+			if (j < N - 1) {
+				size_t right_idx = index2Dto1D(i, j+1, N);
+				values[elem_ptr] = x_coeff;
+				col_indices[elem_ptr] = right_idx;
+				elem_ptr++;
+			}
+			// +x邻居 (i+1, j)
 			if (i < M - 1) {
 				size_t top_idx = index2Dto1D(i+1, j, N);
 				values[elem_ptr] = y_coeff;
@@ -151,31 +150,39 @@ vector<double> generatePoissonRHS2D(
 	function<double(double, double)> f,
 	function<double(double, double)> g) {
 	
-	size_t M = config.M;
-	size_t N = config.N;
+	size_t M = config.M - 1;
+	size_t N = config.N - 1;
 	double hx = config.hx();
 	double hy = config.hy();
+	double hx2 = hx * hx;
+	double hy2 = hy * hy;
 	
 	vector<double> rhs(M * N, 0.0);
 	
 	// 计算网格点坐标并填充右端项
-	for (size_t i = 0; i < M; ++i) {
-		double x = config.x_min + (i + 0.5) * hx; // 网格中心
-		for (size_t j = 0; j < N; ++j) {
-			double y = config.y_min + (j + 0.5) * hy; // 网格中心
+	for (size_t i = 0; i < M; ++i) { // i = 0:M-1
+		double x = config.x_min + (i + 1) * hx; // 网格中心
+		for (size_t j = 0; j < N; ++j) { // j = 0:N-1
+			double y = config.y_min + (j + 1) * hy; // 网格中心
 			size_t idx = index2Dto1D(i, j, N);
-			
-			// 内部点：右端项为 f(x,y)
-			rhs[idx] = f(x, y);
-			
-			// 边界处理：Dirichlet边界条件
-			bool is_boundary = (i == 0) || (i == M - 1) || (j == 0) || (j == N - 1);
-			if (is_boundary) {
-				// 对于边界点，我们通常会在方程中直接代入边界值
-				// 这里先设置为边界值，后续在求解时会处理
-				double boundary_x = config.x_min + i * hx;
-				double boundary_y = config.y_min + j * hy;
-				rhs[idx] = g(boundary_x, boundary_y);
+
+			// -x邻居 (i-1, j)
+			if (i == 0) {
+				rhs[idx] += g(x - hx, y) / hx2;
+			}
+			// -y邻居 (i, j-1)
+			if (j == 0) {
+				rhs[idx] += g(x, y - hy) / hy2;
+			}
+			// 中心元素：右端项为 f(x,y)
+			rhs[idx] += f(x, y);
+			// +y邻居 (i, j+1)
+			if (j == N - 1) {
+				rhs[idx] += g(x, y + hy) / hy2;
+			}
+			// +x邻居 (i+1, j)
+			if (i == M - 1) {
+				rhs[idx] += g(x + hx, y) / hx2;
 			}
 		}
 	}
@@ -233,8 +240,9 @@ PoissonProblem2D generatePoisson2D(
 	problem.A = generatePoissonMatrix2D(config);
 	problem.b = generatePoissonRHS2D(config, f, g);
 	
-	// 注意：这里不自动求解，留给用户决定是否求解
-	// problem.solution_2d 保持为空，直到用户调用求解
+	// 求解线性方程组
+	problem.solution_1d = problem.A.solve(problem.b);
+	problem.solution_2d = unflattenVector(problem.solution_1d, config.M - 1, config.N - 1);
 	
 	return problem;
 }
@@ -257,38 +265,30 @@ PoissonProblem2D generatePoisson2D(
 // ======================= PoissonProblem2D 成员函数实现 ======================= //
 
 void PoissonProblem2D::saveToFiles(const string& basename) const {
-	// 保存矩阵
-	A.saveToFile(basename + "_matrix.txt");
-	
-	// 保存右端项
-	ofstream b_file(basename + "_rhs.txt");
-	if (b_file.is_open()) {
-		b_file << fixed << setprecision(15);
-		for (double val : b) {
-			b_file << val << "\n";
-		}
-		b_file.close();
-	}
-	
-	// 如果已经求解，保存解
-	if (!solution_2d.empty()) {
-		ofstream sol_file(basename + "_solution.txt");
-		if (sol_file.is_open()) {
-			sol_file << fixed << setprecision(15);
-			for (const auto& row : solution_2d) {
-				for (size_t j = 0; j < row.size(); ++j) {
-					sol_file << row[j];
-					if (j < row.size() - 1) sol_file << " ";
-				}
-				sol_file << "\n";
-			}
-			sol_file.close();
+	// 保存矩阵 A
+	A.saveToFile(basename + "_matrix.coo");
+
+	// 保存右端项 b
+	VectorOps::writeVec(b, basename + "_rhs.vec");
+
+	// 保存解 solution_2d
+	VectorOps::writeMat(solution_2d, basename + "_solution.mat");
+
+	// 保存网格
+	vector<vector<double>> X(config.M - 1, vector<double>(config.N - 1));
+	vector<vector<double>> Y(config.M - 1, vector<double>(config.N - 1));
+	for (size_t i = 0; i < config.M - 1; ++i) {
+		for (size_t j = 0; j < config.N - 1; ++j) {
+			X[i][j] = config.x_min + (i + 1) * config.hx();
+			Y[i][j] = config.y_min + (j + 1) * config.hy();
 		}
 	}
+	VectorOps::writeMat(X, basename + "_X.mat");
+	VectorOps::writeMat(Y, basename + "_Y.mat");
 }
 
 void PoissonProblem2D::printInfo() const {
-	cout << "=== 2D Poisson Problem Info ===" << endl;
+	cout << "----------- 2D Poisson Problem Info -----------" << endl;
 	cout << "Grid: " << config.M << " x " << config.N << " cells" << endl;
 	cout << "Domain: [" << config.x_min << ", " << config.x_max << "] x [" 
 		<< config.y_min << ", " << config.y_max << "]" << endl;
@@ -305,7 +305,7 @@ void PoissonProblem2D::printInfo() const {
 		double max_val = *max_element(flat_solution.begin(), flat_solution.end());
 		cout << "Solution range: [" << min_val << ", " << max_val << "]" << endl;
 	}
-	cout << "=================================" << endl;
+	cout << "-----------------------------------------------" << endl;
 }
 
 } // namespace Poisson2D

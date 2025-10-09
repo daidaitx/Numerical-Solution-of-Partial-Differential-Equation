@@ -45,3 +45,6 @@ build/
 
 # VSCode settings
 .vscode/
+
+# Poisson output data
+sparse_matrix_lib/test/data/Poisson_*

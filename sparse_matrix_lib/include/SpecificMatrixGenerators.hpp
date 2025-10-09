@@ -39,6 +39,7 @@ struct PoissonConfig2D {
 struct PoissonProblem2D {
 	SparseMatrixCSR A;                   ///< 系数矩阵
 	std::vector<double> b;               ///< 右端项
+	std::vector<double> solution_1d;              ///< 解向量（拉直格式）
 	std::vector<std::vector<double>> solution_2d; ///< 二维格式的解
 	PoissonConfig2D config;              ///< 配置参数
 	

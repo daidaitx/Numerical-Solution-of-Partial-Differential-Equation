@@ -165,6 +165,37 @@ vector<double> readVec(const string& filename) {
 	return result;
 }
 
+vector<vector<double>> readMat(const string& filename) {
+    ifstream fin(filename);
+    if (!fin) {
+        throw invalid_argument("无法打开文件: " + filename);
+    }
+
+    vector<vector<double>> result;
+    string line;
+
+    while (getline(fin, line)) {  // 按行读取
+        if (line.empty()) {
+            continue;  // 跳过空行
+        }
+
+        vector<double> row;
+        stringstream ss(line);
+        double value;
+
+        while (ss >> value) {  // 从当前行中提取数字
+            row.push_back(value);
+        }
+
+        if (!row.empty()) {
+            result.push_back(row);  // 将这一行的数字作为一个 vector 加入结果
+        }
+    }
+
+    fin.close();
+    return result;
+}
+
 void writeVec(const std::vector<double>& v, const std::string& filename) {
 	ofstream fout(filename);
 	if (!fout) {
@@ -174,6 +205,30 @@ void writeVec(const std::vector<double>& v, const std::string& filename) {
 		fout << val << endl;
 	}
 	fout.close();
+}
+
+void writeMat(const std::vector<std::vector<double>>& matrix, const std::string& filename) {
+    // 打开文件，准备写入
+    std::ofstream fout(filename);
+    if (!fout) {
+        throw std::runtime_error("无法打开文件用于写入: " + filename);
+    }
+
+    // 遍历矩阵的每一行
+    for (const auto& row : matrix) {
+        // 遍历当前行的每个元素
+        for (size_t j = 0; j < row.size(); ++j) {
+            fout << row[j];
+            // 如果不是最后一个元素，添加一个空格分隔
+            if (j != row.size() - 1) {
+                fout << " ";
+            }
+        }
+        // 每行数据写入完毕后，换行
+        fout << "\n";
+    }
+
+    // 文件会在 ofstream 析构时自动关闭，但也可以显式调用 fout.close();
 }
 
 ostream& operator<<(ostream& os, const vector<double>& v) {

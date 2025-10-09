@@ -120,11 +120,25 @@ std::vector<double>& operator/=(std::vector<double>& v, double scalar);
 std::vector<double> readVec(const std::string& filename);
 
 /**
+ * @brief 从mat文件读入稠密矩阵数据
+ * @param filename 文件名
+ * @return 读入的稠密矩阵
+ */
+std::vector<std::vector<double>> readMat(const std::string& filename);
+
+/**
  * @brief 向vec文件输出向量数据
  * @param v 向量
  * @param filename 文件名
  */
 void writeVec(const std::vector<double>& v, const std::string& filename);
+
+/**
+ * @brief 向mat文件输出稠密矩阵数据
+ * @param matrix 稠密矩阵
+ * @param filename 文件名
+ */
+void writeMat(const std::vector<std::vector<double>>& matrix, const std::string& filename);
 
 /**
  * @brief 向量输出到流
