@@ -1,0 +1,7 @@
+<map id="MatrixGenerators::Poisson2D::PoissonProblem2D" name="MatrixGenerators::Poisson2D::PoissonProblem2D">
+<area shape="rect" id="Node000001" title="二维Poisson问题完整结果" alt="" coords="67,120,250,163"/>
+<area shape="rect" id="Node000002" href="$class_sparse_matrix_c_s_r.html" title="行压缩稀疏矩阵（CSR格式）实现" alt="" coords="5,13,133,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,51,144,118,140,121,86,54"/>
+<area shape="rect" id="Node000003" href="$struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html" title="二维Poisson问题配置参数" alt="" coords="157,5,341,48"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="225,62,177,121,173,118,221,59"/>
+</map>

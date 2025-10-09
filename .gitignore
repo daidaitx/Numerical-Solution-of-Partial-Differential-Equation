@@ -47,4 +47,6 @@ build/
 .vscode/
 
 # Poisson output data
-sparse_matrix_lib/test/data/Poisson_*
+sparse_matrix_lib/test/data/Poisson_*.coo
+sparse_matrix_lib/test/data/Poisson_*.vec
+sparse_matrix_lib/test/data/Poisson_*.mat

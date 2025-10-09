@@ -1,0 +1,42 @@
+当前运行的是 TestPoissonMatrix 测试程序。
+=========================================
+测试1 - 以函数输入生成简单二维 Poisson 方程问题并求解。
+GMRES restart 1, residual norm: 1.13075e-13
+GMRES converged after 1 restarts
+----------- 2D Poisson Problem Info -----------
+Grid: 5 x 5 cells
+Domain: [0, 1] x [0, 1]
+Step sizes: hx = 0.2, hy = 0.2
+Matrix size: 16 x 16
+Matrix NNZ: 64
+RHS vector size: 16
+Solution computed: Yes
+Solution range: [-1.03356, 1.03356]
+-----------------------------------------------
+矩阵大小: ( 4 x 4 )
+ 1.0336  0.6388 -0.6388 -1.0336 
+ 0.6388  0.3948 -0.3948 -0.6388 
+-0.6388 -0.3948  0.3948  0.6388 
+-1.0336 -0.6388  0.6388  1.0336 
+矩阵已保存到文件: ./sparse_matrix_lib/test/data/Poisson_small_matrix.coo
+绘制解的图像：在命令行中运行下面的命令
+python .\sparse_matrix_lib\test\plot_solution.py 'Poisson_small'
+GMRES restart 1, residual norm: 0.000219309
+GMRES converged after 1 restarts
+----------- 2D Poisson Problem Info -----------
+Grid: 1000 x 1000 cells
+Domain: [0, 1] x [0, 1]
+Step sizes: hx = 0.001, hy = 0.001
+Matrix size: 998001 x 998001
+Matrix NNZ: 4986009
+RHS vector size: 998001
+Solution computed: Yes
+Solution range: [-1, 1]
+-----------------------------------------------
+矩阵已保存到文件: ./sparse_matrix_lib/test/data/Poisson_mid_matrix.coo
+绘制解的图像：在命令行中运行下面的命令
+python .\sparse_matrix_lib\test\plot_solution.py 'Poisson_mid'
+-----------------------------------------
+测试2 - 以离散数据输入生成简单二维 Poisson 方程问题并求解。
+=========================================
+TestPoissonMatrix 测试结束。

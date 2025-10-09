@@ -37,8 +37,8 @@ int main() {
 	print(problem_1.solution_2d);
 	// 保存矩阵和右端项到文件
 	problem_1.saveToFiles("./sparse_matrix_lib/test/data/Poisson_small");
-	// 绘制解的图像：在命令行中运行下面的命令
-	// python .\sparse_matrix_lib\test\plot_solution.py 'Poisson_small'
+	cout << "绘制解的图像：在命令行中运行下面的命令" << endl;
+	cout << "python .\\sparse_matrix_lib\\test\\plot_solution.py 'Poisson_small'" << endl;
 
 	M_1 = 1000;
 	N_1 = 1000;
@@ -46,7 +46,8 @@ int main() {
 	problem_1 = generatePoisson2D(config_1, f_1, g_1);
 	problem_1.printInfo();
 	problem_1.saveToFiles("./sparse_matrix_lib/test/data/Poisson_mid");
-	// python .\sparse_matrix_lib\test\plot_solution.py 'Poisson_mid'
+	cout << "绘制解的图像：在命令行中运行下面的命令" << endl;
+	cout << "python .\\sparse_matrix_lib\\test\\plot_solution.py 'Poisson_mid'" << endl;
 
 	cout << "-----------------------------------------" << endl;
 	cout << "测试2 - 以离散数据输入生成简单二维 Poisson 方程问题并求解。" << endl;
