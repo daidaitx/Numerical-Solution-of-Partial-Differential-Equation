@@ -35,4 +35,4 @@ try:
 	plt.show()
 
 except Exception as e:
-	print(f"读取数据失败，请检查数据名称是否正确或文件是否存在。错误信息：{e}")
+	print(f"绘制图形失败。错误信息：{e}")

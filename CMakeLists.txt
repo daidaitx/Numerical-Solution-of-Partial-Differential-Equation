@@ -17,22 +17,23 @@ target_include_directories(SparseMatrixLib PUBLIC sparse_matrix_lib/include)
 #   - 库自身编译时需要include目录
 #   - 链接此库的**其他目标**（如测试程序）也需要include目录
 
-# 测试套件：每个测试文件生成独立可执行文件
-add_executable(TestCore                          # 生成名为TestCore的可执行文件
-  sparse_matrix_lib/test/TestCore.cpp)           # 测试主程序源文件
-add_executable(TestPoissonMatrix                 # 生成名为TestPoissonMatrix的可执行文件
-  sparse_matrix_lib/test/TestPoissonMatrix.cpp)  # 测试Poisson矩阵生成器源文件
-add_executable(TestSpMV                          # 生成名为TestSpMV的可执行文件
-  sparse_matrix_lib/test/TestSpMV.cpp)           # 测试稀疏矩阵向量乘法源文件
+# 自动查找所有测试文件
+file(GLOB TEST_SOURCES "sparse_matrix_lib/test/Test*.cpp")
+# 自动查找所有应用程序
+file(GLOB APP_SOURCES "applications/*/*.cpp")
 
-# 统一链接库
-foreach(test_exe IN ITEMS TestCore TestPoissonMatrix TestSpMV)
-  target_link_libraries(${test_exe} PRIVATE SparseMatrixLib)
+# 自动创建测试可执行文件
+foreach(test_source ${TEST_SOURCES})
+    get_filename_component(test_name ${test_source} NAME_WE)
+    add_executable(${test_name} ${test_source})
+    target_link_libraries(${test_name} PRIVATE SparseMatrixLib)
+    list(APPEND ALL_EXECUTABLES ${test_name})
 endforeach()
-# 使可执行文件能够访问SparseMatrixLib中的函数和类
 
-# 注释说明：
-# 1. 静态库(.a/.lib)会将所有源文件编译后打包成一个文件，适合封装通用功能
-# 2. PUBLIC关键字确保头文件路径能被传递到依赖目标（测试程序），避免手动添加路径
-# 3. 测试程序通过链接库实现模块化测试，符合"编译一次，多处运行"的测试理念
-# 4. 此配置支持跨平台（Windows/Linux/macOS）构建，CMake会根据系统选择编译器
+# 自动创建应用程序可执行文件
+foreach(app_source ${APP_SOURCES})
+    get_filename_component(app_name ${app_source} NAME_WE)
+    add_executable(${app_name} ${app_source})
+    target_link_libraries(${app_name} PRIVATE SparseMatrixLib)
+    list(APPEND ALL_EXECUTABLES ${app_name})
+endforeach()
