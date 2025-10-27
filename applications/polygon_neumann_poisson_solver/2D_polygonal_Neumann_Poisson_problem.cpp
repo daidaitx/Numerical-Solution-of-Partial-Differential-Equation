@@ -546,4 +546,13 @@ int main() {
 	绘制计算解：          python .\applications\utils\plot_solution.py  polygon_neumann_poisson_solver grid_X grid_Y U_numeric Neumann_cut_solution_504
 
 	**/
+
+	/**
+	
+	绘制多边形区域及网格： python .\applications\utils\plot_grid.py      polygon_neumann_poisson_solver
+	绘制真解：            python .\applications\utils\plot_solution.py  polygon_neumann_poisson_solver grid_X grid_Y U_exact Neumann_exact_solution_171
+	绘制矩阵 A 的稀疏结构：python .\applications\utils\spy_CSR_matrix.py polygon_neumann_poisson_solver matrix_A Neumann_rectangle_A_171
+	绘制计算解：          python .\applications\utils\plot_solution.py  polygon_neumann_poisson_solver grid_X grid_Y U_numeric Neumann_rectangle_solution_171
+
+	**/
 }

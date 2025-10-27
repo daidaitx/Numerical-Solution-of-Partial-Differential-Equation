@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NPDE: applications/utils/plot_solution.py 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NPDE
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('applications_2utils_2plot__solution_8py_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">plot_solution.py</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">import</span> sys</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">import</span> os</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">from</span> matplotlib.patches <span class="keyword">import</span> Polygon</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">from</span> matplotlib.collections <span class="keyword">import</span> PatchCollection</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">import</span> matplotlib.tri <span class="keyword">as</span> tri</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">def </span>segments_intersect(a, b, c, d, tol=1e-10):</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="stringliteral">&quot;&quot;&quot;检查线段ab和cd是否相交，考虑数值误差&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keyword">def </span>ccw(A, B, C):</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <span class="keywordflow">return</span> (C[1]-A[1]) * (B[0]-A[0]) - (B[1]-A[1]) * (C[0]-A[0])</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">def </span>point_on_segment(p, a, b):</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="stringliteral">&quot;&quot;&quot;检查点p是否在线段ab上（考虑容忍度）&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="comment"># 检查点p是否在a和b的边界框内</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keywordflow">if</span> (min(a[0], b[0]) - tol &lt;= p[0] &lt;= max(a[0], b[0]) + tol <span class="keywordflow">and</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            min(a[1], b[1]) - tol &lt;= p[1] &lt;= max(a[1], b[1]) + tol):</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            <span class="comment"># 检查点p是否在直线ab上</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            cross = ccw(a, b, p)</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            <span class="keywordflow">return</span> abs(cross) &lt;= tol</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="comment"># 检查端点是否在另一条线段上</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">if</span> point_on_segment(a, c, d) <span class="keywordflow">or</span> point_on_segment(b, c, d) <span class="keywordflow">or</span> \</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>       point_on_segment(c, a, b) <span class="keywordflow">or</span> point_on_segment(d, a, b):</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment"># 使用改进的跨立试验，考虑数值误差</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    o1 = ccw(a, c, d)</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    o2 = ccw(b, c, d)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    o3 = ccw(c, a, b)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    o4 = ccw(d, a, b)</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment"># 如果两条线段严格相交</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordflow">if</span> (o1 * o2 &lt; -tol) <span class="keywordflow">and</span> (o3 * o4 &lt; -tol):</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="comment"># 如果两条线段几乎共线，检查它们是否重叠</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordflow">if</span> abs(o1) &lt;= tol <span class="keywordflow">and</span> abs(o2) &lt;= tol <span class="keywordflow">and</span> abs(o3) &lt;= tol <span class="keywordflow">and</span> abs(o4) &lt;= tol:</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="comment"># 检查线段是否在x轴或y轴上有重叠</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">if</span> (max(a[0], b[0]) &gt;= min(c[0], d[0]) - tol <span class="keywordflow">and</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            min(a[0], b[0]) &lt;= max(c[0], d[0]) + tol <span class="keywordflow">and</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            max(a[1], b[1]) &gt;= min(c[1], d[1]) - tol <span class="keywordflow">and</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            min(a[1], b[1]) &lt;= max(c[1], d[1]) + tol):</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">def </span>resolve_file(arg: str, data_dir: Path) -&gt; Path:</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="stringliteral">&quot;&quot;&quot;仅在 data_dir 中按文件名查找文件。&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">if</span> <span class="stringliteral">&#39;/&#39;</span> <span class="keywordflow">in</span> arg <span class="keywordflow">or</span> <span class="stringliteral">&#39;\\&#39;</span> <span class="keywordflow">in</span> arg <span class="keywordflow">or</span> Path(arg).is_absolute():</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">raise</span> ValueError(f<span class="stringliteral">&quot;参数必须是文件名而不是路径：{arg}&quot;</span>)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> data_dir.exists() <span class="keywordflow">or</span> <span class="keywordflow">not</span> data_dir.is_dir():</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">raise</span> FileNotFoundError(f<span class="stringliteral">&quot;数据目录不存在: {data_dir}&quot;</span>)</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="comment"># 先尝试完全匹配文件名（包括扩展名）</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordflow">for</span> f <span class="keywordflow">in</span> data_dir.iterdir():</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">if</span> f.is_file() <span class="keywordflow">and</span> f.name == arg:</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <span class="keywordflow">return</span> f</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="comment"># 再尝试按 stem 匹配（去掉扩展名的名称）</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">for</span> f <span class="keywordflow">in</span> data_dir.iterdir():</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">if</span> f.is_file() <span class="keywordflow">and</span> f.stem == arg:</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            <span class="keywordflow">return</span> f</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">raise</span> FileNotFoundError(f<span class="stringliteral">&quot;在 {data_dir} 中找不到名为 &#39;{arg}&#39; 的文件&quot;</span>)</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">def </span>read_polygon_vertices(data_dir):</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="stringliteral">&quot;&quot;&quot;读取多边形顶点&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    vertices_file = data_dir / <span class="stringliteral">&quot;polygon_vertices.txt&quot;</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    vertices = []</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keyword">with</span> open(vertices_file, <span class="stringliteral">&#39;r&#39;</span>) <span class="keyword">as</span> f:</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">for</span> line <span class="keywordflow">in</span> f:</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            x, y = map(float, line.strip().split())</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            vertices.append([x, y])</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordflow">return</span> np.array(vertices)</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keywordflow">if</span> len(sys.argv) &lt; 6:</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    print(<span class="stringliteral">&quot;用法: python plot_solution.py project_name X_file Y_file U_file output_name&quot;</span>)</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    print(<span class="stringliteral">&quot;参数说明:&quot;</span>)</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    print(<span class="stringliteral">&quot;  project_name - 项目名称（如: polygon_dirichlet_poisson_solver）&quot;</span>)</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    print(<span class="stringliteral">&quot;  X_file       - X坐标文件名（如: grid_X 或 grid_X.txt）&quot;</span>)</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    print(<span class="stringliteral">&quot;  Y_file       - Y坐标文件名（如: grid_Y 或 grid_Y.txt）&quot;</span>)</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    print(<span class="stringliteral">&quot;  U_file       - 函数值文件名（如: U_exact 或 U_exact.txt）&quot;</span>)</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    print(<span class="stringliteral">&quot;  output_name  - 输出图片名称（如: exact_solution_506 或 exact_solution_506.png）&quot;</span>)</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    sys.exit(1)</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment"># 解析命令行参数</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>project_name = sys.argv[1]</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>arg_X = sys.argv[2]</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>arg_Y = sys.argv[3]</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>arg_U = sys.argv[4]</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>output_name = sys.argv[5]</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment"># 构建项目数据目录路径</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>script_dir = Path(__file__).parent</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>project_data_dir = script_dir.parent / project_name / <span class="stringliteral">&quot;data&quot;</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment"># 检查数据目录是否存在</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="keywordflow">if</span> <span class="keywordflow">not</span> project_data_dir.exists():</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    print(f<span class="stringliteral">&quot;错误: 数据目录不存在: {project_data_dir}&quot;</span>)</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    sys.exit(1)</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>data_dir = project_data_dir</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment"># 解析文件路径</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>X_path = resolve_file(arg_X, data_dir)</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>Y_path = resolve_file(arg_Y, data_dir)</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>U_path = resolve_file(arg_U, data_dir)</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment"># 确保输出文件名有.png扩展名</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keywordflow">if</span> <span class="keywordflow">not</span> output_name.lower().endswith(<span class="stringliteral">&#39;.png&#39;</span>):</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    output_name += <span class="stringliteral">&#39;.png&#39;</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keywordflow">try</span>:</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment"># 读取数据</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    X = np.loadtxt(str(X_path))</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    Y = np.loadtxt(str(Y_path))</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    U = np.loadtxt(str(U_path))</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="comment"># 读取多边形顶点</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    polygon_vertices = read_polygon_vertices(data_dir)</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="comment"># 创建三角剖分</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    triangles = tri.Triangulation(X, Y)</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="comment"># 创建多边形边界线段</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    polygon_edges = []</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    n_vertices = len(polygon_vertices)</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(n_vertices):</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        start = polygon_vertices[i]</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        end = polygon_vertices[(i+1) % n_vertices]</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        polygon_edges.append((start, end))</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="comment"># 创建掩码：如果三角形的任何边与多边形边界相交，则掩码掉该三角形</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    mask = np.zeros(len(triangles.triangles), dtype=bool)</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordflow">for</span> i, tri_indices <span class="keywordflow">in</span> enumerate(triangles.triangles):</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        <span class="comment"># 获取三角形的三个顶点</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        A = (X[tri_indices[0]], Y[tri_indices[0]])</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        B = (X[tri_indices[1]], Y[tri_indices[1]])</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        C = (X[tri_indices[2]], Y[tri_indices[2]])</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <span class="comment"># 三角形的三条边</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        triangle_edges = [(A, B), (B, C), (C, A)]</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <span class="comment"># 检查三角形的每条边是否与多边形边界相交</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        intersects_boundary = <span class="keyword">False</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <span class="keywordflow">for</span> tri_edge <span class="keywordflow">in</span> triangle_edges:</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            <span class="keywordflow">for</span> poly_edge <span class="keywordflow">in</span> polygon_edges:</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                <span class="keywordflow">if</span> segments_intersect(tri_edge[0], tri_edge[1], poly_edge[0], poly_edge[1]):</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                    intersects_boundary = <span class="keyword">True</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>                    <span class="keywordflow">break</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            <span class="keywordflow">if</span> intersects_boundary:</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>                <span class="keywordflow">break</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        <span class="comment"># 如果三角形与边界相交，则掩码掉</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="keywordflow">if</span> intersects_boundary:</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>            mask[i] = <span class="keyword">True</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="comment"># 应用掩码</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    triangles.set_mask(mask)</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="comment"># 创建包含两个子图的图形</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    fig = plt.figure(figsize=(16, 7))</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="comment"># 第一个子图：3D图</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    ax1 = fig.add_subplot(121, projection=<span class="stringliteral">&#39;3d&#39;</span>)</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment"># 使用掩码后的三角剖分绘制曲面</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    surf = ax1.plot_trisurf(triangles, U, cmap=<span class="stringliteral">&#39;viridis&#39;</span>, alpha=0.9, edgecolor=<span class="stringliteral">&#39;none&#39;</span>)</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="comment"># 在多边形边界处绘制轮廓</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    polygon_closed = np.vstack([polygon_vertices, polygon_vertices[0]])  <span class="comment"># 闭合多边形</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    ax1.plot(polygon_closed[:, 0], polygon_closed[:, 1], </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>            np.zeros_like(polygon_closed[:, 0]), </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>            <span class="stringliteral">&#39;r-&#39;</span>, linewidth=2, label=<span class="stringliteral">&#39;Polygon Boundary&#39;</span>)</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    ax1.set_xlabel(<span class="stringliteral">&#39;x&#39;</span>)</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    ax1.set_ylabel(<span class="stringliteral">&#39;y&#39;</span>)</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    ax1.set_zlabel(<span class="stringliteral">&#39;u(x,y)&#39;</span>)</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="comment"># 移除输出文件名中的.png扩展名用于标题</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    title_name = output_name.replace(<span class="stringliteral">&#39;.png&#39;</span>, <span class="stringliteral">&#39;&#39;</span>) <span class="keywordflow">if</span> output_name.endswith(<span class="stringliteral">&#39;.png&#39;</span>) <span class="keywordflow">else</span> output_name</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    ax1.set_title(f<span class="stringliteral">&#39;3D Solution: {title_name}&#39;</span>)</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    ax1.legend()</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="comment"># 添加颜色条</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    fig.colorbar(surf, ax=ax1, shrink=0.5, aspect=5)</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="comment"># 第二个子图：俯视图</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    ax2 = fig.add_subplot(122)</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="comment"># 绘制俯视图（等高线图）</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    contour = ax2.tricontourf(triangles, U, cmap=<span class="stringliteral">&#39;viridis&#39;</span>, levels=20)</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    ax2.tricontour(triangles, U, colors=<span class="stringliteral">&#39;black&#39;</span>, linewidths=0.5, levels=10)</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="comment"># 绘制多边形边界</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    ax2.plot(polygon_closed[:, 0], polygon_closed[:, 1], </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>            <span class="stringliteral">&#39;r-&#39;</span>, linewidth=2, label=<span class="stringliteral">&#39;Polygon Boundary&#39;</span>)</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="comment"># 标记网格点</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    ax2.scatter(X, Y, c=<span class="stringliteral">&#39;black&#39;</span>, s=1, alpha=0.5, marker=<span class="stringliteral">&#39;.&#39;</span>)</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    ax2.set_xlabel(<span class="stringliteral">&#39;x&#39;</span>)</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    ax2.set_ylabel(<span class="stringliteral">&#39;y&#39;</span>)</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    ax2.set_title(f<span class="stringliteral">&#39;Top View (Contour): {title_name}&#39;</span>)</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    ax2.set_aspect(<span class="stringliteral">&#39;equal&#39;</span>)</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="comment"># 将图例放在图像外部右上角</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    ax2.legend(bbox_to_anchor=(1.05, 1), loc=<span class="stringliteral">&#39;upper left&#39;</span>, borderaxespad=0.)</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="comment"># 添加颜色条</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    fig.colorbar(contour, ax=ax2, shrink=0.5, aspect=5)</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    plt.tight_layout()</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="comment"># 使用指定的输出文件名保存图片到项目数据目录</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    out_path = data_dir / output_name</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    plt.savefig(str(out_path), dpi=300, bbox_inches=<span class="stringliteral">&#39;tight&#39;</span>)</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    print(f<span class="stringliteral">&quot;图片已保存到: {out_path}&quot;</span>)</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    plt.show()</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="keywordflow">except</span> FileNotFoundError <span class="keyword">as</span> e:</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    print(f<span class="stringliteral">&quot;文件未找到错误: {e}&quot;</span>)</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    print(f<span class="stringliteral">&quot;请确保以下文件存在于 {data_dir}:&quot;</span>)</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    print(f<span class="stringliteral">&quot;  - polygon_vertices.txt&quot;</span>)</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    print(f<span class="stringliteral">&quot;  - {arg_X} 或 {arg_X}.txt&quot;</span>)</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    print(f<span class="stringliteral">&quot;  - {arg_Y} 或 {arg_Y}.txt&quot;</span>)</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    print(f<span class="stringliteral">&quot;  - {arg_U} 或 {arg_U}.txt&quot;</span>)</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    sys.exit(1)</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="keywordflow">except</span> Exception <span class="keyword">as</span> e:</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    print(f<span class="stringliteral">&quot;错误: {e}&quot;</span>)</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keyword">import</span> traceback</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    traceback.print_exc()</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    sys.exit(1)</div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_a6e4fee11f07c3b70486e88fe92cbbdc.html">applications</a></li><li class="navelem"><a href="dir_a8a48d3cbf9cec4037a986f4cbc9b4f0.html">utils</a></li><li class="navelem"><b>plot_solution.py</b></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

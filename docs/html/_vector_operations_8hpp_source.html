@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NPDE: sparse_matrix_lib/include/VectorOperations.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NPDE
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('_vector_operations_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">VectorOperations.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
+<div class="foldopen" id="foldopen00010" data-start="{" data-end="}">
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html">   10</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_vector_ops.html">VectorOps</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// ======================= 基本运算 ======================= //</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#a4634ce186d1e4babe5ac92cf6bfb8dbb">   20</a></span><span class="keywordtype">double</span> <a class="code hl_function" href="namespace_vector_ops.html#a4634ce186d1e4babe5ac92cf6bfb8dbb">norm</a>(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; v, <span class="keyword">const</span> std::string&amp; normType = <span class="stringliteral">&quot;2&quot;</span>);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#ae968f575bbd9465a727a8cbbe0bd2afb">   28</a></span><span class="keywordtype">double</span> <a class="code hl_function" href="namespace_vector_ops.html#ae968f575bbd9465a727a8cbbe0bd2afb">dot</a>(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; a, <span class="keyword">const</span> std::vector&lt;double&gt;&amp; b);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">// ======================= 算术运算符 ======================= //</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#aa493bd16b96eea24f4592607168970ae">   38</a></span>std::vector&lt;double&gt; <a class="code hl_function" href="namespace_vector_ops.html#aa493bd16b96eea24f4592607168970ae">operator+</a>(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; a, <span class="keyword">const</span> std::vector&lt;double&gt;&amp; b);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#a6c9a32bba65e9cf12b9c560398321b7a">   46</a></span>std::vector&lt;double&gt; <a class="code hl_function" href="namespace_vector_ops.html#a6c9a32bba65e9cf12b9c560398321b7a">operator-</a>(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; a, <span class="keyword">const</span> std::vector&lt;double&gt;&amp; b);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#aba2696e98c277d668fb91a420c6e2597">   54</a></span>std::vector&lt;double&gt; <a class="code hl_function" href="namespace_vector_ops.html#aba2696e98c277d668fb91a420c6e2597">operator*</a>(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; v, <span class="keywordtype">double</span> scalar);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#ab233846cd14b0e5c24651e6618d5deb6">   62</a></span>std::vector&lt;double&gt; <a class="code hl_function" href="namespace_vector_ops.html#aba2696e98c277d668fb91a420c6e2597">operator*</a>(<span class="keywordtype">double</span> scalar, <span class="keyword">const</span> std::vector&lt;double&gt;&amp; v);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#a3f565ffc39f3c21ccbefe12141506880">   70</a></span>std::vector&lt;double&gt; <a class="code hl_function" href="namespace_vector_ops.html#a3f565ffc39f3c21ccbefe12141506880">operator/</a>(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; v, <span class="keywordtype">double</span> scalar);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#a607797c49a462147188c61d0a2bf2259">   77</a></span>std::vector&lt;double&gt; <a class="code hl_function" href="namespace_vector_ops.html#a6c9a32bba65e9cf12b9c560398321b7a">operator-</a>(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; v);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">// ======================= 复合赋值运算符 ======================= //</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#aa76d5db0886f1eadf2e6b6e8e5c24f93">   87</a></span>std::vector&lt;double&gt;&amp; <a class="code hl_function" href="namespace_vector_ops.html#aa76d5db0886f1eadf2e6b6e8e5c24f93">operator+=</a>(std::vector&lt;double&gt;&amp; a, <span class="keyword">const</span> std::vector&lt;double&gt;&amp; b);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#afa6cccb432a8b5fe62b5b9107b0ef984">   95</a></span>std::vector&lt;double&gt;&amp; <a class="code hl_function" href="namespace_vector_ops.html#afa6cccb432a8b5fe62b5b9107b0ef984">operator-=</a>(std::vector&lt;double&gt;&amp; a, <span class="keyword">const</span> std::vector&lt;double&gt;&amp; b);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#a2e66a7cf4c446ae02bb7ae8d2805c6d5">  103</a></span>std::vector&lt;double&gt;&amp; <a class="code hl_function" href="namespace_vector_ops.html#a2e66a7cf4c446ae02bb7ae8d2805c6d5">operator*=</a>(std::vector&lt;double&gt;&amp; v, <span class="keywordtype">double</span> scalar);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#aaeffd1bfc20c1502f0fa9ed55776f43c">  111</a></span>std::vector&lt;double&gt;&amp; <a class="code hl_function" href="namespace_vector_ops.html#aaeffd1bfc20c1502f0fa9ed55776f43c">operator/=</a>(std::vector&lt;double&gt;&amp; v, <span class="keywordtype">double</span> scalar);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment">// ======================= 输入输出和工具函数 ======================= //</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#ae94b3225b17f5ddf9381895e7fb96b86">  120</a></span>std::vector&lt;double&gt; <a class="code hl_function" href="namespace_vector_ops.html#ae94b3225b17f5ddf9381895e7fb96b86">readVec</a>(<span class="keyword">const</span> std::string&amp; filename);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#ad9244b6b922d0b8a14aef7e9489d3ce0">  127</a></span>std::vector&lt;std::vector&lt;double&gt;&gt; <a class="code hl_function" href="namespace_vector_ops.html#ad9244b6b922d0b8a14aef7e9489d3ce0">readMat</a>(<span class="keyword">const</span> std::string&amp; filename);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespace_vector_ops.html#ad380e486e23c3327116836dae187a96a">writeVec</a>(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; v, <span class="keyword">const</span> std::string&amp; filename);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespace_vector_ops.html#acbdcf947d140650ba553e5850d23793d">writeMat</a>(<span class="keyword">const</span> std::vector&lt;std::vector&lt;double&gt;&gt;&amp; matrix, <span class="keyword">const</span> std::string&amp; filename);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#ab46d39775c11bf0ea44aa84a18f0d016">  149</a></span>std::ostream&amp; <a class="code hl_function" href="namespace_vector_ops.html#ab46d39775c11bf0ea44aa84a18f0d016">operator&lt;&lt;</a>(std::ostream&amp; os, <span class="keyword">const</span> std::vector&lt;double&gt;&amp; v);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#abf46cf2fbe47864c1533d34a30276516">  157</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespace_vector_ops.html#abf46cf2fbe47864c1533d34a30276516">print</a>(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; v, <span class="keywordtype">int</span> precision = 4, <span class="keywordtype">bool</span> asColumnVector = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#a8a980215270c16e9ec6114f760866d0b">  164</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespace_vector_ops.html#abf46cf2fbe47864c1533d34a30276516">print</a>(<span class="keyword">const</span> std::vector&lt;std::vector&lt;double&gt;&gt;&amp; matrix, <span class="keywordtype">int</span> precision = 4);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>std::vector&lt;double&gt; <a class="code hl_function" href="namespace_vector_ops.html#a8b09f982a39665a2ffb6cd1f781ef635">zeros</a>(<span class="keywordtype">size_t</span> n);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>std::vector&lt;double&gt; <a class="code hl_function" href="namespace_vector_ops.html#a0bd5ff8a8cc2ccc3b65ccbc05e7a3abb">ones</a>(<span class="keywordtype">size_t</span> n);</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>std::vector&lt;double&gt; <a class="code hl_function" href="namespace_vector_ops.html#a21f588b557ca6f7dd3e0e28fc7cb0530">random</a>(<span class="keywordtype">size_t</span> n, <span class="keywordtype">double</span> min = 0.0, <span class="keywordtype">double</span> max = 1.0);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#a52c022a36fb9baa6b3209aecb9aa3b60">  196</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="namespace_vector_ops.html#a52c022a36fb9baa6b3209aecb9aa3b60">areApproxEqual</a>(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; a, <span class="keyword">const</span> std::vector&lt;double&gt;&amp; b, <span class="keywordtype">double</span> tol = 1e-12);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span></div>
+<div class="foldopen" id="foldopen00204" data-start="{" data-end="}">
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="namespace_vector_ops.html#ab04fa4920bf0faeeab15c12ad316891a">  204</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="namespace_vector_ops.html#ab04fa4920bf0faeeab15c12ad316891a">areEqual</a>(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; a, <span class="keyword">const</span> std::vector&lt;double&gt;&amp; b) {</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_vector_ops.html#a52c022a36fb9baa6b3209aecb9aa3b60">areApproxEqual</a>(a, b, 0.0);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>}</div>
+</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>} <span class="comment">// namespace VectorOps</span></div>
+</div>
+<div class="ttc" id="anamespace_vector_ops_html"><div class="ttname"><a href="namespace_vector_ops.html">VectorOps</a></div><div class="ttdoc">向量运算工具库命名空间</div><div class="ttdef"><b>定义</b> <a href="#l00010">VectorOperations.hpp:10</a></div></div>
+<div class="ttc" id="anamespace_vector_ops_html_a0bd5ff8a8cc2ccc3b65ccbc05e7a3abb"><div class="ttname"><a href="namespace_vector_ops.html#a0bd5ff8a8cc2ccc3b65ccbc05e7a3abb">VectorOps::ones</a></div><div class="ttdeci">std::vector&lt; double &gt; ones(size_t n)</div><div class="ttdoc">创建全一向量</div><div class="ttdef"><b>定义</b> <a href="_vector_operations_8cpp_source.html#l00379">VectorOperations.cpp:379</a></div></div>
+<div class="ttc" id="anamespace_vector_ops_html_a21f588b557ca6f7dd3e0e28fc7cb0530"><div class="ttname"><a href="namespace_vector_ops.html#a21f588b557ca6f7dd3e0e28fc7cb0530">VectorOps::random</a></div><div class="ttdeci">std::vector&lt; double &gt; random(size_t n, double min=0.0, double max=1.0)</div><div class="ttdoc">创建随机向量</div><div class="ttdef"><b>定义</b> <a href="_vector_operations_8cpp_source.html#l00383">VectorOperations.cpp:383</a></div></div>
+<div class="ttc" id="anamespace_vector_ops_html_a2e66a7cf4c446ae02bb7ae8d2805c6d5"><div class="ttname"><a href="namespace_vector_ops.html#a2e66a7cf4c446ae02bb7ae8d2805c6d5">VectorOps::operator*=</a></div><div class="ttdeci">std::vector&lt; double &gt; &amp; operator*=(std::vector&lt; double &gt; &amp;v, double scalar)</div><div class="ttdoc">向量数乘赋值</div></div>
+<div class="ttc" id="anamespace_vector_ops_html_a3f565ffc39f3c21ccbefe12141506880"><div class="ttname"><a href="namespace_vector_ops.html#a3f565ffc39f3c21ccbefe12141506880">VectorOps::operator/</a></div><div class="ttdeci">std::vector&lt; double &gt; operator/(const std::vector&lt; double &gt; &amp;v, double scalar)</div><div class="ttdoc">向量数除</div></div>
+<div class="ttc" id="anamespace_vector_ops_html_a4634ce186d1e4babe5ac92cf6bfb8dbb"><div class="ttname"><a href="namespace_vector_ops.html#a4634ce186d1e4babe5ac92cf6bfb8dbb">VectorOps::norm</a></div><div class="ttdeci">double norm(const std::vector&lt; double &gt; &amp;v, const std::string &amp;normType=&quot;2&quot;)</div><div class="ttdoc">计算向量范数</div></div>
+<div class="ttc" id="anamespace_vector_ops_html_a52c022a36fb9baa6b3209aecb9aa3b60"><div class="ttname"><a href="namespace_vector_ops.html#a52c022a36fb9baa6b3209aecb9aa3b60">VectorOps::areApproxEqual</a></div><div class="ttdeci">bool areApproxEqual(const std::vector&lt; double &gt; &amp;a, const std::vector&lt; double &gt; &amp;b, double tol=1e-12)</div><div class="ttdoc">向量是否近似相等</div></div>
+<div class="ttc" id="anamespace_vector_ops_html_a6c9a32bba65e9cf12b9c560398321b7a"><div class="ttname"><a href="namespace_vector_ops.html#a6c9a32bba65e9cf12b9c560398321b7a">VectorOps::operator-</a></div><div class="ttdeci">std::vector&lt; double &gt; operator-(const std::vector&lt; double &gt; &amp;a, const std::vector&lt; double &gt; &amp;b)</div><div class="ttdoc">向量减法</div></div>
+<div class="ttc" id="anamespace_vector_ops_html_a8b09f982a39665a2ffb6cd1f781ef635"><div class="ttname"><a href="namespace_vector_ops.html#a8b09f982a39665a2ffb6cd1f781ef635">VectorOps::zeros</a></div><div class="ttdeci">std::vector&lt; double &gt; zeros(size_t n)</div><div class="ttdoc">创建全零向量</div><div class="ttdef"><b>定义</b> <a href="_vector_operations_8cpp_source.html#l00375">VectorOperations.cpp:375</a></div></div>
+<div class="ttc" id="anamespace_vector_ops_html_aa493bd16b96eea24f4592607168970ae"><div class="ttname"><a href="namespace_vector_ops.html#aa493bd16b96eea24f4592607168970ae">VectorOps::operator+</a></div><div class="ttdeci">std::vector&lt; double &gt; operator+(const std::vector&lt; double &gt; &amp;a, const std::vector&lt; double &gt; &amp;b)</div><div class="ttdoc">向量加法</div></div>
+<div class="ttc" id="anamespace_vector_ops_html_aa76d5db0886f1eadf2e6b6e8e5c24f93"><div class="ttname"><a href="namespace_vector_ops.html#aa76d5db0886f1eadf2e6b6e8e5c24f93">VectorOps::operator+=</a></div><div class="ttdeci">std::vector&lt; double &gt; &amp; operator+=(std::vector&lt; double &gt; &amp;a, const std::vector&lt; double &gt; &amp;b)</div><div class="ttdoc">向量累加</div></div>
+<div class="ttc" id="anamespace_vector_ops_html_aaeffd1bfc20c1502f0fa9ed55776f43c"><div class="ttname"><a href="namespace_vector_ops.html#aaeffd1bfc20c1502f0fa9ed55776f43c">VectorOps::operator/=</a></div><div class="ttdeci">std::vector&lt; double &gt; &amp; operator/=(std::vector&lt; double &gt; &amp;v, double scalar)</div><div class="ttdoc">向量数除赋值</div></div>
+<div class="ttc" id="anamespace_vector_ops_html_ab04fa4920bf0faeeab15c12ad316891a"><div class="ttname"><a href="namespace_vector_ops.html#ab04fa4920bf0faeeab15c12ad316891a">VectorOps::areEqual</a></div><div class="ttdeci">bool areEqual(const std::vector&lt; double &gt; &amp;a, const std::vector&lt; double &gt; &amp;b)</div><div class="ttdoc">向量是否绝对相等</div><div class="ttdef"><b>定义</b> <a href="#l00204">VectorOperations.hpp:204</a></div></div>
+<div class="ttc" id="anamespace_vector_ops_html_ab46d39775c11bf0ea44aa84a18f0d016"><div class="ttname"><a href="namespace_vector_ops.html#ab46d39775c11bf0ea44aa84a18f0d016">VectorOps::operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const std::vector&lt; double &gt; &amp;v)</div><div class="ttdoc">向量输出到流</div></div>
+<div class="ttc" id="anamespace_vector_ops_html_aba2696e98c277d668fb91a420c6e2597"><div class="ttname"><a href="namespace_vector_ops.html#aba2696e98c277d668fb91a420c6e2597">VectorOps::operator*</a></div><div class="ttdeci">std::vector&lt; double &gt; operator*(const std::vector&lt; double &gt; &amp;v, double scalar)</div><div class="ttdoc">向量数乘（右侧）</div></div>
+<div class="ttc" id="anamespace_vector_ops_html_abf46cf2fbe47864c1533d34a30276516"><div class="ttname"><a href="namespace_vector_ops.html#abf46cf2fbe47864c1533d34a30276516">VectorOps::print</a></div><div class="ttdeci">void print(const std::vector&lt; double &gt; &amp;v, int precision=4, bool asColumnVector=true)</div><div class="ttdoc">打印向量</div></div>
+<div class="ttc" id="anamespace_vector_ops_html_acbdcf947d140650ba553e5850d23793d"><div class="ttname"><a href="namespace_vector_ops.html#acbdcf947d140650ba553e5850d23793d">VectorOps::writeMat</a></div><div class="ttdeci">void writeMat(const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;matrix, const std::string &amp;filename)</div><div class="ttdoc">向mat文件输出稠密矩阵数据</div><div class="ttdef"><b>定义</b> <a href="_vector_operations_8cpp_source.html#l00210">VectorOperations.cpp:210</a></div></div>
+<div class="ttc" id="anamespace_vector_ops_html_ad380e486e23c3327116836dae187a96a"><div class="ttname"><a href="namespace_vector_ops.html#ad380e486e23c3327116836dae187a96a">VectorOps::writeVec</a></div><div class="ttdeci">void writeVec(const std::vector&lt; double &gt; &amp;v, const std::string &amp;filename)</div><div class="ttdoc">向vec文件输出向量数据</div><div class="ttdef"><b>定义</b> <a href="_vector_operations_8cpp_source.html#l00199">VectorOperations.cpp:199</a></div></div>
+<div class="ttc" id="anamespace_vector_ops_html_ad9244b6b922d0b8a14aef7e9489d3ce0"><div class="ttname"><a href="namespace_vector_ops.html#ad9244b6b922d0b8a14aef7e9489d3ce0">VectorOps::readMat</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; double &gt; &gt; readMat(const std::string &amp;filename)</div><div class="ttdoc">从mat文件读入稠密矩阵数据</div></div>
+<div class="ttc" id="anamespace_vector_ops_html_ae94b3225b17f5ddf9381895e7fb96b86"><div class="ttname"><a href="namespace_vector_ops.html#ae94b3225b17f5ddf9381895e7fb96b86">VectorOps::readVec</a></div><div class="ttdeci">std::vector&lt; double &gt; readVec(const std::string &amp;filename)</div><div class="ttdoc">从vec文件读入向量数据</div></div>
+<div class="ttc" id="anamespace_vector_ops_html_ae968f575bbd9465a727a8cbbe0bd2afb"><div class="ttname"><a href="namespace_vector_ops.html#ae968f575bbd9465a727a8cbbe0bd2afb">VectorOps::dot</a></div><div class="ttdeci">double dot(const std::vector&lt; double &gt; &amp;a, const std::vector&lt; double &gt; &amp;b)</div><div class="ttdoc">计算向量点积</div></div>
+<div class="ttc" id="anamespace_vector_ops_html_afa6cccb432a8b5fe62b5b9107b0ef984"><div class="ttname"><a href="namespace_vector_ops.html#afa6cccb432a8b5fe62b5b9107b0ef984">VectorOps::operator-=</a></div><div class="ttdeci">std::vector&lt; double &gt; &amp; operator-=(std::vector&lt; double &gt; &amp;a, const std::vector&lt; double &gt; &amp;b)</div><div class="ttdoc">向量累减</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_1e947528647632f810176f4e5e70788a.html">sparse_matrix_lib</a></li><li class="navelem"><a href="dir_9ca6628b97370d9dd5f4625868a0b052.html">include</a></li><li class="navelem"><b>VectorOperations.hpp</b></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,1915 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NPDE: SparseMatrixCSR类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NPDE
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('class_sparse_matrix_c_s_r.html','','class_sparse_matrix_c_s_r-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">SparseMatrixCSR类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>行压缩稀疏矩阵（CSR格式）实现  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html">SparseMatrixCSR.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a3e0c61278c0ffde1366eea982d907d1f" id="r_a3e0c61278c0ffde1366eea982d907d1f"><td class="memItemLeft" align="right" valign="top"><a id="a3e0c61278c0ffde1366eea982d907d1f" name="a3e0c61278c0ffde1366eea982d907d1f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SparseMatrixCSR</b> ()=default</td></tr>
+<tr class="memdesc:a3e0c61278c0ffde1366eea982d907d1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数：默认构造函数 <br /></td></tr>
+<tr class="memitem:a07f3d0895352fe01cabda82fba08cc8d" id="r_a07f3d0895352fe01cabda82fba08cc8d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07f3d0895352fe01cabda82fba08cc8d">SparseMatrixCSR</a> (const size_t n)</td></tr>
+<tr class="memdesc:a07f3d0895352fe01cabda82fba08cc8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数：构造一个 n x n 全零矩阵  <br /></td></tr>
+<tr class="memitem:a5e525403aa45b134a7319d329339e99f" id="r_a5e525403aa45b134a7319d329339e99f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e525403aa45b134a7319d329339e99f">SparseMatrixCSR</a> (const size_t r, const size_t c)</td></tr>
+<tr class="memdesc:a5e525403aa45b134a7319d329339e99f"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数：构造一个 r x c 全零矩阵  <br /></td></tr>
+<tr class="memitem:a8dd98e992d19f343613961e1d6a50b8a" id="r_a8dd98e992d19f343613961e1d6a50b8a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8dd98e992d19f343613961e1d6a50b8a">SparseMatrixCSR</a> (const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;dense)</td></tr>
+<tr class="memdesc:a8dd98e992d19f343613961e1d6a50b8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数：稠密矩阵转稀疏矩阵  <br /></td></tr>
+<tr class="memitem:a12356b22c985aa37d89c7b6afa6e3821" id="r_a12356b22c985aa37d89c7b6afa6e3821"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12356b22c985aa37d89c7b6afa6e3821">SparseMatrixCSR</a> (const size_t rows, const size_t cols, const std::vector&lt; size_t &gt; &amp;row_indices, const std::vector&lt; size_t &gt; &amp;col_indices, const std::vector&lt; double &gt; &amp;values)</td></tr>
+<tr class="memdesc:a12356b22c985aa37d89c7b6afa6e3821"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数：从COO格式(1-based)矩阵构造CSR格式矩阵  <br /></td></tr>
+<tr class="memitem:a452e5d5b9a6644c45eec3d2cfb89f1b4" id="r_a452e5d5b9a6644c45eec3d2cfb89f1b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a452e5d5b9a6644c45eec3d2cfb89f1b4">SparseMatrixCSR</a> (const size_t rows, const size_t cols, const std::vector&lt; double &gt; &amp;values, const std::vector&lt; size_t &gt; &amp;col_indices, const std::vector&lt; size_t &gt; &amp;row_ptrs)</td></tr>
+<tr class="memdesc:a452e5d5b9a6644c45eec3d2cfb89f1b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数：直接从CSR格式(0-based)构造CSR格式矩阵  <br /></td></tr>
+<tr class="memitem:ac49c8a1b48a224b82e9e9c05f3f3150f" id="r_ac49c8a1b48a224b82e9e9c05f3f3150f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac49c8a1b48a224b82e9e9c05f3f3150f">SparseMatrixCSR</a> (const std::string &amp;filename)</td></tr>
+<tr class="memdesc:ac49c8a1b48a224b82e9e9c05f3f3150f"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数：从文件(1-based)构造矩阵  <br /></td></tr>
+<tr class="memitem:a735f2cc10bd128154fb04dcbad9678de" id="r_a735f2cc10bd128154fb04dcbad9678de"><td class="memItemLeft" align="right" valign="top"><a id="a735f2cc10bd128154fb04dcbad9678de" name="a735f2cc10bd128154fb04dcbad9678de"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~SparseMatrixCSR</b> ()=default</td></tr>
+<tr class="memdesc:a735f2cc10bd128154fb04dcbad9678de"><td class="mdescLeft">&#160;</td><td class="mdescRight">析构函数 <br /></td></tr>
+<tr class="memitem:abbaa48d004038e862577365a975c4d68" id="r_abbaa48d004038e862577365a975c4d68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbaa48d004038e862577365a975c4d68">operator=</a> (const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;other)=default</td></tr>
+<tr class="memdesc:abbaa48d004038e862577365a975c4d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">运算符重载：拷贝赋值  <br /></td></tr>
+<tr class="memitem:aca752c5bbf929af9934a58da2519b483" id="r_aca752c5bbf929af9934a58da2519b483"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca752c5bbf929af9934a58da2519b483">operator=</a> (<a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;&amp;other) noexcept=default</td></tr>
+<tr class="memdesc:aca752c5bbf929af9934a58da2519b483"><td class="mdescLeft">&#160;</td><td class="mdescRight">运算符重载：移动赋值  <br /></td></tr>
+<tr class="memitem:af7ce914bdb55793c9c3365bced775096" id="r_af7ce914bdb55793c9c3365bced775096"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7ce914bdb55793c9c3365bced775096">operator==</a> (const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;other) const</td></tr>
+<tr class="memdesc:af7ce914bdb55793c9c3365bced775096"><td class="mdescLeft">&#160;</td><td class="mdescRight">运算符重载：判断严格相等  <br /></td></tr>
+<tr class="memitem:acdb64e9cc1647100c5badff4536f236b" id="r_acdb64e9cc1647100c5badff4536f236b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acdb64e9cc1647100c5badff4536f236b">operator!=</a> (const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;other) const</td></tr>
+<tr class="memdesc:acdb64e9cc1647100c5badff4536f236b"><td class="mdescLeft">&#160;</td><td class="mdescRight">运算符重载：判断严格不等  <br /></td></tr>
+<tr class="memitem:a9d6966677affd7e69a348efb298ebedd" id="r_a9d6966677affd7e69a348efb298ebedd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d6966677affd7e69a348efb298ebedd">operator+=</a> (const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;other)</td></tr>
+<tr class="memdesc:a9d6966677affd7e69a348efb298ebedd"><td class="mdescLeft">&#160;</td><td class="mdescRight">运算符重载：矩阵累加  <br /></td></tr>
+<tr class="memitem:aade1092efe49dc6b7c6d0d7c3bc2480b" id="r_aade1092efe49dc6b7c6d0d7c3bc2480b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aade1092efe49dc6b7c6d0d7c3bc2480b">operator+</a> (const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;other) const</td></tr>
+<tr class="memdesc:aade1092efe49dc6b7c6d0d7c3bc2480b"><td class="mdescLeft">&#160;</td><td class="mdescRight">运算符重载：矩阵加法  <br /></td></tr>
+<tr class="memitem:ad6cceb6e5405826c83024fbda06ffe39" id="r_ad6cceb6e5405826c83024fbda06ffe39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6cceb6e5405826c83024fbda06ffe39">operator-=</a> (const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;other)</td></tr>
+<tr class="memdesc:ad6cceb6e5405826c83024fbda06ffe39"><td class="mdescLeft">&#160;</td><td class="mdescRight">运算符重载：矩阵累减  <br /></td></tr>
+<tr class="memitem:a2cb7125f8847927a2ed5e2c6c0f4547d" id="r_a2cb7125f8847927a2ed5e2c6c0f4547d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2cb7125f8847927a2ed5e2c6c0f4547d">operator-</a> (const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;other) const</td></tr>
+<tr class="memdesc:a2cb7125f8847927a2ed5e2c6c0f4547d"><td class="mdescLeft">&#160;</td><td class="mdescRight">运算符重载：矩阵减法  <br /></td></tr>
+<tr class="memitem:a7174c27e66a54ed60e1e024e0916c1b9" id="r_a7174c27e66a54ed60e1e024e0916c1b9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7174c27e66a54ed60e1e024e0916c1b9">operator*</a> (const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;other) const</td></tr>
+<tr class="memdesc:a7174c27e66a54ed60e1e024e0916c1b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">运算符重载：矩阵乘法（稠密矩阵）  <br /></td></tr>
+<tr class="memitem:a3d38ba8d78e0371bdad2261e0a5a1667" id="r_a3d38ba8d78e0371bdad2261e0a5a1667"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d38ba8d78e0371bdad2261e0a5a1667">operator*</a> (const std::vector&lt; double &gt; &amp;other) const</td></tr>
+<tr class="memdesc:a3d38ba8d78e0371bdad2261e0a5a1667"><td class="mdescLeft">&#160;</td><td class="mdescRight">运算符重载：矩阵乘向量  <br /></td></tr>
+<tr class="memitem:a601e37b120a55c99d61dda2f28ed7b08" id="r_a601e37b120a55c99d61dda2f28ed7b08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a601e37b120a55c99d61dda2f28ed7b08">operator*</a> (const double scalar) const noexcept</td></tr>
+<tr class="memdesc:a601e37b120a55c99d61dda2f28ed7b08"><td class="mdescLeft">&#160;</td><td class="mdescRight">运算符重载：矩阵数乘  <br /></td></tr>
+<tr class="memitem:ad1511041293162a97b0b04796d5af408" id="r_ad1511041293162a97b0b04796d5af408"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1511041293162a97b0b04796d5af408">operator/</a> (const double scalar) const</td></tr>
+<tr class="memdesc:ad1511041293162a97b0b04796d5af408"><td class="mdescLeft">&#160;</td><td class="mdescRight">运算符重载：矩阵数除  <br /></td></tr>
+<tr class="memitem:a841341aac1f54bd90ae915eb66cb462d" id="r_a841341aac1f54bd90ae915eb66cb462d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a841341aac1f54bd90ae915eb66cb462d">operator-</a> () const</td></tr>
+<tr class="memdesc:a841341aac1f54bd90ae915eb66cb462d"><td class="mdescLeft">&#160;</td><td class="mdescRight">运算符重载：单目负号  <br /></td></tr>
+<tr class="memitem:a0ae1c6ac9ef3d937d93d75306a0ebc1e" id="r_a0ae1c6ac9ef3d937d93d75306a0ebc1e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ae1c6ac9ef3d937d93d75306a0ebc1e">operator()</a> (const size_t row, const size_t col) const</td></tr>
+<tr class="memdesc:a0ae1c6ac9ef3d937d93d75306a0ebc1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">运算符重载：只读访问矩阵元素(1-based)  <br /></td></tr>
+<tr class="memitem:a842fed4cb32d1419894150085192b41e" id="r_a842fed4cb32d1419894150085192b41e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a842fed4cb32d1419894150085192b41e">SparseMatrixCSR</a> (const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;other)=default</td></tr>
+<tr class="memdesc:a842fed4cb32d1419894150085192b41e"><td class="mdescLeft">&#160;</td><td class="mdescRight">深拷贝  <br /></td></tr>
+<tr class="memitem:ab851a88a9dd132436bf032fc20519f62" id="r_ab851a88a9dd132436bf032fc20519f62"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab851a88a9dd132436bf032fc20519f62">SparseMatrixCSR</a> (<a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;&amp;other) noexcept=default</td></tr>
+<tr class="memdesc:ab851a88a9dd132436bf032fc20519f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">移动构造函数  <br /></td></tr>
+<tr class="memitem:a41628dead6ffb538656e6bc61a828450" id="r_a41628dead6ffb538656e6bc61a828450"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41628dead6ffb538656e6bc61a828450">getRows</a> () const noexcept</td></tr>
+<tr class="memdesc:a41628dead6ffb538656e6bc61a828450"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取矩阵行数  <br /></td></tr>
+<tr class="memitem:a3ff28cb4d66413afdcd572807c00dc7f" id="r_a3ff28cb4d66413afdcd572807c00dc7f"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ff28cb4d66413afdcd572807c00dc7f">getCols</a> () const noexcept</td></tr>
+<tr class="memdesc:a3ff28cb4d66413afdcd572807c00dc7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取矩阵列数  <br /></td></tr>
+<tr class="memitem:a46a7eff9e334257564ca1db6f72caebc" id="r_a46a7eff9e334257564ca1db6f72caebc"><td class="memItemLeft" align="right" valign="top">std::pair&lt; size_t, size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46a7eff9e334257564ca1db6f72caebc">getSize</a> () const noexcept</td></tr>
+<tr class="memdesc:a46a7eff9e334257564ca1db6f72caebc"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取矩阵大小（行数和列数）  <br /></td></tr>
+<tr class="memitem:a8f778059c1f4639ce726f6da136c4fcc" id="r_a8f778059c1f4639ce726f6da136c4fcc"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f778059c1f4639ce726f6da136c4fcc">getNNZ</a> () const noexcept</td></tr>
+<tr class="memdesc:a8f778059c1f4639ce726f6da136c4fcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取非零元素数目  <br /></td></tr>
+<tr class="memitem:a220cf2fa1694a9ea58c6a2d6f344c927" id="r_a220cf2fa1694a9ea58c6a2d6f344c927"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a220cf2fa1694a9ea58c6a2d6f344c927">setValue</a> (const size_t row, const size_t col, const double value)</td></tr>
+<tr class="memdesc:a220cf2fa1694a9ea58c6a2d6f344c927"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新/插入/置零元素(1-based)  <br /></td></tr>
+<tr class="memitem:a0a82e0d0f279118a90261455d8d4909a" id="r_a0a82e0d0f279118a90261455d8d4909a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a82e0d0f279118a90261455d8d4909a">setValue</a> (const std::tuple&lt; size_t, size_t, double &gt; element)</td></tr>
+<tr class="memdesc:a0a82e0d0f279118a90261455d8d4909a"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新/插入/置零元素(1-based)  <br /></td></tr>
+<tr class="memitem:a4f8e27cf751ec6150ae76431f3d10eea" id="r_a4f8e27cf751ec6150ae76431f3d10eea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f8e27cf751ec6150ae76431f3d10eea">setValue</a> (const std::vector&lt; size_t &gt; &amp;row_indices, const std::vector&lt; size_t &gt; &amp;col_indices, const std::vector&lt; double &gt; &amp;values)</td></tr>
+<tr class="memdesc:a4f8e27cf751ec6150ae76431f3d10eea"><td class="mdescLeft">&#160;</td><td class="mdescRight">批量更新/插入/置零元素(1-based)  <br /></td></tr>
+<tr class="memitem:a55395854c8e40aa3046cfca3022e8a99" id="r_a55395854c8e40aa3046cfca3022e8a99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55395854c8e40aa3046cfca3022e8a99">setValue</a> (std::vector&lt; std::tuple&lt; size_t, size_t, double &gt; &gt; elements)</td></tr>
+<tr class="memdesc:a55395854c8e40aa3046cfca3022e8a99"><td class="mdescLeft">&#160;</td><td class="mdescRight">批量更新/插入/置零元素(1-based)  <br /></td></tr>
+<tr class="memitem:ab3746e705d155c379c6a37e172a311c4" id="r_ab3746e705d155c379c6a37e172a311c4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3746e705d155c379c6a37e172a311c4">isApproxEqualto</a> (const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;other, const double tolerance) const</td></tr>
+<tr class="memdesc:ab3746e705d155c379c6a37e172a311c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">判断近似相等  <br /></td></tr>
+<tr class="memitem:a78de39f0282a0c5db858b066d4f0947a" id="r_a78de39f0282a0c5db858b066d4f0947a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78de39f0282a0c5db858b066d4f0947a">isNotApproxEqualto</a> (const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;other, const double tolerance) const</td></tr>
+<tr class="memdesc:a78de39f0282a0c5db858b066d4f0947a"><td class="mdescLeft">&#160;</td><td class="mdescRight">判断近似不等  <br /></td></tr>
+<tr class="memitem:a97de9aca2649265563692f4828d15ebb" id="r_a97de9aca2649265563692f4828d15ebb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97de9aca2649265563692f4828d15ebb">isFarAwayFrom</a> (const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;other, const double tolerance) const</td></tr>
+<tr class="memdesc:a97de9aca2649265563692f4828d15ebb"><td class="mdescLeft">&#160;</td><td class="mdescRight">判断非常不等  <br /></td></tr>
+<tr class="memitem:aa1582865daa4d023d903a4dbbcef76fd" id="r_aa1582865daa4d023d903a4dbbcef76fd"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1582865daa4d023d903a4dbbcef76fd">norm</a> (const std::string &amp;norm_type) const</td></tr>
+<tr class="memdesc:aa1582865daa4d023d903a4dbbcef76fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">计算矩阵的范数  <br /></td></tr>
+<tr class="memitem:a79ae63da8202e86369fdfa359f24272d" id="r_a79ae63da8202e86369fdfa359f24272d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79ae63da8202e86369fdfa359f24272d">transpose</a> () const noexcept</td></tr>
+<tr class="memdesc:a79ae63da8202e86369fdfa359f24272d"><td class="mdescLeft">&#160;</td><td class="mdescRight">矩阵转置  <br /></td></tr>
+<tr class="memitem:a89e29bd86e284975b9a38f2c2b37a483" id="r_a89e29bd86e284975b9a38f2c2b37a483"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89e29bd86e284975b9a38f2c2b37a483">t</a> () const noexcept</td></tr>
+<tr class="memdesc:a89e29bd86e284975b9a38f2c2b37a483"><td class="mdescLeft">&#160;</td><td class="mdescRight">矩阵转置（简写）  <br /></td></tr>
+<tr class="memitem:af58f37bced436658c24db455b56ad736" id="r_af58f37bced436658c24db455b56ad736"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af58f37bced436658c24db455b56ad736">toDense</a> () const noexcept</td></tr>
+<tr class="memdesc:af58f37bced436658c24db455b56ad736"><td class="mdescLeft">&#160;</td><td class="mdescRight">转为稠密矩阵  <br /></td></tr>
+<tr class="memitem:a7fde8caaa68c4fc8f3148f0f27c81750" id="r_a7fde8caaa68c4fc8f3148f0f27c81750"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7fde8caaa68c4fc8f3148f0f27c81750">getDiagonalVector</a> () const noexcept</td></tr>
+<tr class="memdesc:a7fde8caaa68c4fc8f3148f0f27c81750"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取对角线元素（以向量形式返回）  <br /></td></tr>
+<tr class="memitem:a9f13d3fae98e574fa9760ed67fc2ee59" id="r_a9f13d3fae98e574fa9760ed67fc2ee59"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f13d3fae98e574fa9760ed67fc2ee59">getDiagonalMatrix</a> () const noexcept</td></tr>
+<tr class="memdesc:a9f13d3fae98e574fa9760ed67fc2ee59"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取对角线元素（以CSR格式的对角矩阵形式返回）  <br /></td></tr>
+<tr class="memitem:a2fc1d605e33b8fc84ac28f756cd08d74" id="r_a2fc1d605e33b8fc84ac28f756cd08d74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fc1d605e33b8fc84ac28f756cd08d74">getUpperTriangularMatrix</a> () const</td></tr>
+<tr class="memdesc:a2fc1d605e33b8fc84ac28f756cd08d74"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取上三角矩阵（包含对角线）  <br /></td></tr>
+<tr class="memitem:a9f98b6fdf6cbba9e6b77bc924b43116a" id="r_a9f98b6fdf6cbba9e6b77bc924b43116a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f98b6fdf6cbba9e6b77bc924b43116a">getLowerTriangularMatrix</a> () const</td></tr>
+<tr class="memdesc:a9f98b6fdf6cbba9e6b77bc924b43116a"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取下三角矩阵（包含对角线）  <br /></td></tr>
+<tr class="memitem:ac4d2ee4d91bc2842c3dee7b33d4c7436" id="r_ac4d2ee4d91bc2842c3dee7b33d4c7436"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4d2ee4d91bc2842c3dee7b33d4c7436">isSquare</a> () const noexcept</td></tr>
+<tr class="memdesc:ac4d2ee4d91bc2842c3dee7b33d4c7436"><td class="mdescLeft">&#160;</td><td class="mdescRight">判断矩阵是否为方阵  <br /></td></tr>
+<tr class="memitem:a5ee638e43cb403518e0c9d48187ff501" id="r_a5ee638e43cb403518e0c9d48187ff501"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ee638e43cb403518e0c9d48187ff501">isSymmetric</a> (const double tolerance=0) const</td></tr>
+<tr class="memdesc:a5ee638e43cb403518e0c9d48187ff501"><td class="mdescLeft">&#160;</td><td class="mdescRight">判断矩阵是否为对称矩阵  <br /></td></tr>
+<tr class="memitem:a886bcba67e541ddb43e1619778ec287c" id="r_a886bcba67e541ddb43e1619778ec287c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a886bcba67e541ddb43e1619778ec287c">isUpperTriangular</a> () const noexcept</td></tr>
+<tr class="memdesc:a886bcba67e541ddb43e1619778ec287c"><td class="mdescLeft">&#160;</td><td class="mdescRight">判断矩阵是否为上三角矩阵  <br /></td></tr>
+<tr class="memitem:a8e59079d4fc3c91cf22b0143381a5547" id="r_a8e59079d4fc3c91cf22b0143381a5547"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e59079d4fc3c91cf22b0143381a5547">isLowerTriangular</a> () const noexcept</td></tr>
+<tr class="memdesc:a8e59079d4fc3c91cf22b0143381a5547"><td class="mdescLeft">&#160;</td><td class="mdescRight">判断矩阵是否为下三角矩阵  <br /></td></tr>
+<tr class="memitem:a32bcc6b2645ae989e5bf71347c3ded41" id="r_a32bcc6b2645ae989e5bf71347c3ded41"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32bcc6b2645ae989e5bf71347c3ded41">isDiagonal</a> () const noexcept</td></tr>
+<tr class="memdesc:a32bcc6b2645ae989e5bf71347c3ded41"><td class="mdescLeft">&#160;</td><td class="mdescRight">判断矩阵是否为对角矩阵  <br /></td></tr>
+<tr class="memitem:aba09d807464a29570ae948eb6fa7a1e2" id="r_aba09d807464a29570ae948eb6fa7a1e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba09d807464a29570ae948eb6fa7a1e2">saveToFile</a> (const std::string &amp;filename) const</td></tr>
+<tr class="memdesc:aba09d807464a29570ae948eb6fa7a1e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">矩阵保存到文件(1-based)  <br /></td></tr>
+<tr class="memitem:a83a18c6e32ed1fafb4b7b458c5254990" id="r_a83a18c6e32ed1fafb4b7b458c5254990"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83a18c6e32ed1fafb4b7b458c5254990">print</a> () const noexcept</td></tr>
+<tr class="memdesc:a83a18c6e32ed1fafb4b7b458c5254990"><td class="mdescLeft">&#160;</td><td class="mdescRight">矩阵打印(1-based)  <br /></td></tr>
+<tr class="memitem:adcdbfbeeefdddcbacba007f5140795dd" id="r_adcdbfbeeefdddcbacba007f5140795dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcdbfbeeefdddcbacba007f5140795dd">printDense</a> (const int precision=4) const noexcept</td></tr>
+<tr class="memdesc:adcdbfbeeefdddcbacba007f5140795dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">矩阵稠密打印(1-based)  <br /></td></tr>
+<tr class="memitem:ada507688b7f77063dfad399659081161" id="r_ada507688b7f77063dfad399659081161"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada507688b7f77063dfad399659081161">solve</a> (const std::vector&lt; double &gt; &amp;b) const</td></tr>
+<tr class="memdesc:ada507688b7f77063dfad399659081161"><td class="mdescLeft">&#160;</td><td class="mdescRight">求解线性方程组 Ax = b（GMRES求解器）  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
+友元</h2></td></tr>
+<tr class="memitem:af6927eb63fad27def4efbeee61d40c17" id="r_af6927eb63fad27def4efbeee61d40c17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6927eb63fad27def4efbeee61d40c17">operator*</a> (const double scalar, const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;mat) noexcept</td></tr>
+<tr class="memdesc:af6927eb63fad27def4efbeee61d40c17"><td class="mdescLeft">&#160;</td><td class="mdescRight">运算符重载：矩阵数乘（左侧）  <br /></td></tr>
+<tr class="memitem:aa5c1acceb4f141fcbcbb62ad67bcfca7" id="r_aa5c1acceb4f141fcbcbb62ad67bcfca7"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5c1acceb4f141fcbcbb62ad67bcfca7">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;mat)</td></tr>
+<tr class="memdesc:aa5c1acceb4f141fcbcbb62ad67bcfca7"><td class="mdescLeft">&#160;</td><td class="mdescRight">运算符重载：流输出（左移）(1-based)  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><p>行压缩稀疏矩阵（CSR格式）实现 </p>
+<p>介绍什么是CSR： CSR格式使用三个一维数组存储稀疏矩阵：</p><ul>
+<li>values: 非零元素值数组，存储非零元素的数值</li>
+<li>col_indices: 列索引数组，存储每个非零元素对应的列索引</li>
+<li>row_ptrs: 行指针数组，存储每个非零元素所在的行的起始位置</li>
+</ul>
+<p>示例： | 1 1 0 4 | A = | 0 0 0 5 | | 0 0 0 0 | | 1 0 4 0 |</p>
+<p>对应的CSR格式为： values = [1, 1, 4, 5, 1, 4]; col_indices = [0, 1, 3, 3, 0, 2]; row_ptrs = [0, 3, 4, 4, 6]; </p>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html">SparseMatrixCSR.hpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html#l00027">27</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a07f3d0895352fe01cabda82fba08cc8d" name="a07f3d0895352fe01cabda82fba08cc8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07f3d0895352fe01cabda82fba08cc8d">&#9670;&#160;</a></span>SparseMatrixCSR() <span class="overload">[1/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SparseMatrixCSR::SparseMatrixCSR </td>
+          <td>(</td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>构造函数：构造一个 n x n 全零矩阵 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>矩阵边长 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html">SparseMatrixCSR.hpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html#l00049">49</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5e525403aa45b134a7319d329339e99f" name="a5e525403aa45b134a7319d329339e99f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e525403aa45b134a7319d329339e99f">&#9670;&#160;</a></span>SparseMatrixCSR() <span class="overload">[2/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SparseMatrixCSR::SparseMatrixCSR </td>
+          <td>(</td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>r</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>c</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>构造函数：构造一个 r x c 全零矩阵 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>行数 </td></tr>
+    <tr><td class="paramname">c</td><td>列数 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00018">18</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8dd98e992d19f343613961e1d6a50b8a" name="a8dd98e992d19f343613961e1d6a50b8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dd98e992d19f343613961e1d6a50b8a">&#9670;&#160;</a></span>SparseMatrixCSR() <span class="overload">[3/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SparseMatrixCSR::SparseMatrixCSR </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>dense</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>构造函数：稠密矩阵转稀疏矩阵 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dense</td><td>稠密矩阵 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a12356b22c985aa37d89c7b6afa6e3821" name="a12356b22c985aa37d89c7b6afa6e3821"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12356b22c985aa37d89c7b6afa6e3821">&#9670;&#160;</a></span>SparseMatrixCSR() <span class="overload">[4/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SparseMatrixCSR::SparseMatrixCSR </td>
+          <td>(</td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>rows</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>cols</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>row_indices</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>col_indices</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>values</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>构造函数：从COO格式(1-based)矩阵构造CSR格式矩阵 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rows</td><td>矩阵行数 </td></tr>
+    <tr><td class="paramname">cols</td><td>矩阵列数 </td></tr>
+    <tr><td class="paramname">row_indices</td><td>非零元素行索引 </td></tr>
+    <tr><td class="paramname">col_indices</td><td>非零元素列索引 </td></tr>
+    <tr><td class="paramname">values</td><td>非零元素值 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a452e5d5b9a6644c45eec3d2cfb89f1b4" name="a452e5d5b9a6644c45eec3d2cfb89f1b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a452e5d5b9a6644c45eec3d2cfb89f1b4">&#9670;&#160;</a></span>SparseMatrixCSR() <span class="overload">[5/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SparseMatrixCSR::SparseMatrixCSR </td>
+          <td>(</td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>rows</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>cols</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>values</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>col_indices</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>row_ptrs</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>构造函数：直接从CSR格式(0-based)构造CSR格式矩阵 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rows</td><td>矩阵行数 </td></tr>
+    <tr><td class="paramname">cols</td><td>矩阵列数 </td></tr>
+    <tr><td class="paramname">values</td><td>非零元素值 </td></tr>
+    <tr><td class="paramname">col_indices</td><td>非零元素列索引 </td></tr>
+    <tr><td class="paramname">row_ptrs</td><td>非零元素所在行的起始位置 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac49c8a1b48a224b82e9e9c05f3f3150f" name="ac49c8a1b48a224b82e9e9c05f3f3150f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac49c8a1b48a224b82e9e9c05f3f3150f">&#9670;&#160;</a></span>SparseMatrixCSR() <span class="overload">[6/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SparseMatrixCSR::SparseMatrixCSR </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>filename</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>构造函数：从文件(1-based)构造矩阵 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>文件名 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a842fed4cb32d1419894150085192b41e" name="a842fed4cb32d1419894150085192b41e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a842fed4cb32d1419894150085192b41e">&#9670;&#160;</a></span>SparseMatrixCSR() <span class="overload">[7/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SparseMatrixCSR::SparseMatrixCSR </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>深拷贝 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>待拷贝的矩阵 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab851a88a9dd132436bf032fc20519f62" name="ab851a88a9dd132436bf032fc20519f62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab851a88a9dd132436bf032fc20519f62">&#9670;&#160;</a></span>SparseMatrixCSR() <span class="overload">[8/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SparseMatrixCSR::SparseMatrixCSR </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>移动构造函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>待移动的矩阵 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a3ff28cb4d66413afdcd572807c00dc7f" name="a3ff28cb4d66413afdcd572807c00dc7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ff28cb4d66413afdcd572807c00dc7f">&#9670;&#160;</a></span>getCols()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t SparseMatrixCSR::getCols </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取矩阵列数 </p>
+<dl class="section return"><dt>返回</dt><dd>矩阵列数 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00298">298</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9f13d3fae98e574fa9760ed67fc2ee59" name="a9f13d3fae98e574fa9760ed67fc2ee59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f13d3fae98e574fa9760ed67fc2ee59">&#9670;&#160;</a></span>getDiagonalMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> SparseMatrixCSR::getDiagonalMatrix </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取对角线元素（以CSR格式的对角矩阵形式返回） </p>
+<dl class="section return"><dt>返回</dt><dd>对角线元素构成的CSR格式的对角矩阵 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00647">647</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7fde8caaa68c4fc8f3148f0f27c81750" name="a7fde8caaa68c4fc8f3148f0f27c81750"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fde8caaa68c4fc8f3148f0f27c81750">&#9670;&#160;</a></span>getDiagonalVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; double &gt; SparseMatrixCSR::getDiagonalVector </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取对角线元素（以向量形式返回） </p>
+<dl class="section return"><dt>返回</dt><dd>对角线元素构成的向量 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00629">629</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9f98b6fdf6cbba9e6b77bc924b43116a" name="a9f98b6fdf6cbba9e6b77bc924b43116a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f98b6fdf6cbba9e6b77bc924b43116a">&#9670;&#160;</a></span>getLowerTriangularMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> SparseMatrixCSR::getLowerTriangularMatrix </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取下三角矩阵（包含对角线） </p>
+<dl class="section return"><dt>返回</dt><dd>下三角矩阵 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00694">694</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8f778059c1f4639ce726f6da136c4fcc" name="a8f778059c1f4639ce726f6da136c4fcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f778059c1f4639ce726f6da136c4fcc">&#9670;&#160;</a></span>getNNZ()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t SparseMatrixCSR::getNNZ </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取非零元素数目 </p>
+<dl class="section return"><dt>返回</dt><dd>非零元素数目 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00306">306</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a41628dead6ffb538656e6bc61a828450" name="a41628dead6ffb538656e6bc61a828450"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41628dead6ffb538656e6bc61a828450">&#9670;&#160;</a></span>getRows()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t SparseMatrixCSR::getRows </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取矩阵行数 </p>
+<dl class="section return"><dt>返回</dt><dd>矩阵行数 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00294">294</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a46a7eff9e334257564ca1db6f72caebc" name="a46a7eff9e334257564ca1db6f72caebc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46a7eff9e334257564ca1db6f72caebc">&#9670;&#160;</a></span>getSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">pair&lt; size_t, size_t &gt; SparseMatrixCSR::getSize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取矩阵大小（行数和列数） </p>
+<dl class="section return"><dt>返回</dt><dd>矩阵大小 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00302">302</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2fc1d605e33b8fc84ac28f756cd08d74" name="a2fc1d605e33b8fc84ac28f756cd08d74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fc1d605e33b8fc84ac28f756cd08d74">&#9670;&#160;</a></span>getUpperTriangularMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> SparseMatrixCSR::getUpperTriangularMatrix </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取上三角矩阵（包含对角线） </p>
+<dl class="section return"><dt>返回</dt><dd>上三角矩阵 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00669">669</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab3746e705d155c379c6a37e172a311c4" name="ab3746e705d155c379c6a37e172a311c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3746e705d155c379c6a37e172a311c4">&#9670;&#160;</a></span>isApproxEqualto()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SparseMatrixCSR::isApproxEqualto </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>tolerance</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>判断近似相等 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>待比较的矩阵 </td></tr>
+    <tr><td class="paramname">epsilon</td><td>容许误差 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>是否近似相等 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00787">787</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a32bcc6b2645ae989e5bf71347c3ded41" name="a32bcc6b2645ae989e5bf71347c3ded41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32bcc6b2645ae989e5bf71347c3ded41">&#9670;&#160;</a></span>isDiagonal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SparseMatrixCSR::isDiagonal </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>判断矩阵是否为对角矩阵 </p>
+<dl class="section return"><dt>返回</dt><dd>是否为对角矩阵 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00768">768</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a97de9aca2649265563692f4828d15ebb" name="a97de9aca2649265563692f4828d15ebb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97de9aca2649265563692f4828d15ebb">&#9670;&#160;</a></span>isFarAwayFrom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SparseMatrixCSR::isFarAwayFrom </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>tolerance</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>判断非常不等 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>待比较的矩阵 </td></tr>
+    <tr><td class="paramname">epsilon</td><td>容许误差 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>是否近似不等 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html">SparseMatrixCSR.hpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html#l00312">312</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8e59079d4fc3c91cf22b0143381a5547" name="a8e59079d4fc3c91cf22b0143381a5547"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e59079d4fc3c91cf22b0143381a5547">&#9670;&#160;</a></span>isLowerTriangular()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SparseMatrixCSR::isLowerTriangular </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>判断矩阵是否为下三角矩阵 </p>
+<dl class="section return"><dt>返回</dt><dd>是否为下三角矩阵 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00749">749</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a78de39f0282a0c5db858b066d4f0947a" name="a78de39f0282a0c5db858b066d4f0947a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78de39f0282a0c5db858b066d4f0947a">&#9670;&#160;</a></span>isNotApproxEqualto()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SparseMatrixCSR::isNotApproxEqualto </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>tolerance</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>判断近似不等 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>待比较的矩阵 </td></tr>
+    <tr><td class="paramname">epsilon</td><td>容许误差 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>是否近似不等 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html">SparseMatrixCSR.hpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html#l00302">302</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac4d2ee4d91bc2842c3dee7b33d4c7436" name="ac4d2ee4d91bc2842c3dee7b33d4c7436"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4d2ee4d91bc2842c3dee7b33d4c7436">&#9670;&#160;</a></span>isSquare()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SparseMatrixCSR::isSquare </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>判断矩阵是否为方阵 </p>
+<dl class="section return"><dt>返回</dt><dd>是否为方阵 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00624">624</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5ee638e43cb403518e0c9d48187ff501" name="a5ee638e43cb403518e0c9d48187ff501"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ee638e43cb403518e0c9d48187ff501">&#9670;&#160;</a></span>isSymmetric()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SparseMatrixCSR::isSymmetric </td>
+          <td>(</td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>tolerance</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>判断矩阵是否为对称矩阵 </p>
+<dl class="section return"><dt>返回</dt><dd>是否为对称矩阵 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00719">719</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a886bcba67e541ddb43e1619778ec287c" name="a886bcba67e541ddb43e1619778ec287c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a886bcba67e541ddb43e1619778ec287c">&#9670;&#160;</a></span>isUpperTriangular()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SparseMatrixCSR::isUpperTriangular </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>判断矩阵是否为上三角矩阵 </p>
+<dl class="section return"><dt>返回</dt><dd>是否为上三角矩阵 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00730">730</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa1582865daa4d023d903a4dbbcef76fd" name="aa1582865daa4d023d903a4dbbcef76fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1582865daa4d023d903a4dbbcef76fd">&#9670;&#160;</a></span>norm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double SparseMatrixCSR::norm </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>norm_type</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>计算矩阵的范数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">norm_type</td><td>范数类型 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>矩阵的范数 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00578">578</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acdb64e9cc1647100c5badff4536f236b" name="acdb64e9cc1647100c5badff4536f236b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdb64e9cc1647100c5badff4536f236b">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SparseMatrixCSR::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>运算符重载：判断严格不等 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>待比较的矩阵 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>是否严格不等 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html">SparseMatrixCSR.hpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html#l00131">131</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0ae1c6ac9ef3d937d93d75306a0ebc1e" name="a0ae1c6ac9ef3d937d93d75306a0ebc1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ae1c6ac9ef3d937d93d75306a0ebc1e">&#9670;&#160;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double SparseMatrixCSR::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>row</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>col</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>运算符重载：只读访问矩阵元素(1-based) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">row</td><td>行索引 </td></tr>
+    <tr><td class="paramname">col</td><td>列索引 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>矩阵元素值 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00459">459</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a601e37b120a55c99d61dda2f28ed7b08" name="a601e37b120a55c99d61dda2f28ed7b08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a601e37b120a55c99d61dda2f28ed7b08">&#9670;&#160;</a></span>operator*() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> SparseMatrixCSR::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>scalar</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>运算符重载：矩阵数乘 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scalar</td><td>数值 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>矩阵数乘结果 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00958">958</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3d38ba8d78e0371bdad2261e0a5a1667" name="a3d38ba8d78e0371bdad2261e0a5a1667"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d38ba8d78e0371bdad2261e0a5a1667">&#9670;&#160;</a></span>operator*() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; double &gt; SparseMatrixCSR::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>运算符重载：矩阵乘向量 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>向量 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>矩阵乘向量结果 </dd></dl>
+
+</div>
+</div>
+<a id="a7174c27e66a54ed60e1e024e0916c1b9" name="a7174c27e66a54ed60e1e024e0916c1b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7174c27e66a54ed60e1e024e0916c1b9">&#9670;&#160;</a></span>operator*() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::vector&lt; double &gt; &gt; SparseMatrixCSR::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>运算符重载：矩阵乘法（稠密矩阵） </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>乘数矩阵（稠密矩阵） </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>矩阵相乘结果 </dd></dl>
+
+</div>
+</div>
+<a id="aade1092efe49dc6b7c6d0d7c3bc2480b" name="aade1092efe49dc6b7c6d0d7c3bc2480b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aade1092efe49dc6b7c6d0d7c3bc2480b">&#9670;&#160;</a></span>operator+()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> SparseMatrixCSR::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>运算符重载：矩阵加法 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>加数矩阵 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>矩阵相加结果 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00864">864</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9d6966677affd7e69a348efb298ebedd" name="a9d6966677affd7e69a348efb298ebedd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d6966677affd7e69a348efb298ebedd">&#9670;&#160;</a></span>operator+=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp; SparseMatrixCSR::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>运算符重载：矩阵累加 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>加数矩阵 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>矩阵累加结果 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00793">793</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a841341aac1f54bd90ae915eb66cb462d" name="a841341aac1f54bd90ae915eb66cb462d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a841341aac1f54bd90ae915eb66cb462d">&#9670;&#160;</a></span>operator-() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> SparseMatrixCSR::operator- </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>运算符重载：单目负号 </p>
+<dl class="section return"><dt>返回</dt><dd>逐元素相反数的矩阵 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00949">949</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2cb7125f8847927a2ed5e2c6c0f4547d" name="a2cb7125f8847927a2ed5e2c6c0f4547d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cb7125f8847927a2ed5e2c6c0f4547d">&#9670;&#160;</a></span>operator-() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> SparseMatrixCSR::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>运算符重载：矩阵减法 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>减数矩阵 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>矩阵相减结果 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00942">942</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad6cceb6e5405826c83024fbda06ffe39" name="ad6cceb6e5405826c83024fbda06ffe39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6cceb6e5405826c83024fbda06ffe39">&#9670;&#160;</a></span>operator-=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp; SparseMatrixCSR::operator-= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>运算符重载：矩阵累减 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>减数矩阵 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>矩阵累减结果 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00871">871</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad1511041293162a97b0b04796d5af408" name="ad1511041293162a97b0b04796d5af408"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1511041293162a97b0b04796d5af408">&#9670;&#160;</a></span>operator/()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> SparseMatrixCSR::operator/ </td>
+          <td>(</td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>scalar</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>运算符重载：矩阵数除 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scalar</td><td>数值 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>矩阵数除结果 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00976">976</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abbaa48d004038e862577365a975c4d68" name="abbaa48d004038e862577365a975c4d68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbaa48d004038e862577365a975c4d68">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp; SparseMatrixCSR::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>运算符重载：拷贝赋值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>待拷贝的矩阵 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>赋值后的矩阵 </dd></dl>
+
+</div>
+</div>
+<a id="aca752c5bbf929af9934a58da2519b483" name="aca752c5bbf929af9934a58da2519b483"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca752c5bbf929af9934a58da2519b483">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp; SparseMatrixCSR::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>运算符重载：移动赋值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>待移动的矩阵 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>移动后的矩阵 </dd></dl>
+
+</div>
+</div>
+<a id="af7ce914bdb55793c9c3365bced775096" name="af7ce914bdb55793c9c3365bced775096"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7ce914bdb55793c9c3365bced775096">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SparseMatrixCSR::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>运算符重载：判断严格相等 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>待比较的矩阵 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>是否严格相等 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html">SparseMatrixCSR.hpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html#l00124">124</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a83a18c6e32ed1fafb4b7b458c5254990" name="a83a18c6e32ed1fafb4b7b458c5254990"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83a18c6e32ed1fafb4b7b458c5254990">&#9670;&#160;</a></span>print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SparseMatrixCSR::print </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>矩阵打印(1-based) </p>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html">SparseMatrixCSR.hpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html#l00404">404</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adcdbfbeeefdddcbacba007f5140795dd" name="adcdbfbeeefdddcbacba007f5140795dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcdbfbeeefdddcbacba007f5140795dd">&#9670;&#160;</a></span>printDense()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SparseMatrixCSR::printDense </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>precision</em></span><span class="paramdefsep"> = </span><span class="paramdefval">4</span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>矩阵稠密打印(1-based) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">precision</td><td>精度，默认4位 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00493">493</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aba09d807464a29570ae948eb6fa7a1e2" name="aba09d807464a29570ae948eb6fa7a1e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba09d807464a29570ae948eb6fa7a1e2">&#9670;&#160;</a></span>saveToFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SparseMatrixCSR::saveToFile </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>filename</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>矩阵保存到文件(1-based) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>文件名 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00336">336</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a220cf2fa1694a9ea58c6a2d6f344c927" name="a220cf2fa1694a9ea58c6a2d6f344c927"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a220cf2fa1694a9ea58c6a2d6f344c927">&#9670;&#160;</a></span>setValue() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SparseMatrixCSR::setValue </td>
+          <td>(</td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>row</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>col</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>更新/插入/置零元素(1-based) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">row</td><td>行索引 </td></tr>
+    <tr><td class="paramname">col</td><td>列索引 </td></tr>
+    <tr><td class="paramname">value</td><td>元素值 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00454">454</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0a82e0d0f279118a90261455d8d4909a" name="a0a82e0d0f279118a90261455d8d4909a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a82e0d0f279118a90261455d8d4909a">&#9670;&#160;</a></span>setValue() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SparseMatrixCSR::setValue </td>
+          <td>(</td>
+          <td class="paramtype">const std::tuple&lt; size_t, size_t, double &gt;</td>          <td class="paramname"><span class="paramname"><em>element</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>更新/插入/置零元素(1-based) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">elements</td><td>元素三元组数组（行索引、列索引、值） </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4f8e27cf751ec6150ae76431f3d10eea" name="a4f8e27cf751ec6150ae76431f3d10eea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f8e27cf751ec6150ae76431f3d10eea">&#9670;&#160;</a></span>setValue() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SparseMatrixCSR::setValue </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>row_indices</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>col_indices</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>values</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>批量更新/插入/置零元素(1-based) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">row_indices</td><td>行索引数组 </td></tr>
+    <tr><td class="paramname">col_indices</td><td>列索引数组 </td></tr>
+    <tr><td class="paramname">values</td><td>元素值数组 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a55395854c8e40aa3046cfca3022e8a99" name="a55395854c8e40aa3046cfca3022e8a99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55395854c8e40aa3046cfca3022e8a99">&#9670;&#160;</a></span>setValue() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SparseMatrixCSR::setValue </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::tuple&lt; size_t, size_t, double &gt; &gt;</td>          <td class="paramname"><span class="paramname"><em>elements</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>批量更新/插入/置零元素(1-based) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">elements</td><td>元素三元组数组（行索引、列索引、值） </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ada507688b7f77063dfad399659081161" name="ada507688b7f77063dfad399659081161"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada507688b7f77063dfad399659081161">&#9670;&#160;</a></span>solve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; double &gt; SparseMatrixCSR::solve </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>b</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>求解线性方程组 Ax = b（GMRES求解器） </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">b</td><td>右端项向量 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>解向量 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l01056">1056</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a89e29bd86e284975b9a38f2c2b37a483" name="a89e29bd86e284975b9a38f2c2b37a483"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89e29bd86e284975b9a38f2c2b37a483">&#9670;&#160;</a></span>t()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> SparseMatrixCSR::t </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>矩阵转置（简写） </p>
+<dl class="section return"><dt>返回</dt><dd>转置后的矩阵 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html">SparseMatrixCSR.hpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html#l00333">333</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af58f37bced436658c24db455b56ad736" name="af58f37bced436658c24db455b56ad736"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af58f37bced436658c24db455b56ad736">&#9670;&#160;</a></span>toDense()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; vector&lt; double &gt; &gt; SparseMatrixCSR::toDense </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>转为稠密矩阵 </p>
+<dl class="section return"><dt>返回</dt><dd>稠密矩阵 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00481">481</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a79ae63da8202e86369fdfa359f24272d" name="a79ae63da8202e86369fdfa359f24272d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79ae63da8202e86369fdfa359f24272d">&#9670;&#160;</a></span>transpose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> SparseMatrixCSR::transpose </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>矩阵转置 </p>
+<dl class="section return"><dt>返回</dt><dd>转置后的矩阵 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html#l00531">531</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-related-members" id="doc-related-members"></a><h2 id="header-doc-related-members" class="groupheader">友元及相关符号说明</h2>
+<a id="af6927eb63fad27def4efbeee61d40c17" name="af6927eb63fad27def4efbeee61d40c17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6927eb63fad27def4efbeee61d40c17">&#9670;&#160;</a></span>operator*</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> operator* </td>
+          <td>(</td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>scalar</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>mat</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>运算符重载：矩阵数乘（左侧） </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scalar</td><td>数值 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>矩阵数乘结果 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html">SparseMatrixCSR.hpp</a> 第 <a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html#l00187">187</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa5c1acceb4f141fcbcbb62ad67bcfca7" name="aa5c1acceb4f141fcbcbb62ad67bcfca7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5c1acceb4f141fcbcbb62ad67bcfca7">&#9670;&#160;</a></span>operator&lt;&lt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>os</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>mat</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>运算符重载：流输出（左移）(1-based) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>输出流 </td></tr>
+    <tr><td class="paramname">mat</td><td>矩阵 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>输出流 </dd></dl>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>sparse_matrix_lib/include/<a class="el" href="_sparse_matrix_c_s_r_8hpp_source.html">SparseMatrixCSR.hpp</a></li>
+<li>sparse_matrix_lib/src/<a class="el" href="_sparse_matrix_c_s_r_8cpp_source.html">SparseMatrixCSR.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

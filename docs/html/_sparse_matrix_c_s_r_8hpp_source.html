@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NPDE: sparse_matrix_lib/include/SparseMatrixCSR.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NPDE
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('_sparse_matrix_c_s_r_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">SparseMatrixCSR.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span></div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="};">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html">   27</a></span><span class="keyword">class </span><a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a> {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">size_t</span> rows;      </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">size_t</span> cols;      </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    std::vector&lt;double&gt; values;      </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    std::vector&lt;size_t&gt; col_indices; </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    std::vector&lt;size_t&gt; row_ptrs;    </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">// ============================================================= //</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="comment">// ======================= 构造与析构函数 ======================= //</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// ============================================================= //</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">   43</a></span>    <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#a07f3d0895352fe01cabda82fba08cc8d">   49</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a07f3d0895352fe01cabda82fba08cc8d">SparseMatrixCSR</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span> n) : <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a>(n, n) {};</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span> r, <span class="keyword">const</span> <span class="keywordtype">size_t</span> c);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#a8dd98e992d19f343613961e1d6a50b8a">   62</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a8dd98e992d19f343613961e1d6a50b8a">SparseMatrixCSR</a>(<span class="keyword">const</span> std::vector&lt;std::vector&lt;double&gt;&gt;&amp; dense);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#a12356b22c985aa37d89c7b6afa6e3821">   72</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a12356b22c985aa37d89c7b6afa6e3821">SparseMatrixCSR</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span> rows, <span class="keyword">const</span> <span class="keywordtype">size_t</span> cols,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keyword">const</span> std::vector&lt;size_t&gt;&amp; row_indices,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keyword">const</span> std::vector&lt;size_t&gt;&amp; col_indices,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keyword">const</span> std::vector&lt;double&gt;&amp; values);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#a452e5d5b9a6644c45eec3d2cfb89f1b4">   85</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a452e5d5b9a6644c45eec3d2cfb89f1b4">SparseMatrixCSR</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span> rows, <span class="keyword">const</span> <span class="keywordtype">size_t</span> cols,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keyword">const</span> std::vector&lt;double&gt;&amp; values,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keyword">const</span> std::vector&lt;size_t&gt;&amp; col_indices,</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keyword">const</span> std::vector&lt;size_t&gt;&amp; row_ptrs);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#ac49c8a1b48a224b82e9e9c05f3f3150f">   94</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#ac49c8a1b48a224b82e9e9c05f3f3150f">SparseMatrixCSR</a>(<span class="keyword">const</span> std::string&amp; filename);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#a735f2cc10bd128154fb04dcbad9678de">   99</a></span>    <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a735f2cc10bd128154fb04dcbad9678de">~SparseMatrixCSR</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="comment">// ========================================================= //</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// ======================= 运算符重载 ======================= //</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="comment">// ========================================================= //</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#abbaa48d004038e862577365a975c4d68">  110</a></span>    <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a>&amp; <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#abbaa48d004038e862577365a975c4d68">operator=</a>(<span class="keyword">const</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a>&amp; other) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#aca752c5bbf929af9934a58da2519b483">  117</a></span>    <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a>&amp; <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#aca752c5bbf929af9934a58da2519b483">operator=</a>(<a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a>&amp;&amp; other) <span class="keyword">noexcept</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#af7ce914bdb55793c9c3365bced775096">  124</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#af7ce914bdb55793c9c3365bced775096">operator==</a>(<span class="keyword">const</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a>&amp; other)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code hl_function" href="class_sparse_matrix_c_s_r.html#ab3746e705d155c379c6a37e172a311c4">isApproxEqualto</a>(other, 0); };</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#acdb64e9cc1647100c5badff4536f236b">  131</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#acdb64e9cc1647100c5badff4536f236b">operator!=</a>(<span class="keyword">const</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a>&amp; other)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a78de39f0282a0c5db858b066d4f0947a">isNotApproxEqualto</a>(other, 0); };</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <a class="code hl_class" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&amp; <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a9d6966677affd7e69a348efb298ebedd">operator+=</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&amp; other);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <a class="code hl_class" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#aade1092efe49dc6b7c6d0d7c3bc2480b">operator+</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&amp; other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <a class="code hl_class" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&amp; <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#ad6cceb6e5405826c83024fbda06ffe39">operator-=</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&amp; other);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <a class="code hl_class" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a841341aac1f54bd90ae915eb66cb462d">operator-</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a>&amp; other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#a7174c27e66a54ed60e1e024e0916c1b9">  166</a></span>    std::vector&lt;std::vector&lt;double&gt;&gt; <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a7174c27e66a54ed60e1e024e0916c1b9">operator*</a>(<span class="keyword">const</span> std::vector&lt;std::vector&lt;double&gt;&gt;&amp; other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#a3d38ba8d78e0371bdad2261e0a5a1667">  173</a></span>    std::vector&lt;double&gt; <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3d38ba8d78e0371bdad2261e0a5a1667">operator*</a>(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a7174c27e66a54ed60e1e024e0916c1b9">operator*</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> scalar) <span class="keyword">const</span> <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#af6927eb63fad27def4efbeee61d40c17">  187</a></span>    <span class="keyword">friend</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a> <a class="code hl_friend" href="class_sparse_matrix_c_s_r.html#af6927eb63fad27def4efbeee61d40c17">operator*</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> scalar, <span class="keyword">const</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a>&amp; mat) <span class="keyword">noexcept</span> { <span class="keywordflow">return</span> mat * scalar; };</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <a class="code hl_class" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#ad1511041293162a97b0b04796d5af408">operator/</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> scalar) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <a class="code hl_class" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a841341aac1f54bd90ae915eb66cb462d">operator-</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordtype">double</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a0ae1c6ac9ef3d937d93d75306a0ebc1e">operator()</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span> row, <span class="keyword">const</span> <span class="keywordtype">size_t</span> col) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#aa5c1acceb4f141fcbcbb62ad67bcfca7">  216</a></span>    <span class="keyword">friend</span> std::ostream&amp; <a class="code hl_friend" href="class_sparse_matrix_c_s_r.html#aa5c1acceb4f141fcbcbb62ad67bcfca7">operator&lt;&lt;</a>(std::ostream&amp; os, <span class="keyword">const</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a>&amp; mat);</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="comment">// ======================================================= //</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="comment">// ======================= 功能函数 ======================= //</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="comment">// ======================================================= //</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#a842fed4cb32d1419894150085192b41e">  226</a></span>    <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a842fed4cb32d1419894150085192b41e">SparseMatrixCSR</a>(<span class="keyword">const</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a>&amp; other) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#ab851a88a9dd132436bf032fc20519f62">  232</a></span>    <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#ab851a88a9dd132436bf032fc20519f62">SparseMatrixCSR</a>(<a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a>&amp;&amp; other) <span class="keyword">noexcept</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a41628dead6ffb538656e6bc61a828450">getRows</a>() const noexcept;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3ff28cb4d66413afdcd572807c00dc7f">getCols</a>() const noexcept;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    std::pair&lt;<span class="keywordtype">size_t</span>, <span class="keywordtype">size_t</span>&gt; <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a46a7eff9e334257564ca1db6f72caebc">getSize</a>() const noexcept;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a8f778059c1f4639ce726f6da136c4fcc">getNNZ</a>() const noexcept;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a220cf2fa1694a9ea58c6a2d6f344c927">setValue</a>(const <span class="keywordtype">size_t</span> row, const <span class="keywordtype">size_t</span> col, const <span class="keywordtype">double</span> value);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#a0a82e0d0f279118a90261455d8d4909a">  270</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a220cf2fa1694a9ea58c6a2d6f344c927">setValue</a>(const std::tuple&lt;<span class="keywordtype">size_t</span>, <span class="keywordtype">size_t</span>, <span class="keywordtype">double</span>&gt; element);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#a4f8e27cf751ec6150ae76431f3d10eea">  278</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a220cf2fa1694a9ea58c6a2d6f344c927">setValue</a>(const std::vector&lt;<span class="keywordtype">size_t</span>&gt;&amp; row_indices,</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>        const std::vector&lt;<span class="keywordtype">size_t</span>&gt;&amp; col_indices,</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>        const std::vector&lt;<span class="keywordtype">double</span>&gt;&amp; values);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#a55395854c8e40aa3046cfca3022e8a99">  286</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a220cf2fa1694a9ea58c6a2d6f344c927">setValue</a>(std::vector&lt;std::tuple&lt;<span class="keywordtype">size_t</span>, <span class="keywordtype">size_t</span>, <span class="keywordtype">double</span>&gt;&gt; elements);</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#ab3746e705d155c379c6a37e172a311c4">isApproxEqualto</a>(const <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a>&amp; other, const <span class="keywordtype">double</span> tolerance) const;</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span></div>
+<div class="foldopen" id="foldopen00302" data-start="{" data-end="}">
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#a78de39f0282a0c5db858b066d4f0947a">  302</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a78de39f0282a0c5db858b066d4f0947a">isNotApproxEqualto</a>(const <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a>&amp; other, const <span class="keywordtype">double</span> tolerance)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>        <span class="keywordflow">return</span> !this-&gt;<a class="code hl_function" href="class_sparse_matrix_c_s_r.html#ab3746e705d155c379c6a37e172a311c4">isApproxEqualto</a>(other, tolerance);</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    };</div>
+</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span></div>
+<div class="foldopen" id="foldopen00312" data-start="{" data-end="}">
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#a97de9aca2649265563692f4828d15ebb">  312</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a97de9aca2649265563692f4828d15ebb">isFarAwayFrom</a>(<span class="keyword">const</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a>&amp; other, <span class="keyword">const</span> <span class="keywordtype">double</span> tolerance)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>        <span class="keywordflow">return</span> this-&gt;<a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a78de39f0282a0c5db858b066d4f0947a">isNotApproxEqualto</a>(other, tolerance);</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    };</div>
+</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    <span class="keywordtype">double</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#aa1582865daa4d023d903a4dbbcef76fd">norm</a>(<span class="keyword">const</span> std::string&amp; norm_type) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span></div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <a class="code hl_class" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a79ae63da8202e86369fdfa359f24272d">transpose</a>() const noexcept;</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#a89e29bd86e284975b9a38f2c2b37a483">  333</a></span>    <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR</a> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a89e29bd86e284975b9a38f2c2b37a483">t</a>() const noexcept { <span class="keywordflow">return</span> this-&gt;<a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a79ae63da8202e86369fdfa359f24272d">transpose</a>(); };</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    std::vector&lt;std::vector&lt;double&gt;&gt; <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#af58f37bced436658c24db455b56ad736">toDense</a>() const noexcept;</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span></div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    std::vector&lt;<span class="keywordtype">double</span>&gt; <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a7fde8caaa68c4fc8f3148f0f27c81750">getDiagonalVector</a>() const noexcept;</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span></div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    <a class="code hl_class" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a9f13d3fae98e574fa9760ed67fc2ee59">getDiagonalMatrix</a>() const noexcept;</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span></div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    <a class="code hl_class" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a2fc1d605e33b8fc84ac28f756cd08d74">getUpperTriangularMatrix</a>() const;</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <a class="code hl_class" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a9f98b6fdf6cbba9e6b77bc924b43116a">getLowerTriangularMatrix</a>() const;</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#ac4d2ee4d91bc2842c3dee7b33d4c7436">isSquare</a>() const noexcept;</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span></div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a5ee638e43cb403518e0c9d48187ff501">isSymmetric</a>(const <span class="keywordtype">double</span> tolerance = 0) const;</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span></div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a886bcba67e541ddb43e1619778ec287c">isUpperTriangular</a>() const noexcept;</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span></div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a8e59079d4fc3c91cf22b0143381a5547">isLowerTriangular</a>() const noexcept;</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span></div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a32bcc6b2645ae989e5bf71347c3ded41">isDiagonal</a>() const noexcept;</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span></div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#aba09d807464a29570ae948eb6fa7a1e2">saveToFile</a>(const std::<span class="keywordtype">string</span>&amp; filename) const;</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span></div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno"><a class="line" href="class_sparse_matrix_c_s_r.html#a83a18c6e32ed1fafb4b7b458c5254990">  404</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#a83a18c6e32ed1fafb4b7b458c5254990">print</a>() const noexcept { std::cout &lt;&lt; *<span class="keyword">this</span> &lt;&lt;std::endl; };</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span></div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#adcdbfbeeefdddcbacba007f5140795dd">printDense</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> precision = 4) const noexcept;</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span></div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>    std::vector&lt;<span class="keywordtype">double</span>&gt; <a class="code hl_function" href="class_sparse_matrix_c_s_r.html#ada507688b7f77063dfad399659081161">solve</a>(const std::vector&lt;<span class="keywordtype">double</span>&gt;&amp; b) const;</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>};</div>
+</div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a></div><div class="ttdoc">行压缩稀疏矩阵（CSR格式）实现</div><div class="ttdef"><b>定义</b> <a href="#l00027">SparseMatrixCSR.hpp:27</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a07f3d0895352fe01cabda82fba08cc8d"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a07f3d0895352fe01cabda82fba08cc8d">SparseMatrixCSR::SparseMatrixCSR</a></div><div class="ttdeci">SparseMatrixCSR(const size_t n)</div><div class="ttdoc">构造函数：构造一个 n x n 全零矩阵</div><div class="ttdef"><b>定义</b> <a href="#l00049">SparseMatrixCSR.hpp:49</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a0ae1c6ac9ef3d937d93d75306a0ebc1e"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a0ae1c6ac9ef3d937d93d75306a0ebc1e">SparseMatrixCSR::operator()</a></div><div class="ttdeci">double operator()(const size_t row, const size_t col) const</div><div class="ttdoc">运算符重载：只读访问矩阵元素(1-based)</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00459">SparseMatrixCSR.cpp:459</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a12356b22c985aa37d89c7b6afa6e3821"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a12356b22c985aa37d89c7b6afa6e3821">SparseMatrixCSR::SparseMatrixCSR</a></div><div class="ttdeci">SparseMatrixCSR(const size_t rows, const size_t cols, const std::vector&lt; size_t &gt; &amp;row_indices, const std::vector&lt; size_t &gt; &amp;col_indices, const std::vector&lt; double &gt; &amp;values)</div><div class="ttdoc">构造函数：从COO格式(1-based)矩阵构造CSR格式矩阵</div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a220cf2fa1694a9ea58c6a2d6f344c927"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a220cf2fa1694a9ea58c6a2d6f344c927">SparseMatrixCSR::setValue</a></div><div class="ttdeci">void setValue(const size_t row, const size_t col, const double value)</div><div class="ttdoc">更新/插入/置零元素(1-based)</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00454">SparseMatrixCSR.cpp:454</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a2fc1d605e33b8fc84ac28f756cd08d74"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a2fc1d605e33b8fc84ac28f756cd08d74">SparseMatrixCSR::getUpperTriangularMatrix</a></div><div class="ttdeci">SparseMatrixCSR getUpperTriangularMatrix() const</div><div class="ttdoc">获取上三角矩阵（包含对角线）</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00669">SparseMatrixCSR.cpp:669</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a32bcc6b2645ae989e5bf71347c3ded41"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a32bcc6b2645ae989e5bf71347c3ded41">SparseMatrixCSR::isDiagonal</a></div><div class="ttdeci">bool isDiagonal() const noexcept</div><div class="ttdoc">判断矩阵是否为对角矩阵</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00768">SparseMatrixCSR.cpp:768</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a3d38ba8d78e0371bdad2261e0a5a1667"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a3d38ba8d78e0371bdad2261e0a5a1667">SparseMatrixCSR::operator*</a></div><div class="ttdeci">std::vector&lt; double &gt; operator*(const std::vector&lt; double &gt; &amp;other) const</div><div class="ttdoc">运算符重载：矩阵乘向量</div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a3e0c61278c0ffde1366eea982d907d1f"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a3e0c61278c0ffde1366eea982d907d1f">SparseMatrixCSR::SparseMatrixCSR</a></div><div class="ttdeci">SparseMatrixCSR()=default</div><div class="ttdoc">构造函数：默认构造函数</div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a3ff28cb4d66413afdcd572807c00dc7f"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a3ff28cb4d66413afdcd572807c00dc7f">SparseMatrixCSR::getCols</a></div><div class="ttdeci">size_t getCols() const noexcept</div><div class="ttdoc">获取矩阵列数</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00298">SparseMatrixCSR.cpp:298</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a41628dead6ffb538656e6bc61a828450"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a41628dead6ffb538656e6bc61a828450">SparseMatrixCSR::getRows</a></div><div class="ttdeci">size_t getRows() const noexcept</div><div class="ttdoc">获取矩阵行数</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00294">SparseMatrixCSR.cpp:294</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a452e5d5b9a6644c45eec3d2cfb89f1b4"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a452e5d5b9a6644c45eec3d2cfb89f1b4">SparseMatrixCSR::SparseMatrixCSR</a></div><div class="ttdeci">SparseMatrixCSR(const size_t rows, const size_t cols, const std::vector&lt; double &gt; &amp;values, const std::vector&lt; size_t &gt; &amp;col_indices, const std::vector&lt; size_t &gt; &amp;row_ptrs)</div><div class="ttdoc">构造函数：直接从CSR格式(0-based)构造CSR格式矩阵</div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a46a7eff9e334257564ca1db6f72caebc"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a46a7eff9e334257564ca1db6f72caebc">SparseMatrixCSR::getSize</a></div><div class="ttdeci">std::pair&lt; size_t, size_t &gt; getSize() const noexcept</div><div class="ttdoc">获取矩阵大小（行数和列数）</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00302">SparseMatrixCSR.cpp:302</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a5ee638e43cb403518e0c9d48187ff501"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a5ee638e43cb403518e0c9d48187ff501">SparseMatrixCSR::isSymmetric</a></div><div class="ttdeci">bool isSymmetric(const double tolerance=0) const</div><div class="ttdoc">判断矩阵是否为对称矩阵</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00719">SparseMatrixCSR.cpp:719</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a7174c27e66a54ed60e1e024e0916c1b9"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a7174c27e66a54ed60e1e024e0916c1b9">SparseMatrixCSR::operator*</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; double &gt; &gt; operator*(const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;other) const</div><div class="ttdoc">运算符重载：矩阵乘法（稠密矩阵）</div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a735f2cc10bd128154fb04dcbad9678de"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a735f2cc10bd128154fb04dcbad9678de">SparseMatrixCSR::~SparseMatrixCSR</a></div><div class="ttdeci">~SparseMatrixCSR()=default</div><div class="ttdoc">析构函数</div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a78de39f0282a0c5db858b066d4f0947a"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a78de39f0282a0c5db858b066d4f0947a">SparseMatrixCSR::isNotApproxEqualto</a></div><div class="ttdeci">bool isNotApproxEqualto(const SparseMatrixCSR &amp;other, const double tolerance) const</div><div class="ttdoc">判断近似不等</div><div class="ttdef"><b>定义</b> <a href="#l00302">SparseMatrixCSR.hpp:302</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a79ae63da8202e86369fdfa359f24272d"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a79ae63da8202e86369fdfa359f24272d">SparseMatrixCSR::transpose</a></div><div class="ttdeci">SparseMatrixCSR transpose() const noexcept</div><div class="ttdoc">矩阵转置</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00531">SparseMatrixCSR.cpp:531</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a7fde8caaa68c4fc8f3148f0f27c81750"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a7fde8caaa68c4fc8f3148f0f27c81750">SparseMatrixCSR::getDiagonalVector</a></div><div class="ttdeci">std::vector&lt; double &gt; getDiagonalVector() const noexcept</div><div class="ttdoc">获取对角线元素（以向量形式返回）</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00629">SparseMatrixCSR.cpp:629</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a83a18c6e32ed1fafb4b7b458c5254990"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a83a18c6e32ed1fafb4b7b458c5254990">SparseMatrixCSR::print</a></div><div class="ttdeci">void print() const noexcept</div><div class="ttdoc">矩阵打印(1-based)</div><div class="ttdef"><b>定义</b> <a href="#l00404">SparseMatrixCSR.hpp:404</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a841341aac1f54bd90ae915eb66cb462d"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a841341aac1f54bd90ae915eb66cb462d">SparseMatrixCSR::operator-</a></div><div class="ttdeci">SparseMatrixCSR operator-() const</div><div class="ttdoc">运算符重载：单目负号</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00949">SparseMatrixCSR.cpp:949</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a842fed4cb32d1419894150085192b41e"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a842fed4cb32d1419894150085192b41e">SparseMatrixCSR::SparseMatrixCSR</a></div><div class="ttdeci">SparseMatrixCSR(const SparseMatrixCSR &amp;other)=default</div><div class="ttdoc">深拷贝</div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a886bcba67e541ddb43e1619778ec287c"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a886bcba67e541ddb43e1619778ec287c">SparseMatrixCSR::isUpperTriangular</a></div><div class="ttdeci">bool isUpperTriangular() const noexcept</div><div class="ttdoc">判断矩阵是否为上三角矩阵</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00730">SparseMatrixCSR.cpp:730</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a89e29bd86e284975b9a38f2c2b37a483"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a89e29bd86e284975b9a38f2c2b37a483">SparseMatrixCSR::t</a></div><div class="ttdeci">SparseMatrixCSR t() const noexcept</div><div class="ttdoc">矩阵转置（简写）</div><div class="ttdef"><b>定义</b> <a href="#l00333">SparseMatrixCSR.hpp:333</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a8dd98e992d19f343613961e1d6a50b8a"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a8dd98e992d19f343613961e1d6a50b8a">SparseMatrixCSR::SparseMatrixCSR</a></div><div class="ttdeci">SparseMatrixCSR(const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;dense)</div><div class="ttdoc">构造函数：稠密矩阵转稀疏矩阵</div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a8e59079d4fc3c91cf22b0143381a5547"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a8e59079d4fc3c91cf22b0143381a5547">SparseMatrixCSR::isLowerTriangular</a></div><div class="ttdeci">bool isLowerTriangular() const noexcept</div><div class="ttdoc">判断矩阵是否为下三角矩阵</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00749">SparseMatrixCSR.cpp:749</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a8f778059c1f4639ce726f6da136c4fcc"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a8f778059c1f4639ce726f6da136c4fcc">SparseMatrixCSR::getNNZ</a></div><div class="ttdeci">size_t getNNZ() const noexcept</div><div class="ttdoc">获取非零元素数目</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00306">SparseMatrixCSR.cpp:306</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a97de9aca2649265563692f4828d15ebb"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a97de9aca2649265563692f4828d15ebb">SparseMatrixCSR::isFarAwayFrom</a></div><div class="ttdeci">bool isFarAwayFrom(const SparseMatrixCSR &amp;other, const double tolerance) const</div><div class="ttdoc">判断非常不等</div><div class="ttdef"><b>定义</b> <a href="#l00312">SparseMatrixCSR.hpp:312</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a9d6966677affd7e69a348efb298ebedd"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a9d6966677affd7e69a348efb298ebedd">SparseMatrixCSR::operator+=</a></div><div class="ttdeci">SparseMatrixCSR &amp; operator+=(const SparseMatrixCSR &amp;other)</div><div class="ttdoc">运算符重载：矩阵累加</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00793">SparseMatrixCSR.cpp:793</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a9f13d3fae98e574fa9760ed67fc2ee59"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a9f13d3fae98e574fa9760ed67fc2ee59">SparseMatrixCSR::getDiagonalMatrix</a></div><div class="ttdeci">SparseMatrixCSR getDiagonalMatrix() const noexcept</div><div class="ttdoc">获取对角线元素（以CSR格式的对角矩阵形式返回）</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00647">SparseMatrixCSR.cpp:647</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_a9f98b6fdf6cbba9e6b77bc924b43116a"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#a9f98b6fdf6cbba9e6b77bc924b43116a">SparseMatrixCSR::getLowerTriangularMatrix</a></div><div class="ttdeci">SparseMatrixCSR getLowerTriangularMatrix() const</div><div class="ttdoc">获取下三角矩阵（包含对角线）</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00694">SparseMatrixCSR.cpp:694</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_aa1582865daa4d023d903a4dbbcef76fd"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#aa1582865daa4d023d903a4dbbcef76fd">SparseMatrixCSR::norm</a></div><div class="ttdeci">double norm(const std::string &amp;norm_type) const</div><div class="ttdoc">计算矩阵的范数</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00578">SparseMatrixCSR.cpp:578</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_aa5c1acceb4f141fcbcbb62ad67bcfca7"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#aa5c1acceb4f141fcbcbb62ad67bcfca7">SparseMatrixCSR::operator&lt;&lt;</a></div><div class="ttdeci">friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const SparseMatrixCSR &amp;mat)</div><div class="ttdoc">运算符重载：流输出（左移）(1-based)</div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_aade1092efe49dc6b7c6d0d7c3bc2480b"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#aade1092efe49dc6b7c6d0d7c3bc2480b">SparseMatrixCSR::operator+</a></div><div class="ttdeci">SparseMatrixCSR operator+(const SparseMatrixCSR &amp;other) const</div><div class="ttdoc">运算符重载：矩阵加法</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00864">SparseMatrixCSR.cpp:864</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_ab3746e705d155c379c6a37e172a311c4"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#ab3746e705d155c379c6a37e172a311c4">SparseMatrixCSR::isApproxEqualto</a></div><div class="ttdeci">bool isApproxEqualto(const SparseMatrixCSR &amp;other, const double tolerance) const</div><div class="ttdoc">判断近似相等</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00787">SparseMatrixCSR.cpp:787</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_ab851a88a9dd132436bf032fc20519f62"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#ab851a88a9dd132436bf032fc20519f62">SparseMatrixCSR::SparseMatrixCSR</a></div><div class="ttdeci">SparseMatrixCSR(SparseMatrixCSR &amp;&amp;other) noexcept=default</div><div class="ttdoc">移动构造函数</div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_aba09d807464a29570ae948eb6fa7a1e2"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#aba09d807464a29570ae948eb6fa7a1e2">SparseMatrixCSR::saveToFile</a></div><div class="ttdeci">void saveToFile(const std::string &amp;filename) const</div><div class="ttdoc">矩阵保存到文件(1-based)</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00336">SparseMatrixCSR.cpp:336</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_abbaa48d004038e862577365a975c4d68"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#abbaa48d004038e862577365a975c4d68">SparseMatrixCSR::operator=</a></div><div class="ttdeci">SparseMatrixCSR &amp; operator=(const SparseMatrixCSR &amp;other)=default</div><div class="ttdoc">运算符重载：拷贝赋值</div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_ac49c8a1b48a224b82e9e9c05f3f3150f"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#ac49c8a1b48a224b82e9e9c05f3f3150f">SparseMatrixCSR::SparseMatrixCSR</a></div><div class="ttdeci">SparseMatrixCSR(const std::string &amp;filename)</div><div class="ttdoc">构造函数：从文件(1-based)构造矩阵</div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_ac4d2ee4d91bc2842c3dee7b33d4c7436"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#ac4d2ee4d91bc2842c3dee7b33d4c7436">SparseMatrixCSR::isSquare</a></div><div class="ttdeci">bool isSquare() const noexcept</div><div class="ttdoc">判断矩阵是否为方阵</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00624">SparseMatrixCSR.cpp:624</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_aca752c5bbf929af9934a58da2519b483"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#aca752c5bbf929af9934a58da2519b483">SparseMatrixCSR::operator=</a></div><div class="ttdeci">SparseMatrixCSR &amp; operator=(SparseMatrixCSR &amp;&amp;other) noexcept=default</div><div class="ttdoc">运算符重载：移动赋值</div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_acdb64e9cc1647100c5badff4536f236b"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#acdb64e9cc1647100c5badff4536f236b">SparseMatrixCSR::operator!=</a></div><div class="ttdeci">bool operator!=(const SparseMatrixCSR &amp;other) const</div><div class="ttdoc">运算符重载：判断严格不等</div><div class="ttdef"><b>定义</b> <a href="#l00131">SparseMatrixCSR.hpp:131</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_ad1511041293162a97b0b04796d5af408"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#ad1511041293162a97b0b04796d5af408">SparseMatrixCSR::operator/</a></div><div class="ttdeci">SparseMatrixCSR operator/(const double scalar) const</div><div class="ttdoc">运算符重载：矩阵数除</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00976">SparseMatrixCSR.cpp:976</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_ad6cceb6e5405826c83024fbda06ffe39"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#ad6cceb6e5405826c83024fbda06ffe39">SparseMatrixCSR::operator-=</a></div><div class="ttdeci">SparseMatrixCSR &amp; operator-=(const SparseMatrixCSR &amp;other)</div><div class="ttdoc">运算符重载：矩阵累减</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00871">SparseMatrixCSR.cpp:871</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_ada507688b7f77063dfad399659081161"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#ada507688b7f77063dfad399659081161">SparseMatrixCSR::solve</a></div><div class="ttdeci">std::vector&lt; double &gt; solve(const std::vector&lt; double &gt; &amp;b) const</div><div class="ttdoc">求解线性方程组 Ax = b（GMRES求解器）</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l01056">SparseMatrixCSR.cpp:1056</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_adcdbfbeeefdddcbacba007f5140795dd"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#adcdbfbeeefdddcbacba007f5140795dd">SparseMatrixCSR::printDense</a></div><div class="ttdeci">void printDense(const int precision=4) const noexcept</div><div class="ttdoc">矩阵稠密打印(1-based)</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00493">SparseMatrixCSR.cpp:493</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_af58f37bced436658c24db455b56ad736"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#af58f37bced436658c24db455b56ad736">SparseMatrixCSR::toDense</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; double &gt; &gt; toDense() const noexcept</div><div class="ttdoc">转为稠密矩阵</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8cpp_source.html#l00481">SparseMatrixCSR.cpp:481</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_af6927eb63fad27def4efbeee61d40c17"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#af6927eb63fad27def4efbeee61d40c17">SparseMatrixCSR::operator*</a></div><div class="ttdeci">friend SparseMatrixCSR operator*(const double scalar, const SparseMatrixCSR &amp;mat) noexcept</div><div class="ttdoc">运算符重载：矩阵数乘（左侧）</div><div class="ttdef"><b>定义</b> <a href="#l00187">SparseMatrixCSR.hpp:187</a></div></div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html_af7ce914bdb55793c9c3365bced775096"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html#af7ce914bdb55793c9c3365bced775096">SparseMatrixCSR::operator==</a></div><div class="ttdeci">bool operator==(const SparseMatrixCSR &amp;other) const</div><div class="ttdoc">运算符重载：判断严格相等</div><div class="ttdef"><b>定义</b> <a href="#l00124">SparseMatrixCSR.hpp:124</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_1e947528647632f810176f4e5e70788a.html">sparse_matrix_lib</a></li><li class="navelem"><a href="dir_9ca6628b97370d9dd5f4625868a0b052.html">include</a></li><li class="navelem"><b>SparseMatrixCSR.hpp</b></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

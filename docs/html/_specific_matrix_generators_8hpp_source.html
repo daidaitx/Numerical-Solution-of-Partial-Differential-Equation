@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NPDE: sparse_matrix_lib/include/SpecificMatrixGenerators.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NPDE
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('_specific_matrix_generators_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">SpecificMatrixGenerators.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;SparseMatrixCSR.hpp&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="}">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="namespace_matrix_generators.html">   11</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_matrix_generators.html">MatrixGenerators</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="namespace_matrix_generators_1_1_poisson2_d.html">   16</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_matrix_generators_1_1_poisson2_d.html">Poisson2D</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">// 前向声明主要结构体</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">struct </span><a class="code hl_struct" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html">PoissonProblem2D</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span></div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html">   24</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html">PoissonConfig2D</a> {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#a29c4a357d4380377196fc3baa715d19b">   25</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#a29c4a357d4380377196fc3baa715d19b">M</a>;                    </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#a0f0dd22167077dcd4061757de3e3ffc6">   26</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#a0f0dd22167077dcd4061757de3e3ffc6">N</a>;                    </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#ab316b0cf83c08911869690e35735baee">   27</a></span>    <span class="keywordtype">double</span> x_min, <a class="code hl_variable" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#ab316b0cf83c08911869690e35735baee">x_max</a>;         </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#a83f9d0451f0f51c0de1ba9c67dc5e097">   28</a></span>    <span class="keywordtype">double</span> y_min, <a class="code hl_variable" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#a83f9d0451f0f51c0de1ba9c67dc5e097">y_max</a>;         </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#ae593523b8bb42965c2cb0c5b2499eb61">   29</a></span>    std::string <a class="code hl_variable" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#ae593523b8bb42965c2cb0c5b2499eb61">discretization</a> = <span class="stringliteral">&quot;5-point&quot;</span>; </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// 网格步长</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">double</span> hx()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (<a class="code hl_variable" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#ab316b0cf83c08911869690e35735baee">x_max</a> - x_min) / <a class="code hl_variable" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#a29c4a357d4380377196fc3baa715d19b">M</a>; }</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">double</span> hy()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (<a class="code hl_variable" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#a83f9d0451f0f51c0de1ba9c67dc5e097">y_max</a> - y_min) / <a class="code hl_variable" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#a0f0dd22167077dcd4061757de3e3ffc6">N</a>; }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>};</div>
+</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="};">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html">   39</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html">PoissonProblem2D</a> {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html#a96f1e66ec8373f74ed1ad4c2fe36a241">   40</a></span>    <a class="code hl_class" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> <a class="code hl_variable" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html#a96f1e66ec8373f74ed1ad4c2fe36a241">A</a>;                   </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html#affaa514aa7c4ec8f6495b5d72b3af7c2">   41</a></span>    std::vector&lt;double&gt; <a class="code hl_variable" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html#affaa514aa7c4ec8f6495b5d72b3af7c2">b</a>;               </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html#ace1fe4d5567c9ea86a0d037ff359b64e">   42</a></span>    std::vector&lt;double&gt; <a class="code hl_variable" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html#ace1fe4d5567c9ea86a0d037ff359b64e">solution_1d</a>;              </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html#a61701671a69c171bb4453586b94ffb41">   43</a></span>    std::vector&lt;std::vector&lt;double&gt;&gt; <a class="code hl_variable" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html#a61701671a69c171bb4453586b94ffb41">solution_2d</a>; </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html#a33a9d73c8a05945cded0525aab00ce8b">   44</a></span>    <a class="code hl_struct" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html">PoissonConfig2D</a> <a class="code hl_variable" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html#a33a9d73c8a05945cded0525aab00ce8b">config</a>;              </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="comment">// 实用函数</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">void</span> saveToFiles(<span class="keyword">const</span> std::string&amp; basename) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> printInfo() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
+</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">// 函数重载：接受函数句柄</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><a class="code hl_struct" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html">PoissonProblem2D</a> generatePoisson2D(</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">const</span> <a class="code hl_struct" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html">PoissonConfig2D</a>&amp; config,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    std::function&lt;<span class="keywordtype">double</span>(<span class="keywordtype">double</span>, <span class="keywordtype">double</span>)&gt; f,  <span class="comment">// 源项函数</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    std::function&lt;<span class="keywordtype">double</span>(<span class="keywordtype">double</span>, <span class="keywordtype">double</span>)&gt; g   <span class="comment">// 边界条件函数</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">// 函数重载：接受离散点阵</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><a class="code hl_struct" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html">PoissonProblem2D</a> generatePoisson2D(</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keyword">const</span> <a class="code hl_struct" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html">PoissonConfig2D</a>&amp; config,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">const</span> std::vector&lt;std::vector&lt;double&gt;&gt;&amp; f_discrete,  <span class="comment">// 离散源项</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">const</span> std::vector&lt;std::vector&lt;double&gt;&gt;&amp; g_discrete   <span class="comment">// 离散边界条件</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">// 仅生成矩阵（不求解）</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><a class="code hl_class" href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a> <a class="code hl_function" href="namespace_matrix_generators_1_1_poisson2_d.html#ac8b5653d0ce1468a6851c2f7b32e8819">generatePoissonMatrix2D</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html">PoissonConfig2D</a>&amp; config);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">// 仅生成右端项</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>std::vector&lt;double&gt; generatePoissonRHS2D(</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">const</span> <a class="code hl_struct" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html">PoissonConfig2D</a>&amp; config,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    std::function&lt;<span class="keywordtype">double</span>(<span class="keywordtype">double</span>, <span class="keywordtype">double</span>)&gt; f,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    std::function&lt;<span class="keywordtype">double</span>(<span class="keywordtype">double</span>, <span class="keywordtype">double</span>)&gt; g</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>std::vector&lt;double&gt; generatePoissonRHS2D(</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">const</span> <a class="code hl_struct" href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html">PoissonConfig2D</a>&amp; config,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keyword">const</span> std::vector&lt;std::vector&lt;double&gt;&gt;&amp; f_discrete,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">const</span> std::vector&lt;std::vector&lt;double&gt;&gt;&amp; g_discrete</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">// 工具函数：向量拉直和反拉直</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>std::vector&lt;double&gt; flattenMatrix(<span class="keyword">const</span> std::vector&lt;std::vector&lt;double&gt;&gt;&amp; matrix_2d);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>std::vector&lt;std::vector&lt;double&gt;&gt; unflattenVector(</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">const</span> std::vector&lt;double&gt;&amp; vec_1d, </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">size_t</span> M, </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">size_t</span> N</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>} <span class="comment">// namespace Poisson2D</span></div>
+</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>} <span class="comment">// namespace MatrixGenerators</span></div>
+</div>
+<div class="ttc" id="aclass_sparse_matrix_c_s_r_html"><div class="ttname"><a href="class_sparse_matrix_c_s_r.html">SparseMatrixCSR</a></div><div class="ttdoc">行压缩稀疏矩阵（CSR格式）实现</div><div class="ttdef"><b>定义</b> <a href="_sparse_matrix_c_s_r_8hpp_source.html#l00027">SparseMatrixCSR.hpp:27</a></div></div>
+<div class="ttc" id="anamespace_matrix_generators_1_1_poisson2_d_html"><div class="ttname"><a href="namespace_matrix_generators_1_1_poisson2_d.html">MatrixGenerators::Poisson2D</a></div><div class="ttdoc">二维Poisson问题生成器</div><div class="ttdef"><b>定义</b> <a href="#l00016">SpecificMatrixGenerators.hpp:16</a></div></div>
+<div class="ttc" id="anamespace_matrix_generators_1_1_poisson2_d_html_ac8b5653d0ce1468a6851c2f7b32e8819"><div class="ttname"><a href="namespace_matrix_generators_1_1_poisson2_d.html#ac8b5653d0ce1468a6851c2f7b32e8819">MatrixGenerators::Poisson2D::generatePoissonMatrix2D</a></div><div class="ttdeci">SparseMatrixCSR generatePoissonMatrix2D(const PoissonConfig2D &amp;config)</div><div class="ttdef"><b>定义</b> <a href="_specific_matrix_generators_8cpp_source.html#l00056">SpecificMatrixGenerators.cpp:56</a></div></div>
+<div class="ttc" id="anamespace_matrix_generators_html"><div class="ttname"><a href="namespace_matrix_generators.html">MatrixGenerators</a></div><div class="ttdoc">特定矩阵生成器命名空间</div><div class="ttdef"><b>定义</b> <a href="#l00011">SpecificMatrixGenerators.hpp:11</a></div></div>
+<div class="ttc" id="astruct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d_html"><div class="ttname"><a href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html">MatrixGenerators::Poisson2D::PoissonConfig2D</a></div><div class="ttdoc">二维Poisson问题配置参数</div><div class="ttdef"><b>定义</b> <a href="#l00024">SpecificMatrixGenerators.hpp:24</a></div></div>
+<div class="ttc" id="astruct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d_html_a0f0dd22167077dcd4061757de3e3ffc6"><div class="ttname"><a href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#a0f0dd22167077dcd4061757de3e3ffc6">MatrixGenerators::Poisson2D::PoissonConfig2D::N</a></div><div class="ttdeci">size_t N</div><div class="ttdoc">y方向网格数</div><div class="ttdef"><b>定义</b> <a href="#l00026">SpecificMatrixGenerators.hpp:26</a></div></div>
+<div class="ttc" id="astruct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d_html_a29c4a357d4380377196fc3baa715d19b"><div class="ttname"><a href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#a29c4a357d4380377196fc3baa715d19b">MatrixGenerators::Poisson2D::PoissonConfig2D::M</a></div><div class="ttdeci">size_t M</div><div class="ttdoc">x方向网格数</div><div class="ttdef"><b>定义</b> <a href="#l00025">SpecificMatrixGenerators.hpp:25</a></div></div>
+<div class="ttc" id="astruct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d_html_a83f9d0451f0f51c0de1ba9c67dc5e097"><div class="ttname"><a href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#a83f9d0451f0f51c0de1ba9c67dc5e097">MatrixGenerators::Poisson2D::PoissonConfig2D::y_max</a></div><div class="ttdeci">double y_max</div><div class="ttdoc">y方向边界</div><div class="ttdef"><b>定义</b> <a href="#l00028">SpecificMatrixGenerators.hpp:28</a></div></div>
+<div class="ttc" id="astruct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d_html_ab316b0cf83c08911869690e35735baee"><div class="ttname"><a href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#ab316b0cf83c08911869690e35735baee">MatrixGenerators::Poisson2D::PoissonConfig2D::x_max</a></div><div class="ttdeci">double x_max</div><div class="ttdoc">x方向边界</div><div class="ttdef"><b>定义</b> <a href="#l00027">SpecificMatrixGenerators.hpp:27</a></div></div>
+<div class="ttc" id="astruct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d_html_ae593523b8bb42965c2cb0c5b2499eb61"><div class="ttname"><a href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_config2_d.html#ae593523b8bb42965c2cb0c5b2499eb61">MatrixGenerators::Poisson2D::PoissonConfig2D::discretization</a></div><div class="ttdeci">std::string discretization</div><div class="ttdoc">离散格式</div><div class="ttdef"><b>定义</b> <a href="#l00029">SpecificMatrixGenerators.hpp:29</a></div></div>
+<div class="ttc" id="astruct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d_html"><div class="ttname"><a href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html">MatrixGenerators::Poisson2D::PoissonProblem2D</a></div><div class="ttdoc">二维Poisson问题完整结果</div><div class="ttdef"><b>定义</b> <a href="#l00039">SpecificMatrixGenerators.hpp:39</a></div></div>
+<div class="ttc" id="astruct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d_html_a33a9d73c8a05945cded0525aab00ce8b"><div class="ttname"><a href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html#a33a9d73c8a05945cded0525aab00ce8b">MatrixGenerators::Poisson2D::PoissonProblem2D::config</a></div><div class="ttdeci">PoissonConfig2D config</div><div class="ttdoc">配置参数</div><div class="ttdef"><b>定义</b> <a href="#l00044">SpecificMatrixGenerators.hpp:44</a></div></div>
+<div class="ttc" id="astruct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d_html_a61701671a69c171bb4453586b94ffb41"><div class="ttname"><a href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html#a61701671a69c171bb4453586b94ffb41">MatrixGenerators::Poisson2D::PoissonProblem2D::solution_2d</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; double &gt; &gt; solution_2d</div><div class="ttdoc">二维格式的解</div><div class="ttdef"><b>定义</b> <a href="#l00043">SpecificMatrixGenerators.hpp:43</a></div></div>
+<div class="ttc" id="astruct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d_html_a96f1e66ec8373f74ed1ad4c2fe36a241"><div class="ttname"><a href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html#a96f1e66ec8373f74ed1ad4c2fe36a241">MatrixGenerators::Poisson2D::PoissonProblem2D::A</a></div><div class="ttdeci">SparseMatrixCSR A</div><div class="ttdoc">系数矩阵</div><div class="ttdef"><b>定义</b> <a href="#l00040">SpecificMatrixGenerators.hpp:40</a></div></div>
+<div class="ttc" id="astruct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d_html_ace1fe4d5567c9ea86a0d037ff359b64e"><div class="ttname"><a href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html#ace1fe4d5567c9ea86a0d037ff359b64e">MatrixGenerators::Poisson2D::PoissonProblem2D::solution_1d</a></div><div class="ttdeci">std::vector&lt; double &gt; solution_1d</div><div class="ttdoc">解向量（拉直格式）</div><div class="ttdef"><b>定义</b> <a href="#l00042">SpecificMatrixGenerators.hpp:42</a></div></div>
+<div class="ttc" id="astruct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d_html_affaa514aa7c4ec8f6495b5d72b3af7c2"><div class="ttname"><a href="struct_matrix_generators_1_1_poisson2_d_1_1_poisson_problem2_d.html#affaa514aa7c4ec8f6495b5d72b3af7c2">MatrixGenerators::Poisson2D::PoissonProblem2D::b</a></div><div class="ttdeci">std::vector&lt; double &gt; b</div><div class="ttdoc">右端项</div><div class="ttdef"><b>定义</b> <a href="#l00041">SpecificMatrixGenerators.hpp:41</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_1e947528647632f810176f4e5e70788a.html">sparse_matrix_lib</a></li><li class="navelem"><a href="dir_9ca6628b97370d9dd5f4625868a0b052.html">include</a></li><li class="navelem"><b>SpecificMatrixGenerators.hpp</b></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>
