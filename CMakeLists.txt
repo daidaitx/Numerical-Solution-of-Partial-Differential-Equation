@@ -11,29 +11,35 @@ add_library(SparseMatrixLib STATIC    # 生成名为SparseMatrixLib的静态库
   sparse_matrix_lib/src/SpecificMatrixGenerators.cpp  # 库源文件4：特殊矩阵生成器实现
 )
 
+add_library(ApplicationUtils STATIC
+  applications/utils/application_utils.cpp
+)
+
 # 设置库的头文件搜索路径
 target_include_directories(SparseMatrixLib PUBLIC sparse_matrix_lib/include) 
 # PUBLIC表示：
 #   - 库自身编译时需要include目录
 #   - 链接此库的**其他目标**（如测试程序）也需要include目录
 
-# 自动查找所有测试文件
-file(GLOB TEST_SOURCES "sparse_matrix_lib/test/Test*.cpp")
-# 自动查找所有应用程序
+target_include_directories(ApplicationUtils PUBLIC applications/utils/include)
+
+# # 自动查找所有测试文件
+# file(GLOB TEST_SOURCES "sparse_matrix_lib/test/Test*.cpp")
+# # 自动创建测试可执行文件
+# foreach(test_source ${TEST_SOURCES})
+#     get_filename_component(test_name ${test_source} NAME_WE)
+#     add_executable(${test_name} ${test_source})
+#     target_link_libraries(${test_name} PRIVATE SparseMatrixLib)
+#     list(APPEND ALL_EXECUTABLES ${test_name})
+# endforeach()
+
+# 自动查找所有应用程序（排除utils目录）
 file(GLOB APP_SOURCES "applications/*/*.cpp")
-
-# 自动创建测试可执行文件
-foreach(test_source ${TEST_SOURCES})
-    get_filename_component(test_name ${test_source} NAME_WE)
-    add_executable(${test_name} ${test_source})
-    target_link_libraries(${test_name} PRIVATE SparseMatrixLib)
-    list(APPEND ALL_EXECUTABLES ${test_name})
-endforeach()
-
+list(FILTER APP_SOURCES EXCLUDE REGEX ".*/utils/.*") # 从应用程序列表中移除工具文件
 # 自动创建应用程序可执行文件
 foreach(app_source ${APP_SOURCES})
     get_filename_component(app_name ${app_source} NAME_WE)
     add_executable(${app_name} ${app_source})
-    target_link_libraries(${app_name} PRIVATE SparseMatrixLib)
+    target_link_libraries(${app_name} PRIVATE SparseMatrixLib ApplicationUtils)
     list(APPEND ALL_EXECUTABLES ${app_name})
 endforeach()

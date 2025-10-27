@@ -1,5 +1,6 @@
 # Numerical-Solution-of-Partial-Differential-Equation
-完成了 $\text{CSR}$ 格式稀疏矩阵类及其相关的多种功能，附加了稠密矩阵、向量的相关功能，便于后续各种计算。
+- 完成了 $\text{CSR}$ 格式稀疏矩阵类及其相关的多种功能，附加了稠密矩阵、向量的相关功能，便于后续各种计算。
+- 实现了$2$维多边形区域 $\text{Dirichlet}$ 边界条件下的 $\text{Poisson}$ 方程的五点差分格式求解器，及其可视化程序。
 
 **DoxyFile见[index.html](sparse_matrix_lib/docs/html/index.html).**
 
